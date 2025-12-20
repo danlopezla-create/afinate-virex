@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-12-20
+
+### Added
+
+- **TypeScript Type Annotations**: Comprehensive type safety improvements across the codebase
+  - Blog and docs pages with full TypeScript annotations
+  - Page components with proper type definitions
+  - DocsLayout with comprehensive type annotations
+  - BlogLayout slot usage refactored for better type safety
+
+- **Testimonial Card Improvements**: Inline component with initials fallback
+  - Avatar now shows initials when image is unavailable
+  - Better user experience for missing profile images
+
+### Changed
+
+- **Hero Section**: Enhanced typography and updated homepage messaging
+  - Improved visual hierarchy and readability
+  - Updated marketing copy for better conversion
+
+- **Features & Testimonials Sections**: Refactored with flexible heading support
+  - More customizable section headings
+  - Better component composition
+
+- **Content Configuration**: Relocated to root level for better organization
+  - Simplified project structure
+  - Easier configuration management
+
+- **Environment Configuration**: Simplified setup with improved documentation
+  - Cleaner environment variable handling
+  - Better developer experience
+
+### Updated
+
+- Dark and light mode screenshots reflecting latest UI changes
+- README and documentation improvements
+
 ## [1.1.0] - 2025-12-19
 
 ### Added

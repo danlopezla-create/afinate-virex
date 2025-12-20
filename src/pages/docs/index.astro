@@ -6,13 +6,15 @@
  * A landing page for documentation that displays all available docs
  * organized by section with descriptions and quick links.
  */
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
 
+type DocsEntry = CollectionEntry<'docs'>;
+
 // Get all non-draft docs
-const allDocs = await getCollection('docs', ({ data }) => !data.draft);
+const allDocs = await getCollection('docs', ({ data }: { data: DocsEntry['data'] }) => !data.draft);
 
 // Group docs by section and sort by order
 interface DocItem {
@@ -57,7 +59,7 @@ docsSections.sort((a, b) => {
 });
 
 // Get the first doc for "Get Started" button
-const firstDoc = allDocs.sort((a, b) => a.data.order - b.data.order)[0];
+const firstDoc = allDocs.sort((a: DocsEntry, b: DocsEntry) => a.data.order - b.data.order)[0];
 
 // Section icons mapping
 const sectionIcons: Record<string, string> = {

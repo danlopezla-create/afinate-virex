@@ -47,20 +47,21 @@ Open [http://localhost:4321](http://localhost:4321) to see your site.
 
 Full documentation is available in the [`docs/`](./docs/) folder:
 
-1. [Getting Started](./docs/01-getting-started.md) - Installation and project structure
-2. [Configuration](./docs/02-configuration.md) - Site settings and feature flags
-3. [Customization](./docs/03-customization.md) - Design tokens, logo, and branding
-4. [Content Guide](./docs/04-content-guide.md) - Blog, docs, changelog, testimonials
-5. [Components](./docs/05-components.md) - Icons, forms, and UI components
-6. [Pages](./docs/06-pages.md) - Available pages and routing
-7. [Deployment](./docs/07-deployment.md) - Deploy to Vercel, Netlify, Cloudflare
+1. **[Getting Started](./docs/01-getting-started.md)** - Installation and project structure to begin development
+2. **[Configuration](./docs/02-configuration.md)** - Site settings and feature flags for customization
+3. **[Customization](./docs/03-customization.md)** - Design tokens, logo, and branding personalization
+4. **[Content Guide](./docs/04-content-guide.md)** - Managing blog, docs, changelog, and testimonials
+5. **[Components](./docs/05-components.md)** - Icon library, forms, and available UI components
+6. **[Pages](./docs/06-pages.md)** - Available pages and routing system
+7. **[Authentication](./docs/07-authentication.md)** - Authentication implementation and configuration
+8. **[Deployment](./docs/08-deployment.md)** - Deploy to Vercel, Netlify, or Cloudflare
 
 ## Project Structure
 
 ```
 src/
 ├── components/     # Reusable UI components
-├── config/         # Site configuration (edit these!)
+├── config/         # Site configuration
 ├── content/        # Blog, docs, changelog, testimonials (Markdown/MDX)
 ├── layouts/        # Page layouts
 ├── lib/            # Utilities and types
@@ -90,4 +91,4 @@ All configuration is centralized in `src/config/`:
 
 ## License
 
-Virex is free for personal and commercial use under the [MIT License](./LICENSE). A link back to this repo is appreciated but not required.
+Virex Theme is free for personal and commercial use under the [MIT License](./LICENSE). While not required, a link back to this repository is always appreciated.

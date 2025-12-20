@@ -65,10 +65,9 @@ src/
 │   ├── error/                # Error page components
 │   ├── forms/                # Contact form
 │   ├── layout/               # Navbar, Footer, AnnouncementBar
-│   ├── sections/             # Hero, FeatureGrid, PricingTable, CTA
-│   └── ui/                   # Buttons, cards, navigation
+│   ├── sections/             # Hero, FeaturesSection, TestimonialsSection, PricingTable, CTA
+│   └── ui/                   # Buttons, navigation
 │       ├── buttons/          # ThemeToggle
-│       ├── cards/            # TestimonialCard
 │       └── navigation/       # Pagination
 ├── config/                   # Site configuration
 │   ├── index.ts              # Main export (imports all configs)

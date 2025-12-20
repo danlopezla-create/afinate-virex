@@ -165,14 +165,88 @@ The form submits these fields:
 />
 ```
 
-### FeatureGrid
+### FeaturesSection
+
+Flexible features section with optional heading. Can display with or without title/subtitle.
 
 ```astro
-<FeatureGrid features={[
-  { icon: "lucide:zap", title: "Fast", description: "Lightning quick" },
-  { icon: "lucide:shield", title: "Secure", description: "Enterprise ready" },
-]} />
+<!-- With heading -->
+<FeaturesSection
+  title="Everything you need"
+  subtitle="All the tools your team needs."
+  features={[
+    { icon: "lucide:zap", title: "Fast", description: "Lightning quick" },
+    { icon: "lucide:shield", title: "Secure", description: "Enterprise ready" },
+  ]}
+/>
+
+<!-- Grid only (no heading) -->
+<FeaturesSection features={[...]} />
 ```
+
+**Props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Optional section title |
+| `subtitle` | `string` | - | Optional section subtitle |
+| `features` | `Feature[]` | Required | Array of feature objects |
+
+**Feature Object:**
+
+```typescript
+interface Feature {
+  icon: string;        // Lucide icon name (e.g., "lucide:zap")
+  title: string;       // Feature title
+  description: string; // Feature description
+}
+```
+
+### TestimonialsSection
+
+Flexible testimonials section with optional heading. Displays testimonials in a responsive grid.
+
+```astro
+<!-- With heading -->
+<TestimonialsSection
+  title="Loved by developers"
+  subtitle="Join thousands of teams who trust us."
+  testimonials={[
+    {
+      quote: "This product changed everything.",
+      author: "Jane Doe",
+      role: "CTO",
+      company: "Acme Inc",
+      avatar: "/images/testimonials/jane.jpg"
+    }
+  ]}
+/>
+
+<!-- Grid only (no heading) -->
+<TestimonialsSection testimonials={[...]} />
+```
+
+**Props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Optional section title |
+| `subtitle` | `string` | - | Optional section subtitle |
+| `testimonials` | `Testimonial[]` | Required | Array of testimonial objects |
+
+**Testimonial Object:**
+
+```typescript
+interface Testimonial {
+  quote: string;    // Testimonial quote text
+  author: string;   // Author's full name
+  role: string;     // Author's job title
+  company: string;  // Author's company
+  avatar?: string;  // Optional avatar image URL
+}
+```
+
+If no avatar is provided, initials are automatically generated from the author's name.
 
 ### PricingTable
 
@@ -345,11 +419,7 @@ Smart image optimization wrapper for local and remote images.
 
 Light/dark mode toggle with localStorage persistence.
 
-### TestimonialCard
 
-`src/components/ui/cards/TestimonialCard.astro`
-
-Displays customer testimonials with avatar, quote, and attribution.
 
 ### Pagination
 

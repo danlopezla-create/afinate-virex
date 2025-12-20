@@ -4,11 +4,13 @@ import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
+type BlogPost = CollectionEntry<'blog'>;
+
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
-  const allTags = [...new Set(posts.flatMap((post: CollectionEntry<'blog'>) => post.data.tags))];
+  const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
+  const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))];
   
-  return allTags.map((tag: string) => ({
+  return allTags.map((tag) => ({
     params: { tag },
     props: { tag },
   }));
@@ -16,15 +18,15 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props;
 
-const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
+const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
 const filteredPosts = posts
-  .filter((post: CollectionEntry<'blog'>) => post.data.tags.includes(tag))
-  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+  .filter((post: BlogPost) => post.data.tags.includes(tag))
+  .sort((a: BlogPost, b: BlogPost) => 
     b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
   );
 
 // Get all unique tags for the filter
-const allTags = [...new Set(posts.flatMap((post: CollectionEntry<'blog'>) => post.data.tags))].sort();
+const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
 
 function calculateReadingTime(text: string): number {
   const wordCount = text.trim().split(/\s+/).length;
@@ -80,7 +82,7 @@ function calculateReadingTime(text: string): number {
 
       <!-- Posts Grid -->
       <div class="space-y-10">
-        {filteredPosts.map((post) => (
+        {filteredPosts.map((post: BlogPost) => (
             <article class="group">
               <a href={`/blog/${post.slug}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">

@@ -4,39 +4,46 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import { calculateReadingTime } from '@/lib/utils';
 
+type BlogPost = CollectionEntry<'blog'>;
+
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map(post => ({
+  const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
+  return posts.map((post: BlogPost) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: BlogPost;
 }
 
 const { post } = Astro.props;
 const { Content } = await post.render();
 
 // Get related posts based on shared tags
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
 
-const relatedPosts = allPosts
-  .filter(p => p.slug !== post.slug)
-  .map(p => ({
+interface RelatedPostWithScore {
+  post: BlogPost;
+  sharedTags: number;
+}
+
+const relatedPosts: BlogPost[] = allPosts
+  .filter((p: BlogPost) => p.slug !== post.slug)
+  .map((p: BlogPost): RelatedPostWithScore => ({
     post: p,
-    sharedTags: p.data.tags.filter(tag => post.data.tags.includes(tag)).length
+    sharedTags: p.data.tags.filter((tag: string) => post.data.tags.includes(tag)).length
   }))
-  .filter(p => p.sharedTags > 0)
-  .sort((a, b) => {
+  .filter((p: RelatedPostWithScore) => p.sharedTags > 0)
+  .sort((a: RelatedPostWithScore, b: RelatedPostWithScore) => {
     if (b.sharedTags !== a.sharedTags) {
       return b.sharedTags - a.sharedTags;
     }
     return b.post.data.publishedDate.getTime() - a.post.data.publishedDate.getTime();
   })
   .slice(0, 3)
-  .map(p => p.post);
+  .map((p: RelatedPostWithScore) => p.post);
 ---
 
 <BlogLayout
@@ -48,14 +55,14 @@ const relatedPosts = allPosts
   tags={post.data.tags}
   content={post.body || ''}
 >
-  <Content />
+  <Content slot="content" />
 
   <!-- Related Posts -->
   {relatedPosts.length > 0 && (
     <aside class="mt-16 pt-12 border-t border-border">
       <h2 class="text-2xl font-bold text-text mb-8">Related Posts</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {relatedPosts.map((relatedPost) => (
+        {relatedPosts.map((relatedPost: BlogPost) => (
             <a href={`/blog/${relatedPost.slug}`} class="group block">
               <article class="h-full p-4 rounded-lg border border-border hover:border-primary transition-colors">
                 <div class="text-sm text-text-muted mb-2">

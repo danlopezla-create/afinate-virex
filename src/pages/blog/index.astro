@@ -2,14 +2,16 @@
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import Pagination from '../../components/ui/navigation/Pagination.astro';
 import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import { calculateReadingTime } from '@/lib/utils';
 
+type BlogPost = CollectionEntry<'blog'>;
+
 const POSTS_PER_PAGE = 6;
 
-const posts = await getCollection('blog', ({ data }) => !data.draft);
-const sortedPosts = [...posts].sort((a, b) => 
+const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
+const sortedPosts = [...posts].sort((a: BlogPost, b: BlogPost) => 
   b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
 
@@ -19,7 +21,7 @@ const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 const paginatedPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
 
 // Get all unique tags
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
 ---
 
 <MarketingLayout 

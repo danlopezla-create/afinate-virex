@@ -4,21 +4,20 @@ All configuration is centralized in `src/config/`. Import from `@/config` to acc
 
 ## Site Configuration
 
-Edit `src/config/site.ts` to set your site's identity:
+The easiest way to configure your site is via environment variables. Copy `.env.example` to `.env` and set:
+
+```bash
+SITE_URL=https://your-domain.com
+SITE_NAME=Your Brand
+SITE_DESCRIPTION=Your product description here
+SITE_AUTHOR=Your Name
+```
+
+These values are used throughout the site for SEO, meta tags, sitemap, and RSS feeds.
+
+For additional customization (logo, social links, etc.), edit `src/config/site.ts`:
 
 ```typescript
-// Site name displayed in header, footer, and meta tags
-export const name = 'Your Product';
-
-// Site description for SEO
-export const description = 'Your product description';
-
-// Production URL (used for sitemap, RSS, canonical URLs)
-export const url = 'https://yoursite.com';
-
-// Author name for meta tags
-export const author = 'Your Name';
-
 // Logo path (relative to /public), set to "" to show site name instead
 export const logo = '/logo.svg';
 
@@ -164,25 +163,19 @@ export const content = {
 Copy `.env.example` to `.env` and configure:
 
 ```bash
-# Required: Your production URL
+# Required: Site identity
 SITE_URL=https://your-domain.com
-
-# Optional: Google Analytics 4
-PUBLIC_GA_ID=G-XXXXXXXXXX
-
-# Optional: Form endpoints
-CONTACT_FORM_ENDPOINT=https://formspree.io/f/your-form-id
-NEWSLETTER_ENDPOINT=https://api.convertkit.com/v3/forms/your-form-id/subscribe
+SITE_NAME=Your Brand
+SITE_DESCRIPTION=Your product description here
+SITE_AUTHOR=Your Name
 ```
 
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `SITE_URL` | Yes | Canonical URL for SEO, sitemap, and RSS |
-| `PUBLIC_GA_ID` | No | Google Analytics 4 Measurement ID |
-| `CONTACT_FORM_ENDPOINT` | No | Contact form submission URL |
-| `NEWSLETTER_ENDPOINT` | No | Newsletter subscription API URL |
-
-Variables prefixed with `PUBLIC_` are exposed to client-side code.
+| `SITE_NAME` | Yes | Site/brand name for header, footer, and meta tags |
+| `SITE_DESCRIPTION` | Yes | Site description for SEO meta tags |
+| `SITE_AUTHOR` | Yes | Author name for meta tags and copyright |
 
 ## Astro Configuration
 
@@ -192,20 +185,18 @@ The `astro.config.mjs` includes:
 - Sitemap generation with feature flag filtering
 - Tailwind CSS v4 via Vite plugin
 
+The `site` property automatically reads from `SITE_URL` environment variable:
+
 ```javascript
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import icon from 'astro-icon';
-import tailwindcss from '@tailwindcss/vite';
+const siteUrl = process.env.SITE_URL || 'http://localhost:4321';
 
 export default defineConfig({
-  site: 'https://yoursite.com', // Update this!
-  integrations: [mdx(), icon(), sitemap()],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  site: siteUrl,
+  // ...
 });
 ```
+
+No need to edit `astro.config.mjs` directly — just set `SITE_URL` in your `.env` file.
 
 ## RSS Feed
 

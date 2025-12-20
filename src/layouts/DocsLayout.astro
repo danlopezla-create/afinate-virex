@@ -1,7 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import MarketingLayout from './MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
+
+type DocsEntry = CollectionEntry<'docs'>;
 
 interface Props {
   title: string;
@@ -12,7 +14,7 @@ interface Props {
 const { title, description, section } = Astro.props;
 
 // Get all non-draft docs and organize by section
-const allDocs = await getCollection('docs', ({ data }) => !data.draft);
+const allDocs = await getCollection('docs', ({ data }: { data: DocsEntry['data'] }) => !data.draft);
 
 // Group docs by section and sort by order
 interface DocItem {

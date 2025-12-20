@@ -5,11 +5,33 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import { siteConfig } from './src/config';
 
+// Site URL from environment variable with localhost fallback
+const siteUrl = process.env.SITE_URL || 'http://localhost:4321';
+
+// Custom integration to warn about missing environment variables after build
+function envCheckIntegration() {
+  return {
+    name: 'env-check',
+    hooks: {
+      'astro:build:done': () => {
+        if (!process.env.SITE_URL) {
+          console.warn('='.repeat(60));
+          console.warn('WARNING: SITE_URL environment variable not set');
+          console.warn('Build completed with fallback URL: http://localhost:4321');
+          console.warn('For production, create .env file and set SITE_URL');
+          console.warn('='.repeat(60) + '\n');
+        }
+      },
+    },
+  };
+}
+
 export default defineConfig({
-  site: 'https://virex.example.com',
+  site: siteUrl,
   integrations: [
     mdx(),
     icon(),
+    envCheckIntegration(),
     sitemap({
       filter: (page) => {
         const { features } = siteConfig;

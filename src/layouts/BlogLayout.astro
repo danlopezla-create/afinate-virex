@@ -69,8 +69,9 @@ const formattedDate = formatDate(publishedDate, {
 
       <!-- Article Content -->
       <div class="prose prose-lg max-w-none dark:prose-invert">
-        <slot />
+        <slot name="content" />
       </div>
+        <slot />
     </div>
   </article>
 </MarketingLayout>

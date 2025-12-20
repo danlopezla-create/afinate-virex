@@ -1,24 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import LogoCloud from '../components/sections/LogoCloud.astro';
-import FeatureGrid from '../components/sections/FeatureGrid.astro';
-import TestimonialCard from '../components/ui/cards/TestimonialCard.astro';
+import FeaturesSection from '../components/sections/FeaturesSection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
 import CTA from '../components/sections/CTA.astro';
 import Newsletter from '../components/sections/Newsletter.astro';
 import { siteConfig } from '@/config';
 
-const testimonials = await getCollection('testimonials', ({ data }) => !data.draft);
-const sortedTestimonials = [...testimonials].sort((a, b) => a.data.order - b.data.order);
+type TestimonialEntry = CollectionEntry<'testimonials'>;
 
-interface Feature {
-  icon: string;
-  title: string;
-  description: string;
-}
+const testimonials = await getCollection('testimonials', ({ data }: { data: TestimonialEntry['data'] }) => !data.draft);
+const sortedTestimonials = [...testimonials].sort((a: TestimonialEntry, b: TestimonialEntry) => a.data.order - b.data.order);
 
-const features: Feature[] = [
+const features = [
   {
     icon: "lucide:zap",
     title: "Lightning Fast Deploys",
@@ -57,9 +53,9 @@ const features: Feature[] = [
   description={siteConfig.description}
 >
   <Hero
-    title="Ship faster. Scale effortlessly."
-    subtitle="Virex is the modern deployment platform that helps teams build, deploy, and scale applications without the infrastructure headaches."
-    primaryCTA={{ label: "Start for Free", href: "/register" }}
+    title="The Deployment Platform Developers Love"
+    subtitle="Virex automates your entire workflow from GitHub to Global Edge. Build, preview, and ship applications with a single click. No server management needed."
+    primaryCTA={{ label: "Get Started Free", href: "/register" }}
     secondaryCTA={{ label: "View Documentation", href: "/docs" }}
   />
 
@@ -77,40 +73,24 @@ const features: Feature[] = [
     logoSize='lg'
   />
 
-  <section class="py-section bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-text">Everything you need to ship</h2>
-        <p class="mt-4 text-lg text-text-muted max-w-2xl mx-auto">
-          From development to production, Virex provides all the tools your team needs to move fast and stay reliable.
-        </p>
-      </div>
-      <FeatureGrid features={features} />
-    </div>
-  </section>
+  <FeaturesSection
+    title="Everything you need to ship"
+    subtitle="From development to production, Virex provides all the tools your team needs to move fast and stay reliable."
+    features={features}
+  />
 
   {siteConfig.features.testimonials && sortedTestimonials.length > 0 && (
-    <section class="py-section">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl sm:text-4xl font-bold text-text">Loved by developers</h2>
-          <p class="mt-4 text-lg text-text-muted max-w-2xl mx-auto">
-            Join thousands of teams who trust Virex to power their deployments.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sortedTestimonials.map((testimonial) => (
-            <TestimonialCard
-              quote={testimonial.data.quote}
-              author={testimonial.data.author}
-              role={testimonial.data.role}
-              company={testimonial.data.company}
-              avatar={testimonial.data.avatar}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    <TestimonialsSection
+      title="Loved by developers"
+      subtitle="Join thousands of teams who trust Virex to power their deployments."
+      testimonials={sortedTestimonials.map((t) => ({
+        quote: t.data.quote,
+        author: t.data.author,
+        role: t.data.role,
+        company: t.data.company,
+        avatar: t.data.avatar
+      }))}
+    />
   )}
 
   <CTA

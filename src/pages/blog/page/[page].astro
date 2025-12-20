@@ -77,7 +77,7 @@ const allTags = [...new Set(posts.flatMap((post: CollectionEntry<'blog'>) => pos
 
       <!-- Posts Grid -->
       <div class="space-y-10">
-        {paginatedPosts.map((post) => (
+        {paginatedPosts.map((post: CollectionEntry<'blog'>) => (
             <article class="group">
               <a href={`/blog/${post.slug}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">

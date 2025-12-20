@@ -1,17 +1,21 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-import TestimonialCard from '../components/ui/cards/TestimonialCard.astro';
 import CTA from '../components/sections/CTA.astro';
 import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
-const testimonials = await getCollection('testimonials', ({ data }) => !data.draft);
-const sortedTestimonials = testimonials.sort((a, b) => a.data.order - b.data.order);
+type TestimonialEntry = CollectionEntry<'testimonials'>;
+
+const testimonials = await getCollection('testimonials', ({ data }: { data: TestimonialEntry['data'] }) => !data.draft);
+const sortedTestimonials = testimonials.sort((a: TestimonialEntry, b: TestimonialEntry) => a.data.order - b.data.order);
 
 // Separate featured testimonials for highlight section
-const featuredTestimonials = sortedTestimonials.filter(t => t.data.featured);
-const otherTestimonials = sortedTestimonials.filter(t => !t.data.featured);
+const featuredTestimonials = sortedTestimonials.filter((t: TestimonialEntry) => t.data.featured);
+const otherTestimonials = sortedTestimonials.filter((t: TestimonialEntry) => !t.data.featured);
+
+const getInitials = (name: string) => 
+  name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
 ---
 
 <MarketingLayout 
@@ -32,7 +36,7 @@ const otherTestimonials = sortedTestimonials.filter(t => !t.data.featured);
       {featuredTestimonials.length > 0 && (
         <div class="mb-16">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredTestimonials.map((testimonial) => (
+            {featuredTestimonials.map((testimonial: TestimonialEntry) => (
               <div class="p-8 rounded-xl bg-primary/5 border border-primary/20">
                 <Icon name="lucide:quote" class="w-10 h-10 text-primary/40 mb-4" />
                 <blockquote class="text-xl text-text leading-relaxed">
@@ -47,7 +51,7 @@ const otherTestimonials = sortedTestimonials.filter(t => !t.data.featured);
                     />
                   ) : (
                     <div class="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center text-lg font-semibold">
-                      {testimonial.data.author.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
+                      {testimonial.data.author.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)}
                     </div>
                   )}
                   <div>
@@ -64,14 +68,31 @@ const otherTestimonials = sortedTestimonials.filter(t => !t.data.featured);
       )}
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {otherTestimonials.map((testimonial) => (
-          <TestimonialCard
-            quote={testimonial.data.quote}
-            author={testimonial.data.author}
-            role={testimonial.data.role}
-            company={testimonial.data.company}
-            avatar={testimonial.data.avatar}
-          />
+        {otherTestimonials.map((testimonial: TestimonialEntry) => (
+          <div class="p-6 rounded-lg bg-surface border border-border">
+            <blockquote class="text-text leading-relaxed">
+              "{testimonial.data.quote}"
+            </blockquote>
+            <div class="mt-6 flex items-center gap-4">
+              {testimonial.data.avatar ? (
+                <img
+                  src={testimonial.data.avatar}
+                  alt={testimonial.data.author}
+                  class="w-12 h-12 rounded-full object-cover"
+                />
+              ) : (
+                <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold">
+                  {getInitials(testimonial.data.author)}
+                </div>
+              )}
+              <div>
+                <div class="font-semibold text-text">{testimonial.data.author}</div>
+                <div class="text-sm text-text-muted">
+                  {testimonial.data.role} at {testimonial.data.company}
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
