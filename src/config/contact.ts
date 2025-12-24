@@ -48,8 +48,7 @@ export const contactMethods: ContactMethod[] = [
 export const contactFAQs: ContactFAQ[] = [
   {
     question: "What's your typical response time?",
-    answer:
-      'We respond to most inquiries within 24 hours during business days.',
+    answer: 'We respond to most inquiries within 24 hours during business days.',
   },
   {
     question: 'Do you offer phone support?',
@@ -58,7 +57,6 @@ export const contactFAQs: ContactFAQ[] = [
   },
   {
     question: 'How do I report a bug?',
-    answer:
-      'Use the form with "Technical support" as subject, or open an issue on our GitHub.',
+    answer: 'Use the form with "Technical support" as subject, or open an issue on our GitHub.',
   },
 ];

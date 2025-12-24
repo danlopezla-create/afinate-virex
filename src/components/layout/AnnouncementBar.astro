@@ -83,30 +83,36 @@ const variantClasses = {
   <div class="max-w-7xl mx-auto flex items-center justify-center gap-x-2">
     <p class="flex items-center gap-x-2 flex-wrap justify-center">
       <span>{text}</span>
-      {href && (
-        <a
-          href={href}
-          class="inline-flex items-center gap-1 underline underline-offset-2 hover:no-underline font-semibold"
-        >
-          {linkText}
-          <Icon name="lucide:chevron-right" class="w-4 h-4" aria-hidden="true" />
-        </a>
-      )}
+      {
+        href && (
+          <a
+            href={href}
+            class="inline-flex items-center gap-1 underline underline-offset-2 hover:no-underline font-semibold"
+          >
+            {linkText}
+            <Icon name="lucide:chevron-right" class="w-4 h-4" aria-hidden="true" />
+          </a>
+        )
+      }
     </p>
-    {dismissible && (
-      <button
-        type="button"
-        class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-        aria-label="Dismiss announcement"
-        data-dismiss-announcement={id}
-      >
-        <Icon name="lucide:x" class="w-4 h-4" aria-hidden="true" />
-      </button>
-    )}
+    {
+      dismissible && (
+        <button
+          type="button"
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+          aria-label="Dismiss announcement"
+          data-dismiss-announcement={id}
+        >
+          <Icon name="lucide:x" class="w-4 h-4" aria-hidden="true" />
+        </button>
+      )
+    }
   </div>
 </div>
 
-<Fragment set:html={`<style>html.announcement-${id}-dismissed #announcement-${id} { display: none; }</style>`} />
+<Fragment
+  set:html={`<style>html.announcement-${id}-dismissed #announcement-${id} { display: none; }</style>`}
+/>
 
 <script>
   function initAnnouncementBars() {

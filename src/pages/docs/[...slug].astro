@@ -1,6 +1,6 @@
 ---
-import DocsLayout from '../../layouts/DocsLayout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import DocsLayout from '@/layouts/DocsLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
 type DocsEntry = CollectionEntry<'docs'>;
@@ -8,7 +8,7 @@ type DocsEntry = CollectionEntry<'docs'>;
 export async function getStaticPaths() {
   const docs = await getCollection('docs', ({ data }: { data: DocsEntry['data'] }) => !data.draft);
   return docs.map((doc: DocsEntry) => ({
-    params: { slug: doc.slug },
+    params: { slug: doc.id },
     props: { doc },
   }));
 }
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const { doc } = Astro.props;
-const { Content } = await doc.render();
+const { Content } = await render(doc);
 ---
 
 <DocsLayout

@@ -34,12 +34,7 @@ interface Props {
   redirectUrl?: string;
 }
 
-const {
-  action = '',
-  method = 'POST',
-  netlify = false,
-  redirectUrl = '/',
-} = Astro.props;
+const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Astro.props;
 ---
 
 <form
@@ -61,9 +56,7 @@ const {
 
   <!-- Email field -->
   <div>
-    <label for="email" class="block text-sm font-medium text-text mb-2">
-      Email address
-    </label>
+    <label for="email" class="block text-sm font-medium text-text mb-2"> Email address </label>
     <input
       type="email"
       id="email"
@@ -78,9 +71,7 @@ const {
 
   <!-- Password field -->
   <div>
-    <label for="password" class="block text-sm font-medium text-text mb-2">
-      Password
-    </label>
+    <label for="password" class="block text-sm font-medium text-text mb-2"> Password </label>
     <input
       type="password"
       id="password"
@@ -102,9 +93,7 @@ const {
         name="rememberMe"
         class="h-4 w-4 rounded border-border text-primary focus:ring-primary focus:ring-offset-background"
       />
-      <label for="rememberMe" class="ml-2 text-sm text-text-muted">
-        Remember me
-      </label>
+      <label for="rememberMe" class="ml-2 text-sm text-text-muted"> Remember me </label>
     </div>
     <a
       href="/forgot-password"
@@ -120,12 +109,8 @@ const {
       id="login-form-success"
       class="hidden p-4 rounded-md bg-green-100 dark:bg-green-950 border border-green-300 dark:border-green-800"
     >
-      <p class="text-green-900 dark:text-green-100 font-medium">
-        Login successful!
-      </p>
-      <p class="text-green-800 dark:text-green-300 text-sm mt-1">
-        Redirecting you now...
-      </p>
+      <p class="text-green-900 dark:text-green-100 font-medium">Login successful!</p>
+      <p class="text-green-800 dark:text-green-300 text-sm mt-1">Redirecting you now...</p>
     </div>
     <div
       id="login-form-error"
@@ -152,13 +137,8 @@ const {
         fill="none"
         viewBox="0 0 24 24"
       >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"></circle>
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
+        ></circle>
         <path
           class="opacity-75"
           fill="currentColor"
@@ -172,9 +152,7 @@ const {
 
 <script>
   const form = document.getElementById('login-form') as HTMLFormElement;
-  const submitButton = document.getElementById(
-    'login-submit-button'
-  ) as HTMLButtonElement;
+  const submitButton = document.getElementById('login-submit-button') as HTMLButtonElement;
   const buttonText = document.getElementById('login-button-text');
   const buttonLoading = document.getElementById('login-button-loading');
   const formStatus = document.getElementById('login-form-status');
@@ -197,9 +175,7 @@ const {
 
   // Show/hide error message
   function showError(fieldName: string, message: string | null) {
-    const errorEl = document.querySelector(
-      `#login-form [data-error="${fieldName}"]`
-    );
+    const errorEl = document.querySelector(`#login-form [data-error="${fieldName}"]`);
     const inputEl = document.getElementById(fieldName);
 
     if (errorEl && inputEl) {
@@ -244,9 +220,7 @@ const {
       input.addEventListener('blur', () => validateField(fieldName));
       input.addEventListener('input', () => {
         // Clear error on input if field was previously invalid
-        const errorEl = document.querySelector(
-          `#login-form [data-error="${fieldName}"]`
-        );
+        const errorEl = document.querySelector(`#login-form [data-error="${fieldName}"]`);
         if (errorEl && !errorEl.classList.contains('hidden')) {
           validateField(fieldName);
         }
@@ -266,9 +240,7 @@ const {
     // Validate form
     if (!validateForm()) {
       // Focus first invalid field
-      const firstError = form.querySelector(
-        '.border-red-500'
-      ) as HTMLElement;
+      const firstError = form.querySelector('.border-red-500') as HTMLElement;
       firstError?.focus();
       return;
     }

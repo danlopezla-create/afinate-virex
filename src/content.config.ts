@@ -1,11 +1,13 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    publishedDate: z.date(),
+    publishedDate: z.coerce.date(),
     author: z.string(),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -14,7 +16,7 @@ const blog = defineCollection({
 });
 
 const docs = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/docs' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -25,10 +27,10 @@ const docs = defineCollection({
 });
 
 const changelog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/changelog' }),
   schema: z.object({
     version: z.string(),
-    date: z.date(),
+    date: z.coerce.date(),
     title: z.string(),
     type: z.enum(['major', 'minor', 'patch']),
     draft: z.boolean().default(false),
@@ -36,7 +38,7 @@ const changelog = defineCollection({
 });
 
 const testimonials = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
   schema: z.object({
     quote: z.string(),
     author: z.string(),

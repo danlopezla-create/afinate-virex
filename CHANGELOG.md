@@ -5,6 +5,96 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-12-24
+
+### Added
+
+- **New Marketing Components**:
+  - `HowItWorks` - Step-by-step process visualization
+  - `IntegrationsGrid` - Partner integrations showcase with 24 provider logos
+  - `SecurityBadges` - Security certifications and compliance badges
+  - `VideoEmbed` - Embedded video content for sections
+  - `BentoGrid` - Modern grid layout for feature highlights
+  - `FeatureHighlight` - Detailed feature presentation
+  - `CaseStudyCard` - Customer success story cards
+
+- **New Section Components**:
+  - `ChangelogList` - Timeline-based changelog display
+  - `ContentSection` - Flexible content layouts with alignment options
+  - `FAQSection` - Accordion-style FAQ displays
+  - `JobListings` - Career opportunities presentation
+  - `PageHeader` - Consistent page title sections
+  - `RoadmapTimeline` - Product roadmap visualization
+  - `StatsSection` - Metrics and statistics display
+  - `StatusOverview` - System status information
+  - `TeamSection` - Team member profiles
+  - `TestimonialsGrid` - Customer testimonials layout
+  - `ValuesSection` - Company values presentation
+
+- **New Pages**:
+  - `/customers` - Customer success stories and case studies
+  - `/demo` - Demo request form page
+  - `/enterprise` - Enterprise features and pricing
+  - `/integrations` - Partner integrations showcase
+  - `/security` - Security features and compliance information
+
+- **New Forms**:
+  - `DemoRequestForm` - Demo request with validation and multi-backend support
+
+- **New Documentation Content**:
+  - 8 new documentation guides: edge-network, frameworks, infrastructure, previews, RBAC, rollbacks, SSO, and teams
+
+- **Pricing Enhancements**:
+  - `ComparisonTable` - Feature comparison across pricing plans
+  - `TrustBadges` - Payment methods and security badges
+  - Payment method SVG icons (Visa, Mastercard, Amex, PayPal)
+
+- **Component Enhancements**:
+  - Flexible `background` prop for sections (`default`, `muted`, `accent`)
+  - Optional `footerLink` prop for FeaturesSection and TestimonialsSection
+  - Optional `limit` prop for TestimonialsSection
+  - Secondary action button support in CTA component
+
+- **Developer Experience**:
+  - Path aliases: `@components/*`, `@sections/*`, `@layout/*`, `@forms/*`, `@ui/*`
+  - ESLint configuration with TypeScript and Astro plugin support
+  - Prettier configuration with Astro plugin support
+  - New npm scripts: `lint`, `lint:fix`, `format`, `format:check`, `check`
+
+### Changed
+
+- **Component Organization**: Reorganized `src/components/sections/` into category-based structure:
+  - `content/` - PageHeader, ContentSection, FAQSection
+  - `marketing/` - Hero, CTA, LogoCloud, FeaturesSection, Newsletter, HowItWorks, IntegrationsGrid, BentoGrid, FeatureHighlight
+  - `pricing/` - PricingTable, ComparisonTable, TrustBadges
+  - `product/` - ChangelogList, RoadmapTimeline, StatusOverview
+  - `social-proof/` - StatsSection, TestimonialsSection, TestimonialsGrid, CaseStudyCard
+  - `team/` - TeamSection, JobListings, ValuesSection
+  - `ui/` - ThemeToggle, Pagination (flattened)
+
+- **Navigation**: Centralized all navigation to `src/config/navigation.ts`
+  - Header navigation with main links and CTA buttons
+  - Footer navigation with Product, Solutions, Resources, Company, and Legal sections
+  - Feature-flag filtering for dynamic navigation visibility
+
+- **Layout Components**:
+  - Renamed `Navbar.astro` to `Header.astro` with proper `<header>` wrapping `<nav>`
+  - Footer legal links now visible on mobile (center aligned with copyright)
+
+- **Astro v6 Compatibility**:
+  - Migrated to Content Collections v3 API with glob loaders
+  - Updated `z` import from `astro/zod` instead of `astro:content`
+  - Replaced `entry.render()` with `render(entry)` function
+  - Updated `post.slug` to `post.id` across blog and docs pages
+
+- **Documentation**: Updated all docs in `docs/` folder to reflect current project structure and features
+
+### Updated
+
+- `@iconify-json/lucide` upgraded to v1.2.82
+- README with path aliases and updated project structure
+- All page templates refactored to use new section components
+
 ## [1.2.0] - 2025-12-20
 
 ### Added

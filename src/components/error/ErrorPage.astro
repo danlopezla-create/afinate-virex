@@ -42,59 +42,57 @@ interface Props {
   showContactButton?: boolean;
 }
 
-const { 
-  code, 
-  title, 
-  message, 
-  showHomeButton = true, 
-  showContactButton = true 
-} = Astro.props;
+const { code, title, message, showHomeButton = true, showContactButton = true } = Astro.props;
 ---
 
 <div class="container mx-auto px-6 text-center">
   <div class="max-w-md mx-auto">
     <!-- Logo -->
     <div class="inline-flex items-center gap-2 mb-12">
-      {siteConfig.logo ? (
-        <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
-      ) : (
-        <span class="font-semibold text-xl text-text">{siteConfig.name}</span>
-      )}
+      {
+        siteConfig.logo ? (
+          <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
+        ) : (
+          <span class="font-semibold text-xl text-text">{siteConfig.name}</span>
+        )
+      }
     </div>
 
     <!-- Error Code -->
     <p class="text-8xl font-bold text-primary mb-4">{code}</p>
-    
+
     <!-- Title -->
     <h1 class="text-3xl md:text-4xl font-bold text-text mb-4">
       {title}
     </h1>
-    
+
     <!-- Message -->
     <p class="text-lg text-text-muted mb-8">
       {message}
     </p>
-    
+
     <!-- Actions -->
-    {(showHomeButton || showContactButton) && (
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        {showHomeButton && (
-          <a
-            href="/"
-            class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors"
-          >
-            Go to Homepage
-          </a>
-        )}
-        {showContactButton && (
-          <a
-            href="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 border border-border text-text font-medium rounded-md hover:bg-surface transition-colors"
-          >
-            Contact Support
-          </a>
-        )}
-      </div>
-    )}
+    {
+      (showHomeButton || showContactButton) && (
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {showHomeButton && (
+            <a
+              href="/"
+              class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors"
+            >
+              Go to Homepage
+            </a>
+          )}
+          {showContactButton && (
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center px-6 py-3 border border-border text-text font-medium rounded-md hover:bg-surface transition-colors"
+            >
+              Contact Support
+            </a>
+          )}
+        </div>
+      )
+    }
   </div>
 </div>

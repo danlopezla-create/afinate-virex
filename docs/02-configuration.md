@@ -91,16 +91,91 @@ export const legal = {
 
 ## Navigation
 
-Edit `src/config/navigation.ts` to customize the navbar:
+Navigation is centralized in `src/config/navigation.ts` with separate configurations for header and footer.
+
+### Header Navigation
 
 ```typescript
-export const mainNavigation = [
-  { label: 'Features', href: '/features' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+export const navigation = {
+  header: {
+    // Main navigation links (center)
+    main: [
+      { label: 'Features', href: '/features' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Customers', href: '/customers' },
+      { label: 'Enterprise', href: '/enterprise' },
+      { label: 'Docs', href: '/docs', feature: 'docs' },
+      { label: 'Blog', href: '/blog', feature: 'blog' },
+    ],
+    // CTA buttons (right side)
+    cta: [
+      { label: 'Login', href: '/login', variant: 'ghost' },
+      { label: 'Get Started', href: '/register', variant: 'primary' },
+    ],
+  },
+  // ... footer config
+};
 ```
+
+### Footer Navigation
+
+The footer is organized into 5 columns:
+
+```typescript
+export const navigation = {
+  // ... header config
+  footer: {
+    product: [
+      { label: 'Features', href: '/features' },
+      { label: 'Integrations', href: '/integrations' },
+      { label: 'Security', href: '/security' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'FAQ', href: '/faq' },
+    ],
+    solutions: [
+      { label: 'Enterprise', href: '/enterprise' },
+      { label: 'Customers', href: '/customers' },
+      { label: 'Request Demo', href: '/demo' },
+      { label: 'Status', href: '/status' },
+    ],
+    resources: [
+      { label: 'Documentation', href: '/docs', feature: 'docs' },
+      { label: 'Blog', href: '/blog', feature: 'blog' },
+      { label: 'Changelog', href: '/changelog', feature: 'changelog' },
+      { label: 'Roadmap', href: '/roadmap', feature: 'roadmap' },
+    ],
+    company: [
+      { label: 'About', href: '/about' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Testimonials', href: '/testimonials', feature: 'testimonials' },
+    ],
+    legal: [
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+    ],
+  },
+};
+```
+
+### Feature-Flagged Navigation
+
+Items with a `feature` property are automatically hidden when that feature is disabled:
+
+```typescript
+{ label: 'Blog', href: '/blog', feature: 'blog' }
+// Only shows if features.blog is true
+```
+
+### CTA Variants
+
+Header CTA buttons support three variants:
+
+| Variant | Style |
+|---------|-------|
+| `ghost` | Text link style |
+| `primary` | Solid primary button |
+| `secondary` | Outlined button |
 
 ## Feature Flags
 
@@ -117,7 +192,7 @@ export const features = {
 ```
 
 Feature flags control:
-- **Navigation**: Disabled features are hidden from navbar and footer
+- **Navigation**: Disabled features are hidden from header and footer
 - **Sitemap**: Disabled features are excluded from `sitemap.xml`
 - **RSS**: Only enabled blog posts appear in the feed
 - **Pages**: Pages remain accessible via direct URL (not deleted)

@@ -1,222 +1,220 @@
 ---
 /**
- * Footer - Site-wide footer with navigation, newsletter, and social links
+ * Footer - Site-wide footer with navigation and social links
  *
  * @description
- * A comprehensive footer component that includes newsletter subscription form,
- * multi-column navigation links (Product, Resources, Company, Legal), contact
- * information, social media links, and copyright notice. Navigation links are
- * automatically filtered based on feature flags from site config.
+ * A comprehensive footer with 5-column navigation layout:
+ * Brand, Product, Solutions, Resources, Company.
+ * Navigation items are automatically filtered based on feature flags.
  *
  * @example
  * ```astro
  * <Footer />
  * ```
- *
- * @remarks
- * This component doesn't accept props - it reads all configuration from
- * `siteConfig` including features, social links, contact info, and content.
- * Feature-flagged sections (blog, docs, changelog, etc.) are automatically
- * shown or hidden based on the config.
- *
- * The newsletter form includes a TODO comment for API integration. Replace
- * the mock implementation with your actual newsletter service endpoint.
  */
 import { siteConfig } from '@/config';
 import { Icon } from 'astro-icon/components';
+import type { FeatureFlags, NavigationItem } from '@/lib/types';
 
-const { features, social, contact } = siteConfig;
+const { features, social, contact, navigation } = siteConfig;
+const { footer } = navigation;
 const currentYear = new Date().getFullYear();
 
-// Product links (always visible)
-const productLinks = [
-  { label: 'Features', href: '/features' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Status', href: '/status' },
-];
+// Helper to filter items by feature flag
+const filterByFeature = (items: NavigationItem[]) =>
+  items.filter((item) => !item.feature || features[item.feature as keyof FeatureFlags]);
 
-// Feature-flagged resource links
-const resourceLinks = [
-  { label: 'Blog', href: '/blog', feature: 'blog' as const },
-  { label: 'Docs', href: '/docs', feature: 'docs' as const },
-  { label: 'Changelog', href: '/changelog', feature: 'changelog' as const },
-  { label: 'Roadmap', href: '/roadmap', feature: 'roadmap' as const },
-];
-
-const activeResourceLinks = resourceLinks.filter(
-  (item) => features[item.feature]
-);
-
-// Company links (always visible)
-const companyLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Contact', href: '/contact' },
-];
-
-// Legal links (always visible)
-const legalLinks = [
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms of Service', href: '/terms' },
-];
-
-// Feature-flagged company links
-const featureCompanyLinks = [
-  { label: 'Testimonials', href: '/testimonials', feature: 'testimonials' as const },
-];
-
-const activeCompanyLinks = [
-  ...companyLinks,
-  ...featureCompanyLinks.filter((item) => features[item.feature]),
-];
+// Filter all navigation sections
+const productLinks = filterByFeature(footer.product);
+const solutionsLinks = filterByFeature(footer.solutions);
+const resourcesLinks = filterByFeature(footer.resources);
+const companyLinks = filterByFeature(footer.company);
+const legalLinks = filterByFeature(footer.legal);
 ---
 
 <footer class="bg-surface border-t border-background">
-  <!-- Main Footer Content -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Links Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
       <!-- Brand Column -->
-      <div class="col-span-2 sm:col-span-3 lg:col-span-1 mb-4 lg:mb-0">
+      <div class="col-span-2 sm:col-span-3 lg:col-span-2 mb-4 lg:mb-0">
         <a href="/" class="inline-flex items-center gap-2 font-semibold text-lg text-text">
-          {siteConfig.logo ? (
-            <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
-          ) : (
-            siteConfig.name
-          )}
+          {
+            siteConfig.logo ? (
+              <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
+            ) : (
+              siteConfig.name
+            )
+          }
         </a>
         <p class="mt-3 text-sm text-text-muted max-w-xs">
           {siteConfig.description}
         </p>
         <!-- Contact Info -->
         <div class="mt-4 space-y-1 text-sm text-text-muted">
-          {contact.email && (
-            <a href={`mailto:${contact.email}`} class="block hover:text-text transition-colors">
-              {contact.email}
-            </a>
-          )}
-          {contact.address && (
-            <p>
-              {contact.address.city}, {contact.address.state}, {contact.address.country}
-            </p>
-          )}
+          {
+            contact.email && (
+              <a href={`mailto:${contact.email}`} class="block hover:text-text transition-colors">
+                {contact.email}
+              </a>
+            )
+          }
+          {
+            contact.address && (
+              <p>
+                {contact.address.city}, {contact.address.state}, {contact.address.country}
+              </p>
+            )
+          }
+        </div>
+        <!-- Social Links -->
+        <div class="flex items-center gap-4 mt-4">
+          {
+            social.twitter && (
+              <a
+                href={social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                class="text-text-muted hover:text-text transition-colors"
+              >
+                <Icon name="lucide:twitter" class="w-5 h-5" />
+              </a>
+            )
+          }
+          {
+            social.github && (
+              <a
+                href={social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                class="text-text-muted hover:text-text transition-colors"
+              >
+                <Icon name="lucide:github" class="w-5 h-5" />
+              </a>
+            )
+          }
+          {
+            social.discord && (
+              <a
+                href={social.discord}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+                class="text-text-muted hover:text-text transition-colors"
+              >
+                <Icon name="simple-icons:discord" class="w-5 h-5" />
+              </a>
+            )
+          }
         </div>
       </div>
 
       <!-- Product Column -->
-      <div>
-        <h3 class="font-semibold text-sm text-text mb-4">Product</h3>
-        <ul class="space-y-3">
-          {productLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="text-sm text-text-muted hover:text-text transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {
+        productLinks.length > 0 && (
+          <div>
+            <h3 class="font-semibold text-sm text-text mb-4">Product</h3>
+            <ul class="space-y-3">
+              {productLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-muted hover:text-text transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <!-- Solutions Column -->
+      {
+        solutionsLinks.length > 0 && (
+          <div>
+            <h3 class="font-semibold text-sm text-text mb-4">Solutions</h3>
+            <ul class="space-y-3">
+              {solutionsLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-muted hover:text-text transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
 
       <!-- Resources Column -->
-      {activeResourceLinks.length > 0 && (
-        <div>
-          <h3 class="font-semibold text-sm text-text mb-4">Resources</h3>
-          <ul class="space-y-3">
-            {activeResourceLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-sm text-text-muted hover:text-text transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {
+        resourcesLinks.length > 0 && (
+          <div>
+            <h3 class="font-semibold text-sm text-text mb-4">Resources</h3>
+            <ul class="space-y-3">
+              {resourcesLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-muted hover:text-text transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
 
       <!-- Company Column -->
-      <div>
-        <h3 class="font-semibold text-sm text-text mb-4">Company</h3>
-        <ul class="space-y-3">
-          {activeCompanyLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="text-sm text-text-muted hover:text-text transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Legal Column -->
-      <div>
-        <h3 class="font-semibold text-sm text-text mb-4">Legal</h3>
-        <ul class="space-y-3">
-          {legalLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="text-sm text-text-muted hover:text-text transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {
+        companyLinks.length > 0 && (
+          <div>
+            <h3 class="font-semibold text-sm text-text mb-4">Company</h3>
+            <ul class="space-y-3">
+              {companyLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-muted hover:text-text transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
     </div>
 
     <!-- Bottom Bar -->
     <div class="mt-12 pt-8 border-t border-background">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div
+        class="flex flex-col items-center md:flex-row md:justify-between gap-4 text-center md:text-left"
+      >
         <!-- Copyright -->
         <p class="text-sm text-text-muted">
-          &copy; {currentYear} {siteConfig.name}. All rights reserved.
+          &copy; {currentYear}
+          {siteConfig.name}. All rights reserved.
         </p>
-        <!-- Social Links -->
-        <div class="flex items-center gap-4">
-          {social.twitter && (
-            <a
-              href={social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-              class="text-text-muted hover:text-text transition-colors"
-            >
-              <Icon name="lucide:twitter" class="w-5 h-5" />
-            </a>
-          )}
-          {social.github && (
-            <a
-              href={social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              class="text-text-muted hover:text-text transition-colors"
-            >
-              <Icon name="lucide:github" class="w-5 h-5" />
-            </a>
-          )}
-          {social.discord && (
-            <a
-              href={social.discord}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Discord"
-              class="text-text-muted hover:text-text transition-colors"
-            >
-              <Icon name="simple-icons:discord" class="w-5 h-5" />
-            </a>
-          )}
+        <!-- Legal Links -->
+        <div class="flex items-center gap-6">
+          {
+            legalLinks.map((link) => (
+              <a href={link.href} class="text-sm text-text-muted hover:text-text transition-colors">
+                {link.label}
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>

@@ -6,9 +6,9 @@
  * User login page with email/password form and social authentication options.
  * Uses demo mode by default - configure action prop on LoginForm for real backend.
  */
-import MarketingLayout from '../layouts/MarketingLayout.astro';
-import LoginForm from '../components/forms/LoginForm.astro';
-import SocialAuthButtons from '../components/forms/SocialAuthButtons.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import LoginForm from '@forms/LoginForm.astro';
+import SocialAuthButtons from '@forms/SocialAuthButtons.astro';
 import { siteConfig } from '@/config';
 ---
 
@@ -24,9 +24,7 @@ import { siteConfig } from '@/config';
           <!-- Header -->
           <div class="text-center mb-8">
             <h1 class="text-2xl font-bold text-text">Welcome back</h1>
-            <p class="mt-2 text-text-muted">
-              Sign in to your account to continue
-            </p>
+            <p class="mt-2 text-text-muted">Sign in to your account to continue</p>
           </div>
 
           <!-- Login Form -->

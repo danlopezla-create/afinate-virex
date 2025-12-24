@@ -14,7 +14,7 @@ A production-ready SaaS landing page theme for Astro. Built for those who want t
 
 ## Features
 
-- **Astro 5** with TypeScript and Tailwind CSS v4
+- **Astro** with TypeScript and Tailwind CSS v4
 - **Content Collections** for blog, docs, changelog, and testimonials
 - **Blog** with pagination, tag filtering, and reading time
 - **Documentation** with auto-generated sidebar
@@ -60,14 +60,16 @@ Full documentation is available in the [`docs/`](./docs/) folder:
 
 ```
 src/
-├── components/     # Reusable UI components
+├── components/     # Reusable UI components (layout, sections, forms, ui)
 ├── config/         # Site configuration
-├── content/        # Blog, docs, changelog, testimonials (Markdown/MDX)
+├── content/        # Blog, docs, changelog, testimonials (Markdown)
 ├── layouts/        # Page layouts
 ├── lib/            # Utilities and types
 ├── pages/          # Route pages
 └── styles/         # Design tokens and global styles
 ```
+
+Path aliases available: `@components/*`, `@sections/*`, `@layout/*`, `@forms/*`, `@ui/*`
 
 ## Configuration
 
@@ -77,7 +79,7 @@ All configuration is centralized in `src/config/`:
 |------|---------|
 | `site.ts` | Site name, description, URL, social links |
 | `features.ts` | Toggle blog, docs, changelog, testimonials, roadmap |
-| `navigation.ts` | Navbar links |
+| `navigation.ts` | Header and footer navigation |
 | `contact.ts` | Contact information and methods |
 | `content.ts` | Announcement bar and newsletter text |
 
@@ -88,6 +90,11 @@ All configuration is centralized in `src/config/`:
 | `npm run dev` | Start development server at localhost:4321 |
 | `npm run build` | Build for production to `dist/` |
 | `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint to check for code issues |
+| `npm run lint:fix` | Run ESLint and auto-fix issues |
+| `npm run format` | Format all files with Prettier |
+| `npm run format:check` | Check formatting without changes |
+| `npm run check` | Run lint, format check, and Astro check |
 
 ## License
 

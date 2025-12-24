@@ -7,7 +7,7 @@
  * organized by section with descriptions and quick links.
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
-import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
 
@@ -39,7 +39,7 @@ for (const doc of allDocs) {
   sectionMap.get(sectionName)!.push({
     title: doc.data.title,
     description: doc.data.description,
-    slug: doc.slug,
+    slug: doc.id,
     order: doc.data.order,
   });
 }
@@ -64,11 +64,11 @@ const firstDoc = allDocs.sort((a: DocsEntry, b: DocsEntry) => a.data.order - b.d
 // Section icons mapping
 const sectionIcons: Record<string, string> = {
   'Getting Started': 'lucide:rocket',
-  'Configuration': 'lucide:settings',
-  'Customization': 'lucide:palette',
-  'Guides': 'lucide:book-open',
-  'Reference': 'lucide:file-text',
-  'FAQ': 'lucide:help-circle',
+  Configuration: 'lucide:settings',
+  Customization: 'lucide:palette',
+  Guides: 'lucide:book-open',
+  Reference: 'lucide:file-text',
+  FAQ: 'lucide:help-circle',
 };
 
 function getSectionIcon(section: string): string {
@@ -86,14 +86,14 @@ function getSectionIcon(section: string): string {
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl sm:text-5xl font-bold text-text">Documentation</h1>
         <p class="mt-6 text-lg text-text-muted">
-          Everything you need to know about {siteConfig.name}. From getting
-          started to advanced configuration.
+          Everything you need to know about {siteConfig.name}. From getting started to advanced
+          configuration.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           {
             firstDoc && (
               <a
-                href={`/docs/${firstDoc.slug}`}
+                href={`/docs/${firstDoc.id}`}
                 class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors"
               >
                 <Icon name="lucide:book-open" class="w-5 h-5" />
@@ -187,9 +187,7 @@ function getSectionIcon(section: string): string {
                     <h3 class="font-semibold text-text group-hover:text-primary transition-colors">
                       {doc.title}
                     </h3>
-                    <p class="mt-2 text-sm text-text-muted line-clamp-2">
-                      {doc.description}
-                    </p>
+                    <p class="mt-2 text-sm text-text-muted line-clamp-2">{doc.description}</p>
                     <div class="mt-4 flex items-center gap-1 text-sm text-primary font-medium">
                       Read more
                       <Icon
@@ -212,9 +210,7 @@ function getSectionIcon(section: string): string {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-2xl font-bold text-text">Need more help?</h2>
-        <p class="mt-4 text-text-muted">
-          Can't find what you're looking for? We're here to help.
-        </p>
+        <p class="mt-4 text-text-muted">Can't find what you're looking for? We're here to help.</p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"

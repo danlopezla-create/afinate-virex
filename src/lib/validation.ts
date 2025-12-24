@@ -76,9 +76,7 @@ export function required(fieldName: string): ValidatorFn {
 export function minLength(min: number, fieldName: string): ValidatorFn {
   return (value: string): string | null => {
     const trimmed = (value ?? '').trim();
-    return trimmed.length < min
-      ? `${fieldName} must be at least ${min} characters`
-      : null;
+    return trimmed.length < min ? `${fieldName} must be at least ${min} characters` : null;
   };
 }
 
@@ -103,9 +101,7 @@ export function email(): ValidatorFn {
   return (value: string): string | null => {
     const trimmed = (value ?? '').trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(trimmed)
-      ? null
-      : 'Please enter a valid email address';
+    return emailRegex.test(trimmed) ? null : 'Please enter a valid email address';
   };
 }
 
@@ -153,9 +149,7 @@ export function selected(fieldName: string): ValidatorFn {
 export function password(minLength: number = 8): ValidatorFn {
   return (value: string): string | null => {
     const trimmed = (value ?? '').trim();
-    return trimmed.length < minLength
-      ? `Password must be at least ${minLength} characters`
-      : null;
+    return trimmed.length < minLength ? `Password must be at least ${minLength} characters` : null;
   };
 }
 

@@ -17,6 +17,10 @@ export * from './contact';
 // Re-export types for convenience
 export type {
   NavigationItem,
+  NavigationCTA,
+  HeaderNavigation,
+  FooterNavigation,
+  Navigation,
   SocialLinks,
   Address,
   ContactInfo,
@@ -32,7 +36,7 @@ export type {
 // Import individual configs to build merged object
 import { name, description, url, author, logo, ogImage, social, legal } from './site';
 import { contact } from './contact';
-import { mainNavigation } from './navigation';
+import { navigation } from './navigation';
 import { features } from './features';
 import { announcement, content } from './content';
 
@@ -55,9 +59,7 @@ export const siteConfig: SiteConfig = {
   social,
   contact,
   legal,
-  navigation: {
-    main: mainNavigation,
-  },
+  navigation,
   features,
   announcement,
   content,

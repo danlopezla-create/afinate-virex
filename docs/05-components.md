@@ -35,7 +35,7 @@ import { Icon } from 'astro-icon/components';
 
 | Icon | Name | Usage |
 |------|------|-------|
-| Zap| `lucide:zap` | Features, speed |
+| Zap | `lucide:zap` | Features, speed |
 | Shield | `lucide:shield` | Security |
 | Globe | `lucide:globe` | Global, web |
 | Chart | `lucide:bar-chart` | Analytics |
@@ -50,13 +50,8 @@ import { Icon } from 'astro-icon/components';
 Install additional Iconify icon packs:
 
 ```bash
-# Heroicons
 npm install @iconify-json/heroicons
-
-# Tabler Icons
 npm install @iconify-json/tabler
-
-# Material Design Icons
 npm install @iconify-json/mdi
 ```
 
@@ -73,76 +68,28 @@ Then use them with their prefix:
 - [Lucide Icons](https://lucide.dev/icons/) - Browse all Lucide icons
 - [Iconify](https://icon-sets.iconify.design/) - Search all available icon sets
 
-## Contact Form
-
-Located at `src/components/forms/ContactForm.astro`. Includes client-side validation, loading states, and multiple backend support.
-
-### Demo Mode (Default)
-
-```astro
-<ContactForm />
-```
-
-Simulates success without submitting. Good for development.
-
-### Netlify Forms
-
-```astro
-<ContactForm netlify formName="contact" />
-```
-
-No additional setup needed when deploying to Netlify.
-
-### Formspree
-
-```astro
-<ContactForm action="https://formspree.io/f/YOUR_FORM_ID" method="POST" />
-```
-
-Get your form ID at [formspree.io](https://formspree.io/).
-
-### Custom API Endpoint
-
-```astro
-<ContactForm action="https://api.yoursite.com/contact" method="POST" />
-```
-
-Your endpoint should accept `FormData` with fields: `firstName`, `lastName`, `email`, `subject`, `message`.
-
-### Form Fields
-
-The form submits these fields:
-- `firstName` (required, min 2 chars)
-- `lastName` (required, min 2 chars)
-- `email` (required, valid email)
-- `subject` (required, select dropdown)
-- `message` (required, min 10 chars)
-
-### Validation
-
-- Real-time validation on blur and input
-- Honeypot field for spam protection
-- Loading state during submission
-- Success/error feedback messages
-
 ## Layout Components
 
-### Navbar
+### Header
 
-`src/components/layout/Navbar.astro`
+`src/components/layout/Header.astro`
 
-- Responsive with mobile menu
+Site header with responsive navigation:
+- Logo/site name on the left
+- Main navigation links in the center
+- CTA buttons and theme toggle on the right
+- Mobile hamburger menu with full-screen overlay
 - Respects feature flags (hides disabled sections)
-- Includes theme toggle button
-- Shows/hides based on scroll direction (optional)
 
 ### Footer
 
 `src/components/layout/Footer.astro`
 
-- Navigation links (respects feature flags)
-- Social media links
-- Copyright notice
+Site footer with 5-column layout:
+- Brand column with logo, description, contact info, social links
+- Product, Solutions, Resources, Company columns
+- Legal links in bottom bar
+- Respects feature flags
 
 ### AnnouncementBar
 
@@ -156,6 +103,8 @@ The form submits these fields:
 
 ### Hero
 
+`src/components/sections/marketing/Hero.astro`
+
 ```astro
 <Hero
   title="Main headline"
@@ -167,10 +116,11 @@ The form submits these fields:
 
 ### FeaturesSection
 
-Flexible features section with optional heading. Can display with or without title/subtitle.
+`src/components/sections/marketing/FeaturesSection.astro`
+
+Flexible features grid with optional heading.
 
 ```astro
-<!-- With heading -->
 <FeaturesSection
   title="Everything you need"
   subtitle="All the tools your team needs."
@@ -178,39 +128,212 @@ Flexible features section with optional heading. Can display with or without tit
     { icon: "lucide:zap", title: "Fast", description: "Lightning quick" },
     { icon: "lucide:shield", title: "Secure", description: "Enterprise ready" },
   ]}
+  background="muted"
 />
-
-<!-- Grid only (no heading) -->
-<FeaturesSection features={[...]} />
 ```
 
-**Props:**
+### HowItWorks
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Optional section title |
-| `subtitle` | `string` | - | Optional section subtitle |
-| `features` | `Feature[]` | Required | Array of feature objects |
+`src/components/sections/marketing/HowItWorks.astro`
 
-**Feature Object:**
+Step-by-step process visualization with three layout variants.
 
-```typescript
-interface Feature {
-  icon: string;        // Lucide icon name (e.g., "lucide:zap")
-  title: string;       // Feature title
-  description: string; // Feature description
-}
+```astro
+<HowItWorks
+  title="How it works"
+  subtitle="Get started in 3 simple steps"
+  steps={[
+    { title: "Sign up", description: "Create your account", icon: "lucide:user-plus" },
+    { title: "Connect", description: "Link your repositories", icon: "lucide:git-branch" },
+    { title: "Deploy", description: "Push and go live", icon: "lucide:rocket" },
+  ]}
+  variant="horizontal"  // 'horizontal' | 'vertical' | 'alternating'
+  background="muted"
+/>
 ```
+
+### BentoGrid
+
+`src/components/sections/marketing/BentoGrid.astro`
+
+Modern bento-style feature grid with varying card sizes.
+
+```astro
+<BentoGrid
+  title="Platform Features"
+  items={[
+    { title: "Fast Deploys", description: "...", icon: "lucide:zap", size: "large", accent: "primary" },
+    { title: "Auto Scaling", description: "...", icon: "lucide:trending-up", accent: "blue" },
+    { title: "Security", description: "...", icon: "lucide:shield", size: "medium", accent: "green" },
+  ]}
+/>
+```
+
+**Size options:** `small` (default), `medium` (2 columns), `large` (2x2)
+**Accent colors:** `primary`, `blue`, `green`, `purple`, `orange`
+
+### FeatureHighlight
+
+`src/components/sections/marketing/FeatureHighlight.astro`
+
+Alternating image/text sections for detailed feature explanations.
+
+```astro
+<FeatureHighlight
+  title="Powerful Features"
+  features={[
+    {
+      title: "Preview Deployments",
+      description: "Every PR gets its own preview URL.",
+      image: "/images/features/preview.png",
+      badge: "Most Popular",
+      highlights: ["Automatic deployment", "Unique URLs", "Password protection"],
+      cta: { label: "Learn more", href: "/docs/previews" }
+    },
+  ]}
+  startImageLeft={true}
+/>
+```
+
+### IntegrationsGrid
+
+`src/components/sections/marketing/IntegrationsGrid.astro`
+
+Display integration logos with optional category filtering.
+
+```astro
+<IntegrationsGrid
+  title="Integrations"
+  subtitle="Connect with your favorite tools"
+  integrations={[
+    { name: "GitHub", logo: "/images/integrations/github.svg", category: "Development" },
+    { name: "Slack", logo: "/images/integrations/slack.svg", category: "Communication" },
+  ]}
+  variant="grid"  // 'grid' | 'compact' | 'detailed'
+  showCategories={true}
+/>
+```
+
+### CTA
+
+`src/components/sections/marketing/CTA.astro`
+
+```astro
+<CTA
+  title="Ready to start?"
+  description="Get started today."
+  action={{ label: "Sign Up", href: "/pricing" }}
+  secondaryAction={{ label: "Contact Sales", href: "/contact" }}
+  background="accent"
+/>
+```
+
+### LogoCloud
+
+`src/components/sections/marketing/LogoCloud.astro`
+
+Displays client/partner logos with multiple variants.
+
+```astro
+<LogoCloud
+  title="Trusted by innovative teams"
+  logos={[
+    { name: "Acme Inc", src: "/images/logos/acme.svg" },
+    { name: "Globex", src: "/images/logos/globex.svg", href: "https://example.com" },
+  ]}
+  variant="default"  // 'default' | 'marquee' | 'grid'
+  grayscale={true}
+/>
+```
+
+### Newsletter
+
+`src/components/sections/marketing/Newsletter.astro`
+
+Newsletter subscription component.
+
+```astro
+<Newsletter
+  title="Stay in the loop"
+  description="Get weekly updates."
+  variant="default"  // 'default' | 'compact' | 'card'
+  action="https://api.example.com/subscribe"
+/>
+```
+
+### VideoEmbed
+
+`src/components/sections/content/VideoEmbed.astro`
+
+Responsive video embed with lazy loading support.
+
+```astro
+<VideoEmbed
+  title="Product Demo"
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  aspectRatio="16:9"
+  lazyLoad={true}
+/>
+```
+
+## Pricing Components
+
+### PricingTable
+
+`src/components/sections/pricing/PricingTable.astro`
+
+Displays pricing plans with feature lists and CTA buttons.
+
+```astro
+<PricingTable
+  title="Simple pricing"
+  plans={[
+    {
+      name: "Free",
+      monthlyPrice: 0,
+      description: "For side projects",
+      features: ["3 projects", "Community support"],
+      cta: { label: "Start Free", href: "/register" }
+    },
+    {
+      name: "Pro",
+      monthlyPrice: 20,
+      description: "For professionals",
+      features: ["Unlimited projects", "Priority support"],
+      highlighted: true,
+      cta: { label: "Start Trial", href: "/register?plan=pro" }
+    },
+  ]}
+  annualDiscount={20}
+/>
+```
+
+### SecurityBadges
+
+`src/components/sections/pricing/SecurityBadges.astro`
+
+Display compliance and security certifications.
+
+```astro
+<SecurityBadges
+  title="Security & Compliance"
+  badges={[
+    { name: "SOC 2", icon: "lucide:shield-check", description: "Type II certified" },
+    { name: "GDPR", icon: "lucide:globe", description: "EU compliant" },
+  ]}
+  variant="cards"  // 'grid' | 'inline' | 'cards'
+/>
+```
+
+## Social Proof Components
 
 ### TestimonialsSection
 
-Flexible testimonials section with optional heading. Displays testimonials in a responsive grid.
+`src/components/sections/social-proof/TestimonialsSection.astro`
 
 ```astro
-<!-- With heading -->
 <TestimonialsSection
   title="Loved by developers"
-  subtitle="Join thousands of teams who trust us."
   testimonials={[
     {
       quote: "This product changed everything.",
@@ -221,172 +344,107 @@ Flexible testimonials section with optional heading. Displays testimonials in a 
     }
   ]}
 />
-
-<!-- Grid only (no heading) -->
-<TestimonialsSection testimonials={[...]} />
 ```
 
-**Props:**
+### CaseStudyCard
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Optional section title |
-| `subtitle` | `string` | - | Optional section subtitle |
-| `testimonials` | `Testimonial[]` | Required | Array of testimonial objects |
+`src/components/sections/social-proof/CaseStudyCard.astro`
 
-**Testimonial Object:**
-
-```typescript
-interface Testimonial {
-  quote: string;    // Testimonial quote text
-  author: string;   // Author's full name
-  role: string;     // Author's job title
-  company: string;  // Author's company
-  avatar?: string;  // Optional avatar image URL
-}
-```
-
-If no avatar is provided, initials are automatically generated from the author's name.
-
-### PricingTable
-
-Displays pricing plans with feature lists and CTA buttons.
-
-### CTA
+Customer success stories with metrics.
 
 ```astro
-<CTA
-  title="Ready to start?"
-  description="Get started today."
-  action={{ label: "Sign Up", href: "/pricing" }}
+<CaseStudyCard
+  title="Customer Stories"
+  cases={[
+    {
+      company: "TechCorp",
+      logo: "/images/logos/techcorp.svg",
+      industry: "Technology",
+      quote: "Virex transformed our deployment workflow.",
+      author: "John Smith",
+      role: "VP Engineering",
+      metrics: [
+        { value: "95%", label: "Faster deploys" },
+        { value: "50%", label: "Cost reduction" },
+      ],
+      href: "/customers/techcorp"
+    }
+  ]}
+  variant="featured"  // 'grid' | 'featured' | 'compact'
 />
 ```
 
-### LogoCloud
+### StatsSection
 
-`src/components/sections/LogoCloud.astro`
+`src/components/sections/social-proof/StatsSection.astro`
 
-Displays client/partner logos to build trust and credibility. Supports multiple display variants.
+Display key metrics and statistics.
 
 ```astro
----
-import LogoCloud from '../components/sections/LogoCloud.astro';
-
-const logos = [
-  { name: "Acme Inc", src: "/images/logos/logoipsum-1.svg" },
-  { name: "Globex", src: "/images/logos/logoipsum-2.svg", href: "https://example.com" },
-  // ... more logos
-];
----
-
-<!-- Default variant (static row) -->
-<LogoCloud
-  title="Trusted by innovative teams"
-  logos={logos}
-/>
-
-<!-- Marquee variant (animated scroll) -->
-<LogoCloud
-  logos={logos}
-  variant="marquee"
-  speed="slow"
-  pauseOnHover={true}
-/>
-
-<!-- Grid variant -->
-<LogoCloud
-  title="Our partners"
-  logos={logos}
-  variant="grid"
-  columns={4}
+<StatsSection
+  stats={[
+    { value: "10,000+", label: "Customers" },
+    { value: "99.99%", label: "Uptime" },
+    { value: "50M+", label: "Deployments" },
+  ]}
+  background="muted"
 />
 ```
 
-**Props:**
+## Form Components
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Optional section title |
-| `logos` | `Logo[]` | Required | Array of logo objects |
-| `variant` | `'default' \| 'marquee' \| 'grid'` | `'default'` | Display variant |
-| `columns` | `2 \| 3 \| 4 \| 5 \| 6` | `4` | Columns for grid variant |
-| `speed` | `'slow' \| 'normal' \| 'fast'` | `'normal'` | Marquee animation speed |
-| `pauseOnHover` | `boolean` | `true` | Pause marquee on hover |
-| `logoSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Logo size |
-| `grayscale` | `boolean` | `true` | Grayscale logos (colored on hover) |
+### ContactForm
 
-**Logo Object:**
+`src/components/forms/ContactForm.astro`
 
-```typescript
-interface Logo {
-  name: string;    // Company name (used for alt text)
-  src: string;     // Path to logo image
-  href?: string;   // Optional link URL
-}
-```
-
-**Placeholder logos** are provided in `public/images/logos/`. Replace them with your actual client logos.
-
-### Newsletter
-
-`src/components/sections/Newsletter.astro`
-
-Standalone newsletter subscription component. Can be placed anywhere on the site.
+Full-featured contact form with validation.
 
 ```astro
----
-import Newsletter from '../components/sections/Newsletter.astro';
----
+<!-- Demo mode -->
+<ContactForm />
 
-<!-- Default (uses config values) -->
-<Newsletter />
+<!-- Netlify Forms -->
+<ContactForm netlify formName="contact" />
 
-<!-- Custom content -->
-<Newsletter
-  title="Join our community"
-  description="Get weekly tips and updates."
-  buttonText="Join Now"
-/>
-
-<!-- With custom action endpoint -->
-<Newsletter action="https://api.example.com/subscribe" />
-
-<!-- Compact variant -->
-<Newsletter variant="compact" />
-
-<!-- Card variant with primary background -->
-<Newsletter variant="card" background="primary" />
+<!-- Custom endpoint -->
+<ContactForm action="https://api.example.com/contact" />
 ```
 
-**Props:**
+### DemoRequestForm
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | Config value | Section title |
-| `description` | `string` | Config value | Section description |
-| `placeholder` | `string` | Config value | Input placeholder |
-| `buttonText` | `string` | Config value | Submit button text |
-| `successMessage` | `string` | Config value | Success message |
-| `errorMessage` | `string` | Config value | Error message |
-| `privacyNote` | `string` | Config value | Privacy note text |
-| `action` | `string` | `''` | Form action URL (empty for demo mode) |
-| `variant` | `'default' \| 'compact' \| 'card'` | `'default'` | Visual variant |
-| `background` | `'surface' \| 'transparent' \| 'primary'` | `'surface'` | Background style |
+`src/components/forms/DemoRequestForm.astro`
 
-**Integration Examples:**
+Demo request form with company info and team size.
 
 ```astro
-<!-- Mailchimp -->
-<Newsletter action="https://YOUR_DOMAIN.us1.list-manage.com/subscribe/post?u=XXX&id=YYY" />
+<!-- Demo mode -->
+<DemoRequestForm />
 
-<!-- ConvertKit -->
-<Newsletter action="https://app.convertkit.com/forms/FORM_ID/subscriptions" />
+<!-- Netlify Forms -->
+<DemoRequestForm netlify formName="demo-request" />
 
-<!-- Custom API -->
-<Newsletter action="/api/newsletter" />
+<!-- Custom endpoint -->
+<DemoRequestForm action="https://api.example.com/demo" />
 ```
 
-By default, the Newsletter only appears on the homepage. Add it to any page by importing the component.
+### LoginForm / RegisterForm / ForgotPasswordForm
+
+Authentication forms with validation. See [Authentication](/docs/07-authentication.md) for details.
+
+### SocialAuthButtons
+
+`src/components/forms/SocialAuthButtons.astro`
+
+Social login/signup buttons.
+
+```astro
+<SocialAuthButtons
+  dividerText="Or continue with"
+  variant="login"
+  googleUrl="/auth/google"
+  githubUrl="/auth/github"
+/>
+```
 
 ## Common Components
 
@@ -394,7 +452,7 @@ By default, the Newsletter only appears on the homepage. Add it to any page by i
 
 `src/components/common/SEO.astro`
 
-Handles meta tags, Open Graph, Twitter Cards, and JSON-LD. Used in layouts.
+Handles meta tags, Open Graph, Twitter Cards, and JSON-LD.
 
 ```astro
 <SEO
@@ -409,21 +467,19 @@ Handles meta tags, Open Graph, Twitter Cards, and JSON-LD. Used in layouts.
 
 `src/components/common/OptimizedImage.astro`
 
-Smart image optimization wrapper for local and remote images.
+Smart image optimization wrapper.
 
 ## UI Components
 
 ### ThemeToggle
 
-`src/components/ui/buttons/ThemeToggle.astro`
+`src/components/ui/ThemeToggle.astro`
 
 Light/dark mode toggle with localStorage persistence.
 
-
-
 ### Pagination
 
-`src/components/ui/navigation/Pagination.astro`
+`src/components/ui/Pagination.astro`
 
 Page navigation for blog listings.
 
@@ -437,14 +493,14 @@ Page navigation for blog listings.
 
 ## Utility Functions
 
-The theme includes helper functions in `src/lib/`:
+Helper functions in `src/lib/`:
 
 ### Reading Time
 
 ```typescript
 import { calculateReadingTime } from '@/lib/utils';
 
-const minutes = calculateReadingTime(post.body);
+const minutes = calculateReadingTime(content);
 // Returns: 5 (minutes, based on 200 words/min)
 ```
 
@@ -458,9 +514,6 @@ formatDate(new Date());
 
 formatDate(new Date(), { dateStyle: 'long' });
 // Returns: "January 15, 2025"
-
-formatDate(new Date(), { dateStyle: 'full' });
-// Returns: "Wednesday, January 15, 2025"
 ```
 
 ### Form Validation
@@ -469,9 +522,21 @@ formatDate(new Date(), { dateStyle: 'full' });
 import { required, minLength, email, selected } from '@/lib/validation';
 
 const validators = {
-  name: required('Name'),           // "Name is required"
-  message: minLength(10, 'Message'), // "Message must be at least 10 characters"
-  email: email(),                   // "Please enter a valid email address"
-  subject: selected('Subject'),     // "Please select a Subject"
+  name: required('Name'),
+  message: minLength(10, 'Message'),
+  email: email(),
+  subject: selected('Subject'),
 };
 ```
+
+## Background Prop
+
+Most section components support a `background` prop for consistent styling:
+
+```astro
+<FeaturesSection background="default" />  <!-- White/dark background -->
+<FeaturesSection background="muted" />    <!-- Subtle gray background -->
+<FeaturesSection background="accent" />   <!-- Primary color tint -->
+```
+
+This allows easy visual separation between sections.

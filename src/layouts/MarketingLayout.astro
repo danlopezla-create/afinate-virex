@@ -1,8 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import Navbar from '../components/layout/Navbar.astro';
-import Footer from '../components/layout/Footer.astro';
-import AnnouncementBar from '../components/layout/AnnouncementBar.astro';
+import Header from '@layout/Header.astro';
+import Footer from '@layout/Footer.astro';
+import AnnouncementBar from '@layout/AnnouncementBar.astro';
 import { siteConfig } from '@/config';
 
 interface Props {
@@ -17,24 +17,24 @@ interface Props {
   tags?: string[];
 }
 
-const { 
-  title, 
-  description, 
-  image, 
+const {
+  title,
+  description,
+  image,
   type = 'website',
   publishedDate,
   modifiedDate,
   author,
-  tags
+  tags,
 } = Astro.props;
 
 const { announcement } = siteConfig;
 ---
 
-<BaseLayout 
-  title={title} 
-  description={description} 
-  image={image} 
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
   type={type}
   publishedDate={publishedDate}
   modifiedDate={modifiedDate}
@@ -42,17 +42,19 @@ const { announcement } = siteConfig;
   tags={tags}
 >
   <div class="flex flex-col min-h-screen">
-    {announcement.enabled && (
-      <AnnouncementBar
-        id={announcement.id}
-        text={announcement.text}
-        href={announcement.href}
-        linkText={announcement.linkText}
-        variant={announcement.variant}
-        dismissible={announcement.dismissible}
-      />
-    )}
-    <Navbar />
+    {
+      announcement.enabled && (
+        <AnnouncementBar
+          id={announcement.id}
+          text={announcement.text}
+          href={announcement.href}
+          linkText={announcement.linkText}
+          variant={announcement.variant}
+          dismissible={announcement.dismissible}
+        />
+      )
+    }
+    <Header />
     <main id="main-content" class="flex-1">
       <slot />
     </main>

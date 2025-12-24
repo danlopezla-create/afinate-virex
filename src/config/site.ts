@@ -12,7 +12,8 @@ import type { SocialLinks, LegalConfig } from '../lib/types';
 export const name = import.meta.env.SITE_NAME || 'Virex';
 
 /** Site description for SEO and meta tags */
-export const description = import.meta.env.SITE_DESCRIPTION || 'The modern platform for building and shipping faster';
+export const description =
+  import.meta.env.SITE_DESCRIPTION || 'The modern platform for building and shipping faster';
 
 /** Production URL of your site (used for sitemap, RSS, canonical URLs) */
 export const url = import.meta.env.SITE_URL || 'http://localhost:4321';

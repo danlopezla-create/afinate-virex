@@ -9,6 +9,39 @@
 export interface NavigationItem {
   label: string;
   href: string;
+  /** Feature flag key - item only shows if this feature is enabled */
+  feature?: keyof FeatureFlags;
+}
+
+export interface NavigationCTA {
+  label: string;
+  href: string;
+  variant: 'primary' | 'secondary' | 'ghost';
+}
+
+export interface HeaderNavigation {
+  /** Main navigation items */
+  main: NavigationItem[];
+  /** CTA buttons on the right side */
+  cta: NavigationCTA[];
+}
+
+export interface FooterNavigation {
+  /** Product-related links */
+  product: NavigationItem[];
+  /** Solutions/use-case links */
+  solutions: NavigationItem[];
+  /** Resources like docs, blog */
+  resources: NavigationItem[];
+  /** Company info links */
+  company: NavigationItem[];
+  /** Legal links */
+  legal: NavigationItem[];
+}
+
+export interface Navigation {
+  header: HeaderNavigation;
+  footer: FooterNavigation;
 }
 
 export interface SocialLinks {
@@ -92,10 +125,28 @@ export interface SiteConfig {
   contact: ContactInfo;
   legal: LegalConfig;
   social: SocialLinks;
-  navigation: {
-    main: NavigationItem[];
-  };
+  navigation: Navigation;
   features: FeatureFlags;
   announcement: AnnouncementConfig;
   content: ContentStrings;
+}
+
+/** Pricing plan configuration for PricingTable component */
+export interface PricingPlan {
+  /** Plan name (e.g., "Free", "Pro", "Enterprise") */
+  name: string;
+  /** Monthly price in dollars (null for custom pricing) */
+  monthlyPrice: number | null;
+  /** Custom price text for enterprise plans (e.g., "Custom", "Contact us") */
+  customPrice?: string;
+  /** Short description of the plan */
+  description: string;
+  /** List of features included in the plan */
+  features: string[];
+  /** Whether to highlight this plan as recommended */
+  highlighted?: boolean;
+  /** Badge text override (default: "Most Popular" for highlighted) */
+  badge?: string;
+  /** Call-to-action button configuration */
+  cta: { label: string; href: string };
 }

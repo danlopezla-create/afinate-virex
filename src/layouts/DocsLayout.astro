@@ -38,7 +38,7 @@ for (const doc of allDocs) {
   }
   sectionMap.get(sectionName)!.push({
     title: doc.data.title,
-    slug: doc.slug,
+    slug: doc.id,
     order: doc.data.order,
   });
 }
@@ -51,8 +51,8 @@ for (const [sectionName, items] of sectionMap) {
 
 // Sort sections by the minimum order of their items
 sidebarSections.sort((a, b) => {
-  const aMinOrder = Math.min(...a.items.map(i => i.order));
-  const bMinOrder = Math.min(...b.items.map(i => i.order));
+  const aMinOrder = Math.min(...a.items.map((i) => i.order));
+  const bMinOrder = Math.min(...b.items.map((i) => i.order));
   return aMinOrder - bMinOrder;
 });
 
@@ -78,31 +78,33 @@ const currentSlug = Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '');
 
           <!-- Sidebar content -->
           <div id="docs-sidebar" class="hidden lg:block space-y-6">
-            {sidebarSections.map((sidebarSection) => (
-              <div>
-                <h3 class="font-semibold text-sm text-text mb-2">{sidebarSection.section}</h3>
-                <ul class="space-y-1">
-                  {sidebarSection.items.map((item) => {
-                    const isActive = currentSlug === item.slug;
-                    return (
-                      <li>
-                        <a
-                          href={`/docs/${item.slug}`}
-                          class:list={[
-                            'block px-3 py-2 text-sm rounded-md transition-colors',
-                            isActive
-                              ? 'bg-primary text-white font-medium'
-                              : 'text-text-muted hover:text-text hover:bg-surface',
-                          ]}
-                        >
-                          {item.title}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
+            {
+              sidebarSections.map((sidebarSection) => (
+                <div>
+                  <h3 class="font-semibold text-sm text-text mb-2">{sidebarSection.section}</h3>
+                  <ul class="space-y-1">
+                    {sidebarSection.items.map((item) => {
+                      const isActive = currentSlug === item.slug;
+                      return (
+                        <li>
+                          <a
+                            href={`/docs/${item.slug}`}
+                            class:list={[
+                              'block px-3 py-2 text-sm rounded-md transition-colors',
+                              isActive
+                                ? 'bg-primary text-white font-medium'
+                                : 'text-text-muted hover:text-text hover:bg-surface',
+                            ]}
+                          >
+                            {item.title}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))
+            }
           </div>
         </nav>
       </aside>

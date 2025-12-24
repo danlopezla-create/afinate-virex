@@ -1,6 +1,6 @@
 ---
-import MarketingLayout from '../../layouts/MarketingLayout.astro';
-import Pagination from '../../components/ui/navigation/Pagination.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Pagination from '@ui/Pagination.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
@@ -11,20 +11,23 @@ type BlogPost = CollectionEntry<'blog'>;
 const POSTS_PER_PAGE = 6;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const sortedPosts = [...posts].sort((a: BlogPost, b: BlogPost) => 
-  b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+const sortedPosts = [...posts].sort(
+  (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
 
 // Get current page from URL
 const currentPage = 1;
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-const paginatedPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
+const paginatedPosts: BlogPost[] = sortedPosts.slice(0, POSTS_PER_PAGE);
 
 // Get all unique tags
 const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
+
+// Helper to get typed tags
+const getTypedTags = (tags: string[]) => tags.slice(0, 3);
 ---
 
-<MarketingLayout 
+<MarketingLayout
   title={`Blog - ${siteConfig.name}`}
   description={`Latest news, updates, and insights from the ${siteConfig.name} team.`}
 >
@@ -38,38 +41,41 @@ const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].
       </div>
 
       <!-- Tags Filter -->
-      {allTags.length > 0 && (
-        <div class="mb-10">
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
-            <a
-              href="/blog"
-              class="px-3 py-1.5 text-sm font-medium rounded-md bg-primary text-white"
-            >
-              All
-            </a>
-            {allTags.map((tag) => (
+      {
+        allTags.length > 0 && (
+          <div class="mb-10">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
               <a
-                href={`/blog/tag/${tag}`}
-                class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
+                href="/blog"
+                class="px-3 py-1.5 text-sm font-medium rounded-md bg-primary text-white"
               >
-                {tag}
+                All
               </a>
-            ))}
+              {allTags.map((tag) => (
+                <a
+                  href={`/blog/tag/${tag}`}
+                  class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <!-- Posts Grid -->
       <div class="space-y-10">
-        {paginatedPosts.map((post) => (
+        {
+          paginatedPosts.map((post) => (
             <article class="group">
-              <a href={`/blog/${post.slug}`} class="block">
+              <a href={`/blog/${post.id}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
                     {post.data.image ? (
-                      <img 
-                        src={post.data.image} 
+                      <img
+                        src={post.data.image}
                         alt={post.data.title}
                         class="w-full h-32 sm:h-full object-cover"
                       />
@@ -82,10 +88,10 @@ const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].
                   <div class="flex-1">
                     <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
                       <span>
-                        {post.data.publishedDate.toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
+                        {post.data.publishedDate.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
                         })}
                       </span>
                       <span>·</span>
@@ -94,15 +100,11 @@ const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].
                     <h2 class="text-xl font-bold text-text group-hover:text-primary transition-colors">
                       {post.data.title}
                     </h2>
-                    <p class="mt-2 text-text-muted line-clamp-2">
-                      {post.data.description}
-                    </p>
+                    <p class="mt-2 text-text-muted line-clamp-2">{post.data.description}</p>
                     {post.data.tags.length > 0 && (
                       <div class="flex flex-wrap gap-2 mt-3">
-                        {post.data.tags.slice(0, 3).map((tag: string) => (
-                          <span 
-                            class="px-2 py-0.5 text-xs font-medium bg-surface text-text-muted rounded"
-                          >
+                        {getTypedTags(post.data.tags).map((tag) => (
+                          <span class="px-2 py-0.5 text-xs font-medium bg-surface text-text-muted rounded">
                             {tag}
                           </span>
                         ))}
@@ -112,21 +114,20 @@ const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].
                 </div>
               </a>
             </article>
-          ))}
+          ))
+        }
       </div>
 
-      {sortedPosts.length === 0 && (
-        <div class="text-center py-12">
-          <p class="text-text-muted">No blog posts yet. Check back soon!</p>
-        </div>
-      )}
+      {
+        sortedPosts.length === 0 && (
+          <div class="text-center py-12">
+            <p class="text-text-muted">No blog posts yet. Check back soon!</p>
+          </div>
+        )
+      }
 
       <!-- Pagination -->
-      <Pagination 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
-        basePath="/blog" 
-      />
+      <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blog" />
     </div>
   </section>
 </MarketingLayout>

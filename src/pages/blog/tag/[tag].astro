@@ -1,5 +1,5 @@
 ---
-import MarketingLayout from '../../../layouts/MarketingLayout.astro';
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
@@ -9,20 +9,24 @@ type BlogPost = CollectionEntry<'blog'>;
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
   const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))];
-  
+
   return allTags.map((tag) => ({
     params: { tag },
     props: { tag },
   }));
 }
 
+interface Props {
+  tag: string;
+}
+
 const { tag } = Astro.props;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const filteredPosts = posts
+const filteredPosts: BlogPost[] = posts
   .filter((post: BlogPost) => post.data.tags.includes(tag))
-  .sort((a: BlogPost, b: BlogPost) => 
-    b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+  .sort(
+    (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
   );
 
 // Get all unique tags for the filter
@@ -32,9 +36,13 @@ function calculateReadingTime(text: string): number {
   const wordCount = text.trim().split(/\s+/).length;
   return Math.ceil(wordCount / 200);
 }
+
+// Helper to get typed tags with comparison
+const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
+  tags.slice(0, 3).map((t) => ({ tag: t, isActive: t === activeTag }));
 ---
 
-<MarketingLayout 
+<MarketingLayout
   title={`Posts tagged "${tag}"`}
   description={`Browse all blog posts tagged with "${tag}" on the ${siteConfig.name} blog.`}
 >
@@ -48,48 +56,52 @@ function calculateReadingTime(text: string): number {
           Posts tagged "{tag}"
         </h1>
         <p class="mt-4 text-lg text-text-muted">
-          {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
+          {filteredPosts.length}
+          {filteredPosts.length === 1 ? 'post' : 'posts'} found
         </p>
       </div>
 
       <!-- Tags Filter -->
-      {allTags.length > 0 && (
-        <div class="mb-10">
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
-            <a
-              href="/blog"
-              class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
-            >
-              All
-            </a>
-            {allTags.map((t) => (
+      {
+        allTags.length > 0 && (
+          <div class="mb-10">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
               <a
-                href={`/blog/tag/${t}`}
-                class:list={[
-                  "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
-                  t === tag
-                    ? "bg-primary text-white"
-                    : "bg-surface text-text-muted hover:bg-primary/10 hover:text-primary"
-                ]}
+                href="/blog"
+                class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
               >
-                {t}
+                All
               </a>
-            ))}
+              {allTags.map((t) => (
+                <a
+                  href={`/blog/tag/${t}`}
+                  class:list={[
+                    'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                    t === tag
+                      ? 'bg-primary text-white'
+                      : 'bg-surface text-text-muted hover:bg-primary/10 hover:text-primary',
+                  ]}
+                >
+                  {t}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <!-- Posts Grid -->
       <div class="space-y-10">
-        {filteredPosts.map((post: BlogPost) => (
+        {
+          filteredPosts.map((post) => (
             <article class="group">
-              <a href={`/blog/${post.slug}`} class="block">
+              <a href={`/blog/${post.id}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
                     {post.data.image ? (
-                      <img 
-                        src={post.data.image} 
+                      <img
+                        src={post.data.image}
                         alt={post.data.title}
                         class="w-full h-32 sm:h-full object-cover"
                       />
@@ -102,10 +114,10 @@ function calculateReadingTime(text: string): number {
                   <div class="flex-1">
                     <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
                       <span>
-                        {post.data.publishedDate.toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
+                        {post.data.publishedDate.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
                         })}
                       </span>
                       <span>·</span>
@@ -114,18 +126,16 @@ function calculateReadingTime(text: string): number {
                     <h2 class="text-xl font-bold text-text group-hover:text-primary transition-colors">
                       {post.data.title}
                     </h2>
-                    <p class="mt-2 text-text-muted line-clamp-2">
-                      {post.data.description}
-                    </p>
+                    <p class="mt-2 text-text-muted line-clamp-2">{post.data.description}</p>
                     {post.data.tags.length > 0 && (
                       <div class="flex flex-wrap gap-2 mt-3">
-                        {post.data.tags.slice(0, 3).map((t: string) => (
-                          <span 
+                        {getTypedTagsWithActive(post.data.tags, tag).map(({ tag: t, isActive }) => (
+                          <span
                             class:list={[
-                              "px-2 py-0.5 text-xs font-medium rounded",
-                              t === tag
-                                ? "bg-primary/20 text-primary"
-                                : "bg-surface text-text-muted"
+                              'px-2 py-0.5 text-xs font-medium rounded',
+                              isActive
+                                ? 'bg-primary/20 text-primary'
+                                : 'bg-surface text-text-muted',
                             ]}
                           >
                             {t}
@@ -137,17 +147,20 @@ function calculateReadingTime(text: string): number {
                 </div>
               </a>
             </article>
-          ))}
+          ))
+        }
       </div>
 
-      {filteredPosts.length === 0 && (
-        <div class="text-center py-12">
-          <p class="text-text-muted">No posts found with this tag.</p>
-          <a href="/blog" class="text-primary hover:underline mt-2 inline-block">
-            View all posts
-          </a>
-        </div>
-      )}
+      {
+        filteredPosts.length === 0 && (
+          <div class="text-center py-12">
+            <p class="text-text-muted">No posts found with this tag.</p>
+            <a href="/blog" class="text-primary hover:underline mt-2 inline-block">
+              View all posts
+            </a>
+          </div>
+        )
+      }
     </div>
   </section>
 </MarketingLayout>

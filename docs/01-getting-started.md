@@ -23,13 +23,31 @@ Your site will be available at `http://localhost:4321`.
 
 ## Import Aliases
 
-The theme uses `@/` as an alias for `src/`:
+The theme uses several path aliases for cleaner imports:
 
 ```typescript
+// Base alias
 import { siteConfig } from '@/config';
 import { formatDate } from '@/lib/utils';
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+
+// Component aliases
+import Header from '@layout/Header.astro';
+import Hero from '@sections/marketing/Hero.astro';
+import ContactForm from '@forms/ContactForm.astro';
+import ThemeToggle from '@ui/ThemeToggle.astro';
 ```
+
+### Available Aliases
+
+| Alias | Path |
+|-------|------|
+| `@/*` | `src/*` |
+| `@components/*` | `src/components/*` |
+| `@sections/*` | `src/components/sections/*` |
+| `@ui/*` | `src/components/ui/*` |
+| `@forms/*` | `src/components/forms/*` |
+| `@layout/*` | `src/components/layout/*` |
 
 ## Sample Content
 
@@ -60,43 +78,47 @@ To start fresh with your own content:
 
 ```
 src/
-├── components/               # Reusable UI components
-│   ├── common/               # SEO, OptimizedImage
-│   ├── error/                # Error page components
-│   ├── forms/                # Contact form
-│   ├── layout/               # Navbar, Footer, AnnouncementBar
-│   ├── sections/             # Hero, FeaturesSection, TestimonialsSection, PricingTable, CTA
-│   └── ui/                   # Buttons, navigation
-│       ├── buttons/          # ThemeToggle
-│       └── navigation/       # Pagination
-├── config/                   # Site configuration
-│   ├── index.ts              # Main export (imports all configs)
-│   ├── site.ts               # Site metadata, social links
-│   ├── contact.ts            # Contact information
-│   ├── navigation.ts         # Navigation items
-│   ├── features.ts           # Feature flags
-│   └── content.ts            # Announcement bar, newsletter strings
-├── content/                  # Content collections (Markdown/MDX)
-│   ├── blog/                 # Blog posts
-│   ├── docs/                 # Documentation
-│   ├── changelog/            # Version history
-│   └── testimonials/         # Customer quotes
-├── layouts/                  # Page layouts
-│   ├── BaseLayout.astro      # HTML shell
-│   ├── MarketingLayout.astro # Marketing pages
-│   ├── BlogLayout.astro      # Blog posts
-│   ├── DocsLayout.astro      # Documentation
-│   └── ErrorLayout.astro     # Error pages
-├── lib/                      # Utilities
-│   ├── types.ts              # TypeScript interfaces
-│   ├── utils.ts              # Helper functions
-│   └── validation.ts         # Form validation
-├── pages/                    # Route pages
-│   ├── blog/                 # Blog with pagination and tags
-│   ├── docs/                 # Documentation pages
-│   └── ...                   # Other pages
+├── components/
+│   ├── common/                 # SEO, OptimizedImage
+│   ├── error/                  # Error page components
+│   ├── forms/                  # ContactForm, DemoRequestForm, LoginForm, etc.
+│   ├── layout/                 # Header, Footer, AnnouncementBar
+│   ├── sections/
+│   │   ├── content/            # PageHeader, ContentSection, FAQSection, VideoEmbed
+│   │   ├── marketing/          # Hero, CTA, FeaturesSection, HowItWorks, BentoGrid, etc.
+│   │   ├── pricing/            # PricingTable, ComparisonTable, SecurityBadges, TrustBadges
+│   │   ├── product/            # ChangelogList, RoadmapTimeline, StatusOverview
+│   │   ├── social-proof/       # TestimonialsSection, CaseStudyCard, StatsSection
+│   │   └── team/               # TeamSection, JobListings, ValuesSection
+│   └── ui/                     # ThemeToggle, Pagination
+├── config/                     # Site configuration
+│   ├── index.ts                # Main export (imports all configs)
+│   ├── site.ts                 # Site metadata, social links
+│   ├── contact.ts              # Contact information
+│   ├── navigation.ts           # Header and footer navigation
+│   ├── features.ts             # Feature flags
+│   └── content.ts              # Announcement bar, newsletter strings
+├── content/                    # Content collections (Markdown/MDX)
+│   ├── blog/                   # Blog posts
+│   ├── docs/                   # Documentation
+│   ├── changelog/              # Version history
+│   └── testimonials/           # Customer quotes
+├── layouts/                    # Page layouts
+│   ├── BaseLayout.astro        # HTML shell
+│   ├── MarketingLayout.astro   # Marketing pages
+│   ├── BlogLayout.astro        # Blog posts
+│   ├── DocsLayout.astro        # Documentation
+│   └── ErrorLayout.astro       # Error pages
+├── lib/                        # Utilities
+│   ├── types.ts                # TypeScript interfaces
+│   ├── utils.ts                # Helper functions
+│   └── validation.ts           # Form validation
+├── pages/                      # Route pages
+│   ├── blog/                   # Blog with pagination and tags
+│   ├── docs/                   # Documentation pages
+│   └── ...                     # Other pages
 └── styles/
-    └── global.css            # Design tokens and global styles
+    └── global.css              # Design tokens and global styles
 ```
 
 ## Configuration Files
@@ -106,8 +128,8 @@ src/
 | `astro.config.mjs` | Astro configuration and integrations |
 | `src/config/index.ts` | Site branding, navigation, features |
 | `src/styles/global.css` | Design tokens and global styles |
-| `src/content/config.ts` | Content collection schemas |
-| `tsconfig.json` | TypeScript configuration |
+| `src/content.config.ts` | Content collection schemas |
+| `tsconfig.json` | TypeScript configuration and path aliases |
 | `.env.example` | Environment variables template |
 
 ## Troubleshooting
@@ -125,4 +147,7 @@ Make sure you're using the correct icon prefix. Lucide icons use `lucide:` prefi
 The theme includes inline script in `BaseLayout.astro` to prevent flash. If you're seeing a flash, ensure the script runs before any content renders.
 
 **Build fails with content collection errors**
-Check that your frontmatter matches the schema in `src/content/config.ts`. Required fields must be present and dates must be valid.
+Check that your frontmatter matches the schema in `src/content.config.ts`. Required fields must be present and dates must be valid.
+
+**Path alias not working**
+Ensure your `tsconfig.json` includes the path aliases. The theme comes pre-configured with aliases for `@/`, `@components/`, `@sections/`, `@ui/`, `@forms/`, and `@layout/`.

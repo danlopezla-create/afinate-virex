@@ -1,5 +1,5 @@
 ---
-import SEO from '../components/common/SEO.astro';
+import SEO from '@components/common/SEO.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -14,15 +14,15 @@ interface Props {
   tags?: string[];
 }
 
-const { 
-  title, 
-  description, 
-  image, 
+const {
+  title,
+  description,
+  image,
   type = 'website',
   publishedDate,
   modifiedDate,
   author,
-  tags
+  tags,
 } = Astro.props;
 ---
 
@@ -32,10 +32,10 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <SEO 
-      title={title} 
-      description={description} 
-      image={image} 
+    <SEO
+      title={title}
+      description={description}
+      image={image}
       type={type}
       publishedDate={publishedDate}
       modifiedDate={modifiedDate}
@@ -44,7 +44,7 @@ const {
     />
     <!-- Theme and announcement initialization - runs before page render to prevent flash -->
     <script is:inline>
-      (function() {
+      (function () {
         // Theme initialization
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -52,10 +52,12 @@ const {
         if (theme === 'dark') {
           document.documentElement.classList.add('dark');
         }
-        
+
         // Announcement dismissal check - hide if any announcement was dismissed
-        const keys = Object.keys(localStorage).filter(k => k.startsWith('announcement-dismissed-'));
-        keys.forEach(key => {
+        const keys = Object.keys(localStorage).filter((k) =>
+          k.startsWith('announcement-dismissed-')
+        );
+        keys.forEach((key) => {
           if (localStorage.getItem(key) === 'true') {
             const id = key.replace('announcement-dismissed-', '');
             document.documentElement.classList.add(`announcement-${id}-dismissed`);

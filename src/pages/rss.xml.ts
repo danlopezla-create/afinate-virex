@@ -1,7 +1,9 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import type { APIContext } from 'astro';
+
+type BlogPost = CollectionEntry<'blog'>;
 
 export async function GET(context: APIContext) {
   // Return empty feed if blog feature is disabled
@@ -11,23 +13,23 @@ export async function GET(context: APIContext) {
     });
   }
 
-  const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
-  
+  const blogPosts = await getCollection('blog', ({ data }: BlogPost) => !data.draft);
+
   // Sort posts by date (newest first)
   const sortedPosts = blogPosts.sort(
-    (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+    (a: BlogPost, b: BlogPost) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
   );
 
   return rss({
     title: `${siteConfig.name} Blog`,
     description: siteConfig.description,
     site: context.site ?? siteConfig.url,
-    items: sortedPosts.map((post) => ({
+    items: sortedPosts.map((post: BlogPost) => ({
       title: post.data.title,
       pubDate: post.data.publishedDate,
       description: post.data.description,
       author: post.data.author,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
     })),
     customData: `<language>en-us</language>`,
   });
