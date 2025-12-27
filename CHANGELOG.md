@@ -5,6 +5,92 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2024-12-27
+
+### Added
+
+- **Complete Dashboard Layout System**:
+  - Responsive dashboard shell with sidebar and top navigation
+  - Mobile-friendly navigation drawer with slide-in animation
+  - Collapsible sidebar with icon-only mode and hover expansion
+  - Top navigation bar with search, notifications, theme toggle, and user menu
+  - Breadcrumb navigation for page hierarchy
+  - Persistent sidebar state using localStorage
+
+- **Dashboard Layout Components**:
+  - `DashboardLayout.astro` - Main layout wrapper for dashboard pages
+  - `DashboardShell.astro` - Shell structure with sidebar and content area
+  - `Sidebar.astro` - Desktop sidebar navigation with nested items
+  - `MobileNav.astro` - Mobile navigation drawer
+  - `TopNav.astro` - Top navigation bar with utilities
+  - `UserMenu.astro` - User dropdown menu with profile options
+  - `Breadcrumbs.astro` - Breadcrumb navigation component
+
+- **Dashboard UI Components** (15 reusable components):
+  - `StatCard.astro` - Metric display cards with trend indicators
+  - `DataTable.astro` - Table with sorting, pagination, and actions
+  - `Card.astro` - Generic content card for dashboard sections
+  - `Modal.astro` - Dialog/modal component with keyboard support
+  - `Toast.astro` - Notification toast with auto-dismiss
+  - `Chart.astro` - Chart visualization wrapper using Chart.js
+  - `EmptyState.astro` - Empty state placeholder component
+  - `LoadingSkeleton.astro` - Loading skeleton with shimmer effect
+
+- **Example Dashboard Pages**:
+  - `/dashboard` - Overview page with metrics, charts, and recent activity
+  - `/dashboard/settings/profile` - User profile settings form
+  - `/dashboard/settings/team` - Team member management with DataTable
+  - `/dashboard/settings/billing` - Billing information and history
+  - `/dashboard/settings/index` - Redirect to profile settings
+  - `/dashboard/projects` - Projects list with search and pagination
+  - `/dashboard/projects/[id]` - Project detail/edit form
+
+- **Dashboard Configuration**:
+  - `src/config/dashboard-navigation.ts` - Centralized navigation configuration
+  - Support for nested navigation items (2 levels)
+  - Section headers for grouping menu items
+  - Lucide icons for all navigation items
+
+- **Sample Data System**:
+  - `src/lib/dashboard-data.ts` - Sample data functions for demonstration
+  - Realistic but fictional data for projects, team members, and metrics
+  - Easy to replace with real API calls
+
+- **Dashboard Styling**:
+  - Status colors (success, warning, error, info) with dark mode variants
+  - Consistent color tokens with marketing pages
+  - Responsive grid layouts for all screen sizes
+  - WCAG 2.1 AA compliant color contrast
+
+- **Dashboard Documentation**:
+  - Comprehensive dashboard guide at `docs/09-dashboard.md`
+  - Getting started instructions
+  - Components reference with examples
+  - Customization guidance
+  - Authentication implementation patterns
+  - Sample data structure explanation
+  - Best practices for accessibility, performance, and security
+
+### Changed
+
+- **README Refactor**: Replaced "Dashboard Pages" section with comprehensive "Key Features" section
+  - Added Marketing Pages, Dashboard System, Content Management, and Developer Experience sections
+  - More balanced presentation of all theme capabilities
+  - Updated title from "SaaS Landing Page Theme" to "SaaS Theme" to reflect full scope
+- Updated README.md with dashboard section and feature highlights
+- Added Chart.js to package.json dependencies
+- Extended TypeScript types in `src/lib/types.ts` for dashboard data models
+- **Path Aliases**: Added `@dashboard/*` and `@dashboard-ui/*` path aliases for cleaner imports
+- Updated all dashboard component imports to use new path aliases
+
+### Notes
+
+- Dashboard pages use sample data and require authentication implementation
+- All dashboard components support light/dark themes
+- Mobile-responsive design with breakpoints at 768px and 1024px
+- Keyboard navigation and screen reader support throughout
+- Dashboard is designed as a starting point for customization
+
 ## [1.3.1] - 2025-12-24
 
 ### Fixed

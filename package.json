@@ -1,8 +1,8 @@
 {
   "name": "virex-astro",
   "type": "module",
-  "version": "1.3.1",
-  "description": "A production-ready SaaS Landing Page Theme for Astro",
+  "version": "1.4.0",
+  "description": "A production-ready SaaS theme for Astro. Built for those who want to go from zero to launch quickly.",
   "keywords": [
     "astro",
     "theme",
@@ -35,7 +35,8 @@
     "@iconify-json/simple-icons": "^1.2.63",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.16.6",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "chart.js": "^4.4.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",

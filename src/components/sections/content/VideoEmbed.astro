@@ -111,7 +111,7 @@ const getThumbnailUrl = () => {
 
 const embedUrl = getEmbedUrl();
 const thumbnailUrl = getThumbnailUrl();
-const uniqueId = `video-${Math.random().toString(36).substr(2, 9)}`;
+const uniqueId = `video-${Math.random().toString(36).substring(2, 11)}`;
 ---
 
 <section class:list={['py-section', bgClass]}>
