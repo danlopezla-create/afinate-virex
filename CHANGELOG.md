@@ -5,6 +5,87 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2024-12-27
+
+### Changed
+
+- **Installation Method**: Updated Quick Start and Getting Started documentation to recommend `npm create astro@latest -- --template erlandv/virex` as the primary installation method
+  - Alternative git clone method provided for theme development
+  - More user-friendly workflow for creating new projects
+
+### Improved
+
+- **Documentation Consistency**: Comprehensive review and updates across all documentation files
+  - Fixed incorrect file references (Navbar.astro → Header.astro)
+  - Updated all import paths to use path aliases (`@forms/`, `@dashboard-ui/`, etc.)
+  - Added missing dashboard-related content throughout docs
+  - Improved cross-references between documentation files
+
+- **Project Structure Documentation**: Updated `docs/01-getting-started.md` with complete and accurate project structure
+  - Added `dashboard/` and `dashboard-ui/` component folders
+  - Added `dashboard-navigation.ts` config file
+  - Added `dashboard-data.ts` utility file
+  - Added `DashboardLayout.astro` layout
+  - Detailed dashboard pages structure
+
+- **Configuration Documentation** (`docs/02-configuration.md`):
+  - Added Configuration Files overview table
+  - Added Dashboard Navigation section with examples
+  - Expanded Environment Variables section with authentication and analytics variables
+  - Better organization with subsections for different variable types
+
+- **Customization Documentation** (`docs/03-customization.md`):
+  - Added status colors to Design Tokens section
+  - Added Dashboard Customization section with colors, layout, and components guidance
+  - Fixed terminology (navbar → header)
+  - Added status colors usage examples
+
+- **Content Guide Documentation** (`docs/04-content-guide.md`):
+  - Added Available Content Collections overview table
+  - Updated MDX Support section with realistic examples using path aliases
+  - Added logos folder to images structure
+  - Added note about dashboard sample data images
+
+- **Pages Documentation** (`docs/06-pages.md`):
+  - Added Dashboard Pages section with all 7 dashboard routes
+  - Included note about sample data and authentication requirements
+  - Cross-reference to dashboard documentation
+
+- **Dashboard Documentation** (`docs/07-dashboard.md`):
+  - Removed generic Resources and Support sections for consistency with other docs
+  - More focused ending with actionable Next Steps
+
+- **Authentication Documentation** (`docs/08-authentication.md`):
+  - Fixed Navigation Integration section (Navbar.astro → Header.astro)
+  - Updated all import examples to use `@forms/` path alias
+  - Added Dashboard Integration section with authentication middleware guidance
+  - Added Environment Variables for Auth section
+  - Cross-references to dashboard documentation
+
+- **Deployment Documentation** (`docs/09-deployment.md`):
+  - Expanded Environment Variables section with complete list including auth variables
+  - Significantly improved Dashboard Deployment Notes with detailed subsections:
+    - Authentication Setup with step-by-step guidance
+    - Environment Variables examples
+    - Replace Sample Data with code examples
+    - Session Management configuration
+    - CORS Configuration examples
+  - Added Dashboard section to Pre-deployment Checklist with 6 actionable items
+  - Cross-references to authentication documentation
+
+- **README.md**:
+  - Updated title to "SaaS UI Theme for Astro" (added "UI")
+  - Added "Why Virex?" section explaining unique value proposition
+  - Restructured Features section with better categorization
+  - Updated Quick Start with new installation method
+  - Changed "Note" to "Important" for dashboard authentication notice
+
+### Fixed
+
+- Corrected cross-references between documentation files
+- Fixed inconsistent terminology throughout documentation
+- Removed redundant sections for better documentation flow
+
 ## [1.4.0] - 2024-12-27
 
 ### Added

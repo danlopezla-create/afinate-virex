@@ -56,6 +56,20 @@ All pages are in `src/pages/`. Astro uses file-based routing.
 | `/register` | `register.astro` | User registration |
 | `/forgot-password` | `forgot-password.astro` | Password reset |
 
+### Dashboard Pages
+
+| Route | File | Description |
+|-------|------|-------------|
+| `/dashboard` | `dashboard/index.astro` | Dashboard overview with metrics and charts |
+| `/dashboard/settings/profile` | `dashboard/settings/profile.astro` | User profile settings |
+| `/dashboard/settings/team` | `dashboard/settings/team.astro` | Team management |
+| `/dashboard/settings/billing` | `dashboard/settings/billing.astro` | Billing information |
+| `/dashboard/projects` | `dashboard/projects/index.astro` | Projects list |
+| `/dashboard/projects/[id]` | `dashboard/projects/[id].astro` | Project detail/edit |
+| `/dashboard/components-demo` | `dashboard/components-demo.astro` | Dashboard components showcase |
+
+**Note**: Dashboard pages use sample data and require authentication implementation. See [Dashboard documentation](./07-dashboard.md) for details.
+
 ### Error Pages
 
 | Route | File | Description |
@@ -114,6 +128,7 @@ Choose the appropriate layout for your page:
 | `DocsLayout` | Documentation (includes sidebar) |
 | `ErrorLayout` | Error pages (minimal, no header/footer) |
 | `BaseLayout` | Custom pages (HTML shell only) |
+| `DashboardLayout` | Dashboard pages (includes sidebar) |
 
 ## Removing Pages
 

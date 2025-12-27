@@ -160,10 +160,88 @@ server {
 
 Set these in your hosting provider's dashboard:
 
-| Variable | Purpose |
-|----------|---------|
-| `SITE_URL` | Canonical URL for SEO |
-| `PUBLIC_GA_ID` | Google Analytics (optional) |
+| Variable | Purpose | Required |
+|----------|---------|----------|
+| `SITE_URL` | Canonical URL for SEO | Yes |
+| `SITE_NAME` | Site name | Yes |
+| `SITE_DESCRIPTION` | Site description | Yes |
+| `SITE_AUTHOR` | Author name | Yes |
+| `SUPABASE_URL` | Supabase project URL (if using Supabase) | No |
+| `SUPABASE_ANON_KEY` | Supabase anon key (if using Supabase) | No |
+| `AUTH_API_URL` | Custom auth API URL | No |
+| `PUBLIC_GA_ID` | Google Analytics ID | No |
+
+See [Configuration documentation](./02-configuration.md#environment-variables) for details.
+
+## Dashboard Deployment Notes
+
+When deploying applications with the dashboard:
+
+### Authentication Setup
+
+The dashboard requires authentication to protect routes. Before deploying:
+
+1. **Implement Auth Middleware**: See [Authentication documentation](./08-authentication.md#dashboard-integration) for setup
+2. **Configure Auth Provider**: Set up Supabase, Auth0, or custom auth solution
+3. **Test Protected Routes**: Ensure `/dashboard/*` routes redirect unauthenticated users to `/login`
+
+### Environment Variables
+
+Add dashboard-specific environment variables:
+
+```bash
+# Authentication (example with Supabase)
+SUPABASE_URL=your-project-url
+SUPABASE_ANON_KEY=your-anon-key
+
+# Or custom API
+AUTH_API_URL=https://api.yoursite.com
+AUTH_API_KEY=your-api-key
+```
+
+### Replace Sample Data
+
+The dashboard uses sample data from `src/lib/dashboard-data.ts`. Replace with real API calls:
+
+```typescript
+// Before (sample data)
+export function getProjects() {
+  return [/* sample data */];
+}
+
+// After (real API)
+export async function getProjects() {
+  const response = await fetch(`${API_URL}/projects`);
+  return response.json();
+}
+```
+
+### Session Management
+
+Configure secure session cookies in production:
+
+```typescript
+// Example session cookie configuration
+cookies.set('session', token, {
+  httpOnly: true,
+  secure: true, // HTTPS only
+  sameSite: 'lax',
+  maxAge: 60 * 60 * 24 * 7, // 7 days
+  path: '/'
+});
+```
+
+### CORS Configuration
+
+If using a separate API server, configure CORS:
+
+```typescript
+// Example CORS headers
+headers: {
+  'Access-Control-Allow-Origin': 'https://yoursite.com',
+  'Access-Control-Allow-Credentials': 'true'
+}
+```
 
 ## Pre-deployment Checklist
 
@@ -189,6 +267,14 @@ Set these in your hosting provider's dashboard:
 - [ ] Configure contact form backend (Netlify, Formspree, or custom)
 - [ ] Set up newsletter endpoint if using newsletter feature
 - [ ] Add Google Analytics ID if needed
+
+### Dashboard (if using)
+- [ ] Replace sample data in `src/lib/dashboard-data.ts` with real API calls
+- [ ] Implement authentication middleware (see [Authentication docs](./08-authentication.md))
+- [ ] Configure dashboard navigation in `src/config/dashboard-navigation.ts`
+- [ ] Set up environment variables for auth provider
+- [ ] Test dashboard routes require authentication
+- [ ] Verify dashboard works in production mode
 
 ### Testing
 - [ ] Test all pages locally with `npm run preview`

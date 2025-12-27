@@ -2,20 +2,6 @@
 
 The Virex theme includes a comprehensive dashboard layout system that provides authenticated page layouts with sidebar navigation, reusable components, and example pages. This feature differentiates the theme from competitors by offering more than just marketing pages - it provides a complete foundation for building SaaS application interfaces.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Layout System](#layout-system)
-- [Navigation](#navigation)
-- [Components Reference](#components-reference)
-- [Example Pages](#example-pages)
-- [Customization](#customization)
-- [Styling and Theming](#styling-and-theming)
-- [Authentication](#authentication)
-- [Sample Data](#sample-data)
-- [Best Practices](#best-practices)
-
 ## Introduction
 
 ### What's Included
@@ -1231,24 +1217,3 @@ Now that you understand the dashboard system:
 4. **Add New Pages**: Create additional dashboard pages for your specific needs
 5. **Extend Components**: Customize existing components or create new ones
 6. **Add Business Logic**: Implement your application's specific functionality
-
-## Resources
-
-- [Astro Documentation](https://docs.astro.build/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Chart.js Documentation](https://www.chartjs.org/docs/)
-- [Lucide Icons](https://lucide.dev/)
-- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-
-## Support
-
-If you need help:
-
-- Check the [main documentation](./01-getting-started.md)
-- Review example pages in `src/pages/dashboard/`
-- Examine component source code in `src/components/dashboard/`
-- Open an issue on GitHub
-
----
-
-**Remember**: The dashboard is a starting point. Customize it to fit your specific needs and implement proper authentication and data handling for production use.

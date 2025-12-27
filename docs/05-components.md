@@ -429,7 +429,7 @@ Demo request form with company info and team size.
 
 ### LoginForm / RegisterForm / ForgotPasswordForm
 
-Authentication forms with validation. See [Authentication](/docs/07-authentication.md) for details.
+Authentication forms with validation. See [Authentication](/docs/08-authentication.md) for details.
 
 ### SocialAuthButtons
 

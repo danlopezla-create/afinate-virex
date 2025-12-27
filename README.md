@@ -1,9 +1,15 @@
-# Virex - SaaS Theme for Astro
+# Virex - SaaS UI Theme for Astro
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A production-ready SaaS theme for Astro. Designed to help you go from idea to launch quickly, Virex includes marketing pages, documentation, and a dashboard UI. Built with a strong focus on performance, simplicity, and easy customization.
+
+## Why Virex?
+
+Unlike many Astro themes that focus only on marketing pages, Virex also includes a production-ready dashboard UI. You get not just landing pages, but a structured dashboard layout with reusable components and example pages for common SaaS workflows.
+
+This allows you to move faster—from an initial landing page to an MVP dashboard UI—while keeping a consistent design system, theming, and code quality across your entire project.
 
 ## Demo
 
@@ -14,21 +20,44 @@ A production-ready SaaS theme for Astro. Designed to help you go from idea to la
 
 ## Features
 
-- **Astro** with TypeScript and Tailwind CSS v4
-- **Content Collections** for blog, docs, changelog, and testimonials
-- **Dashboard Layout System** with sidebar navigation, reusable components, and example pages
-- **Blog** with pagination, tag filtering, and reading time
-- **Documentation** with auto-generated sidebar navigation
-- **Design Tokens** for easy brand customization (OKLCH color system)
-- **Dark Mode** with system preference detection and localStorage persistence
-- **SEO-ready** setup: meta tags, Open Graph, Twitter Cards, JSON-LD, sitemap, and RSS
-- **Feature Flags** to enable or disable sections (blog, docs, changelog, testimonials, roadmap)
-- **Contact Form** with validation and multiple backend options (Netlify, Formspree, custom)
-- **Legal Pages** for privacy policy and terms of service
-- **Accessibility** with semantic HTML, focus states, and reduced motion support
-- **200,000+ Icons** via astro-icon (Lucide + Simple Icons included)
+### Built for Performance
+
+Modern tech stack with Astro, TypeScript, and Tailwind CSS v4. Optimized for speed and developer experience.
+
+### Complete Content System
+
+Content collections for blog, documentation, changelog, and testimonials. Markdown/MDX support with auto-generated navigation.
+
+### Fully Customizable
+
+Design tokens (OKLCH color system), dark mode, feature flags, and 200,000+ icons. Make it yours in minutes.
+
+### Dashboard Ready
+
+Pre-built dashboard layouts with reusable components. Perfect starting point for SaaS applications.
+
+### Production Ready
+
+SEO-optimized, accessible, with legal pages and contact forms. Everything you need to launch.
 
 ## Quick Start
+
+```bash
+npm create astro@latest -- --template erlandv/virex
+```
+
+Then follow the prompts to name your project and choose your package manager. Once installed:
+
+```bash
+cd your-project-name
+npm run dev
+```
+
+Open [http://localhost:4321](http://localhost:4321) to see your site.
+
+### Alternative Installation (for theme development)
+
+If you want to contribute to the theme or explore the full git history:
 
 ```bash
 # Clone the repository
@@ -41,8 +70,6 @@ npm install
 # Start development server
 npm run dev
 ```
-
-Open [http://localhost:4321](http://localhost:4321) to see your site.
 
 ## Key Features
 
@@ -60,7 +87,7 @@ A flexible dashboard layout with sidebar navigation, reusable UI components, and
 
 **Routes**: `/dashboard`, `/dashboard/settings/*`, `/dashboard/projects`
 
-> **Note**: Dashboard pages use starter templates with sample data. Authentication is not included and must be implemented by the user.
+**Important**: Dashboard pages use starter templates with sample data. Authentication is not included and must be implemented by the user.
 
 ### Content Management
 
@@ -86,21 +113,22 @@ Full documentation is available in the [`docs/`](./docs/) folder:
 4. **[Content Guide](./docs/04-content-guide.md)** - Managing blog, docs, changelog, and testimonials
 5. **[Components](./docs/05-components.md)** - Icons, forms, and UI components
 6. **[Pages](./docs/06-pages.md)** - Available pages and routing
-7. **[Authentication](./docs/07-authentication.md)** - Authentication guidance
-8. **[Deployment](./docs/08-deployment.md)** - Deploying to Vercel, Netlify, or Cloudflare
-9. **[Dashboard](./docs/09-dashboard.md)** - Dashboard layouts and components
+7. **[Dashboard](./docs/07-dashboard.md)** - Dashboard layouts and components
+8. **[Authentication](./docs/08-authentication.md)** - Authentication guidance
+9. **[Deployment](./docs/09-deployment.md)** - Deploying to Vercel, Netlify, or Cloudflare
 
 ## Project Structure
 
 ```
 src/
-├── components/     # Reusable UI components
-├── config/         # Site configuration
-├── content/        # Blog, docs, changelog, testimonials
-├── layouts/        # Page layouts
-├── lib/            # Utilities and types
-├── pages/          # Route pages
-└── styles/         # Design tokens and global styles
+├── components/       # Reusable UI components
+├── config/           # Site configuration
+├── content/          # Blog, docs, changelog, testimonials
+├── layouts/          # Page layouts
+├── lib/              # Utilities and types
+├── pages/            # Route pages
+├── styles/           # Design tokens and global styles
+└── content.config.ts # Content collections configuration
 ```
 
 ## Configuration

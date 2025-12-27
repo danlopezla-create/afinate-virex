@@ -7,6 +7,33 @@
 
 ## Installation
 
+### Recommended Method
+
+Use the Astro CLI to create a new project with the Virex template:
+
+```bash
+npm create astro@latest -- --template erlandv/virex
+```
+
+Follow the prompts to:
+1. Name your project
+2. Choose your package manager (npm, pnpm, or yarn)
+3. Optionally initialize a git repository
+4. Optionally install dependencies
+
+Once complete, navigate to your project and start the development server:
+
+```bash
+cd your-project-name
+npm run dev
+```
+
+Your site will be available at `http://localhost:4321`.
+
+### Alternative Method (for theme development)
+
+If you want to contribute to the theme or need the full git history:
+
 ```bash
 # Clone the repository
 git clone https://github.com/erlandv/virex.git
@@ -18,8 +45,6 @@ npm install
 # Start development server
 npm run dev
 ```
-
-Your site will be available at `http://localhost:4321`.
 
 ## Import Aliases
 
@@ -48,6 +73,8 @@ import ThemeToggle from '@ui/ThemeToggle.astro';
 | `@ui/*` | `src/components/ui/*` |
 | `@forms/*` | `src/components/forms/*` |
 | `@layout/*` | `src/components/layout/*` |
+| `@dashboard/*` | `src/components/dashboard/*` |
+| `@dashboard-ui/*` | `src/components/dashboard-ui/*` |
 
 ## Sample Content
 
@@ -59,6 +86,7 @@ This theme includes sample content using "Virex" as a fictional SaaS product. Be
 - **Changelog entries** in `src/content/changelog/`
 - **Testimonials** in `src/content/testimonials/`
 - **Logo and images** in `public/`
+- **Dashboard data** in `src/lib/dashboard-data.ts`
 
 You can delete the sample content files and create your own, or edit them as a starting point.
 
@@ -73,52 +101,76 @@ To start fresh with your own content:
 5. Replace images in `public/images/` (blog, team, testimonials, logos)
 6. Update `public/logo.svg` and `public/favicon.svg` with your brand
 7. Replace `public/images/og-image.png` with your Open Graph image (1200x630px)
+8. Replace sample dashboard data in `src/lib/dashboard-data.ts` with real API calls
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── common/                 # SEO, OptimizedImage
-│   ├── error/                  # Error page components
-│   ├── forms/                  # ContactForm, DemoRequestForm, LoginForm, etc.
-│   ├── layout/                 # Header, Footer, AnnouncementBar
+│   ├── common/                   # SEO, OptimizedImage
+│   ├── dashboard/                # Dashboard layout components
+│   │   ├── Breadcrumbs.astro     # Breadcrumb navigation
+│   │   ├── DashboardShell.astro  # Main dashboard shell
+│   │   ├── MobileNav.astro       # Mobile navigation drawer
+│   │   ├── Sidebar.astro         # Dashboard sidebar
+│   │   ├── TopNav.astro          # Top navigation bar
+│   │   └── UserMenu.astro        # User dropdown menu
+│   ├── dashboard-ui/             # Reusable dashboard UI components
+│   │   ├── Card.astro            # Content card
+│   │   ├── Chart.astro           # Chart visualization
+│   │   ├── DataTable.astro       # Data table with sorting
+│   │   ├── EmptyState.astro      # Empty state placeholder
+│   │   ├── LoadingSkeleton.astro # Loading skeleton
+│   │   ├── Modal.astro           # Modal dialog
+│   │   ├── StatCard.astro        # Metric card with trend
+│   │   └── Toast.astro           # Toast notification
+│   ├── error/                    # Error page components
+│   ├── forms/                    # ContactForm, DemoRequestForm, LoginForm, etc.
+│   ├── layout/                   # Header, Footer, AnnouncementBar
 │   ├── sections/
-│   │   ├── content/            # PageHeader, ContentSection, FAQSection, VideoEmbed
-│   │   ├── marketing/          # Hero, CTA, FeaturesSection, HowItWorks, BentoGrid, etc.
-│   │   ├── pricing/            # PricingTable, ComparisonTable, SecurityBadges, TrustBadges
-│   │   ├── product/            # ChangelogList, RoadmapTimeline, StatusOverview
-│   │   ├── social-proof/       # TestimonialsSection, CaseStudyCard, StatsSection
-│   │   └── team/               # TeamSection, JobListings, ValuesSection
-│   └── ui/                     # ThemeToggle, Pagination
-├── config/                     # Site configuration
-│   ├── index.ts                # Main export (imports all configs)
-│   ├── site.ts                 # Site metadata, social links
-│   ├── contact.ts              # Contact information
-│   ├── navigation.ts           # Header and footer navigation
-│   ├── features.ts             # Feature flags
-│   └── content.ts              # Announcement bar, newsletter strings
-├── content/                    # Content collections (Markdown/MDX)
-│   ├── blog/                   # Blog posts
-│   ├── docs/                   # Documentation
-│   ├── changelog/              # Version history
-│   └── testimonials/           # Customer quotes
-├── layouts/                    # Page layouts
-│   ├── BaseLayout.astro        # HTML shell
-│   ├── MarketingLayout.astro   # Marketing pages
-│   ├── BlogLayout.astro        # Blog posts
-│   ├── DocsLayout.astro        # Documentation
-│   └── ErrorLayout.astro       # Error pages
-├── lib/                        # Utilities
-│   ├── types.ts                # TypeScript interfaces
-│   ├── utils.ts                # Helper functions
-│   └── validation.ts           # Form validation
-├── pages/                      # Route pages
-│   ├── blog/                   # Blog with pagination and tags
-│   ├── docs/                   # Documentation pages
-│   └── ...                     # Other pages
+│   │   ├── content/              # PageHeader, ContentSection, FAQSection, VideoEmbed
+│   │   ├── marketing/            # Hero, CTA, FeaturesSection, HowItWorks, BentoGrid, etc.
+│   │   ├── pricing/              # PricingTable, ComparisonTable, SecurityBadges, TrustBadges
+│   │   ├── product/              # ChangelogList, RoadmapTimeline, StatusOverview
+│   │   ├── social-proof/         # TestimonialsSection, CaseStudyCard, StatsSection
+│   │   └── team/                 # TeamSection, JobListings, ValuesSection
+│   └── ui/                       # ThemeToggle, Pagination
+├── config/                       # Site configuration
+│   ├── index.ts                  # Main export (imports all configs)
+│   ├── site.ts                   # Site metadata, social links
+│   ├── contact.ts                # Contact information
+│   ├── navigation.ts             # Header and footer navigation
+│   ├── dashboard-navigation.ts   # Dashboard sidebar navigation
+│   ├── features.ts               # Feature flags
+│   └── content.ts                # Announcement bar, newsletter strings
+├── content/                      # Content collections (Markdown/MDX)
+│   ├── blog/                     # Blog posts
+│   ├── docs/                     # Documentation
+│   ├── changelog/                # Version history
+│   └── testimonials/             # Customer quotes
+├── layouts/                      # Page layouts
+│   ├── BaseLayout.astro          # HTML shell
+│   ├── MarketingLayout.astro     # Marketing pages
+│   ├── BlogLayout.astro          # Blog posts
+│   ├── DocsLayout.astro          # Documentation
+│   ├── DashboardLayout.astro     # Dashboard pages
+│   └── ErrorLayout.astro         # Error pages
+├── lib/                          # Utilities
+│   ├── types.ts                  # TypeScript interfaces
+│   ├── utils.ts                  # Helper functions
+│   ├── validation.ts             # Form validation
+│   └── dashboard-data.ts         # Sample data for dashboard
+├── pages/                        # Route pages
+│   ├── blog/                     # Blog with pagination and tags
+│   ├── dashboard/                # Dashboard pages
+│   │   ├── settings/             # Settings pages (profile, team, billing)
+│   │   ├── projects/             # Projects pages (list, detail)
+│   │   └── index.astro           # Dashboard overview
+│   ├── docs/                     # Documentation pages
+│   └── ...                       # Other pages (index, features, pricing, etc.)
 └── styles/
-    └── global.css              # Design tokens and global styles
+    └── global.css                # Design tokens and global styles
 ```
 
 ## Configuration Files

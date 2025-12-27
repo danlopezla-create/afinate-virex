@@ -2,6 +2,20 @@
 
 All configuration is centralized in `src/config/`. Import from `@/config` to access settings.
 
+## Configuration Files
+
+All configuration files are located in `src/config/`:
+
+| File | Purpose |
+|------|---------|
+| `site.ts` | Site metadata, logo, social links |
+| `contact.ts` | Contact information and methods |
+| `navigation.ts` | Header and footer navigation |
+| `dashboard-navigation.ts` | Dashboard sidebar navigation |
+| `features.ts` | Feature flags to enable/disable sections |
+| `content.ts` | Announcement bar and newsletter text |
+| `index.ts` | Main export (imports all configs) |
+
 ## Site Configuration
 
 The easiest way to configure your site is via environment variables. Copy `.env.example` to `.env` and set:
@@ -177,6 +191,67 @@ Header CTA buttons support three variants:
 | `primary` | Solid primary button |
 | `secondary` | Outlined button |
 
+## Dashboard Navigation
+
+Dashboard sidebar navigation is configured in `src/config/dashboard-navigation.ts`:
+
+```typescript
+export const dashboardNavigation: DashboardNavSection[] = [
+  {
+    // Section without header
+    items: [
+      {
+        label: 'Overview',
+        href: '/dashboard',
+        icon: 'layout-dashboard',
+      },
+    ],
+  },
+  {
+    // Section with header
+    title: 'Management',
+    items: [
+      {
+        label: 'Projects',
+        href: '/dashboard/projects',
+        icon: 'folder',
+      },
+      {
+        label: 'Settings',
+        href: '/dashboard/settings',
+        icon: 'settings',
+        // Nested items
+        children: [
+          {
+            label: 'Profile',
+            href: '/dashboard/settings/profile',
+            icon: 'user',
+          },
+          {
+            label: 'Team',
+            href: '/dashboard/settings/team',
+            icon: 'users',
+          },
+          {
+            label: 'Billing',
+            href: '/dashboard/settings/billing',
+            icon: 'credit-card',
+          },
+        ],
+      },
+    ],
+  },
+];
+```
+
+**Features:**
+- Supports nested navigation (up to 2 levels)
+- Section headers for grouping
+- Lucide icons for all items
+- Active state highlighting
+
+See [Dashboard documentation](./07-dashboard.md#navigation) for more details.
+
 ## Feature Flags
 
 Toggle features in `src/config/features.ts`:
@@ -243,7 +318,19 @@ SITE_URL=https://your-domain.com
 SITE_NAME=Your Brand
 SITE_DESCRIPTION=Your product description here
 SITE_AUTHOR=Your Name
+
+# Optional: Authentication (if using dashboard)
+SUPABASE_URL=your-project-url
+SUPABASE_ANON_KEY=your-anon-key
+# Or custom API
+AUTH_API_URL=https://api.yoursite.com
+AUTH_API_KEY=your-api-key
+
+# Optional: Analytics
+PUBLIC_GA_ID=G-XXXXXXXXXX
 ```
+
+### Site Variables
 
 | Variable | Required | Description |
 |----------|----------|-------------|
@@ -251,6 +338,23 @@ SITE_AUTHOR=Your Name
 | `SITE_NAME` | Yes | Site/brand name for header, footer, and meta tags |
 | `SITE_DESCRIPTION` | Yes | Site description for SEO meta tags |
 | `SITE_AUTHOR` | Yes | Author name for meta tags and copyright |
+
+### Authentication Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `SUPABASE_URL` | No | Supabase project URL (if using Supabase auth) |
+| `SUPABASE_ANON_KEY` | No | Supabase anonymous key |
+| `AUTH_API_URL` | No | Custom authentication API endpoint |
+| `AUTH_API_KEY` | No | API key for custom auth service |
+
+See [Authentication documentation](./08-authentication.md#environment-variables-for-auth) for auth setup details.
+
+### Analytics Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `PUBLIC_GA_ID` | No | Google Analytics measurement ID |
 
 ## Astro Configuration
 

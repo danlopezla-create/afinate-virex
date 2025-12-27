@@ -2,6 +2,19 @@
 
 Content is managed through Astro's Content Collections. All content lives in `src/content/` as Markdown or MDX files.
 
+## Available Content Collections
+
+The theme includes four content collections:
+
+| Collection | Location | Purpose |
+|------------|----------|---------|
+| **Blog** | `src/content/blog/` | Blog posts with pagination and tags |
+| **Docs** | `src/content/docs/` | Documentation with auto-generated sidebar |
+| **Changelog** | `src/content/changelog/` | Version history and release notes |
+| **Testimonials** | `src/content/testimonials/` | Customer quotes and reviews |
+
+All collections support both Markdown (`.md`) and MDX (`.mdx`) files.
+
 ## Blog Posts
 
 Create files in `src/content/blog/`:
@@ -149,6 +162,7 @@ public/images/
 ├── blog/           # Blog post images
 ├── team/           # Team member photos
 ├── testimonials/   # Testimonial avatars
+├── logos/          # Company/partner logos
 └── og-image.png    # Default Open Graph image
 ```
 
@@ -157,6 +171,8 @@ Reference images with absolute paths:
 ```markdown
 ![Alt text](/images/blog/my-image.jpg)
 ```
+
+**Note**: Dashboard sample data references placeholder images. Replace these with your actual images when connecting to real data.
 
 ## MDX Support
 
@@ -167,12 +183,27 @@ All content collections support MDX. You can import and use components:
 title: "Interactive Post"
 ---
 
-import { Chart } from '@/components/Chart';
+import Chart from '@dashboard-ui/Chart.astro';
 
 Here's an interactive chart:
 
-<Chart data={[1, 2, 3, 4, 5]} />
+<Chart 
+  type="line"
+  data={{
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    datasets: [{
+      label: 'Views',
+      data: [12, 19, 3, 5, 2]
+    }]
+  }}
+/>
 ```
+
+You can use any Astro component in your MDX content. Use path aliases for cleaner imports:
+- `@components/*` - All components
+- `@sections/*` - Section components
+- `@dashboard-ui/*` - Dashboard UI components
+- `@ui/*` - UI components
 
 ## Content Tips
 

@@ -53,7 +53,7 @@ Location: `src/components/forms/LoginForm.astro`
 
 ```astro
 ---
-import LoginForm from '../components/forms/LoginForm.astro';
+import LoginForm from '@forms/LoginForm.astro';
 ---
 
 <!-- Demo mode (no backend) -->
@@ -85,7 +85,7 @@ Location: `src/components/forms/RegisterForm.astro`
 
 ```astro
 ---
-import RegisterForm from '../components/forms/RegisterForm.astro';
+import RegisterForm from '@forms/RegisterForm.astro';
 ---
 
 <!-- Demo mode (no backend) -->
@@ -117,7 +117,7 @@ Location: `src/components/forms/ForgotPasswordForm.astro`
 
 ```astro
 ---
-import ForgotPasswordForm from '../components/forms/ForgotPasswordForm.astro';
+import ForgotPasswordForm from '@forms/ForgotPasswordForm.astro';
 ---
 
 <!-- Demo mode (no backend) -->
@@ -140,7 +140,7 @@ Location: `src/components/forms/SocialAuthButtons.astro`
 
 ```astro
 ---
-import SocialAuthButtons from '../components/forms/SocialAuthButtons.astro';
+import SocialAuthButtons from '@forms/SocialAuthButtons.astro';
 ---
 
 <!-- Login variant -->
@@ -286,6 +286,38 @@ Your API should:
 3. Return 200 status for success
 4. Return 4xx/5xx status for errors
 
+### Environment Variables for Auth
+
+Add to your `.env` file:
+
+```bash
+# Supabase
+SUPABASE_URL=your-project-url
+SUPABASE_ANON_KEY=your-anon-key
+
+# Or for custom API
+AUTH_API_URL=https://api.yoursite.com
+AUTH_API_KEY=your-api-key
+```
+
+## Dashboard Integration
+
+After successful authentication, users are typically redirected to the dashboard:
+
+```astro
+<LoginForm 
+  action="/api/auth/login"
+  redirectUrl="/dashboard"
+/>
+```
+
+The dashboard requires authentication middleware to protect routes. See [Dashboard documentation](./07-dashboard.md) for implementation details on:
+
+- Setting up authentication middleware
+- Protecting dashboard routes
+- Managing user sessions
+- Implementing logout functionality
+
 ## Customization
 
 ### Changing Form Fields
@@ -340,9 +372,9 @@ Simply remove the `<SocialAuthButtons />` component from the page files.
 
 ## Navigation Integration
 
-The navbar automatically includes:
+The header automatically includes:
 
 - "Login" link → `/login`
 - "Get Started" button → `/register`
 
-These are added in `src/components/layout/Navbar.astro`.
+These are configured in `src/config/navigation.ts` and rendered in `src/components/layout/Header.astro`.
