@@ -40,7 +40,24 @@ const legalLinks = filterByFeature(footer.legal);
       <div class="col-span-2 sm:col-span-3 lg:col-span-2 mb-4 lg:mb-0">
         <a href="/" class="inline-flex items-center gap-2 font-semibold text-lg text-text">
           {
-            siteConfig.logo ? (
+            siteConfig.logoLight && siteConfig.logoDark ? (
+              <>
+                <img
+                  src={siteConfig.logoLight}
+                  alt={siteConfig.name}
+                  class="h-8 w-auto dark:hidden"
+                  width="120"
+                  height="32"
+                />
+                <img
+                  src={siteConfig.logoDark}
+                  alt={siteConfig.name}
+                  class="h-8 w-auto hidden dark:block"
+                  width="120"
+                  height="32"
+                />
+              </>
+            ) : siteConfig.logo ? (
               <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
             ) : (
               siteConfig.name
@@ -70,41 +87,54 @@ const legalLinks = filterByFeature(footer.legal);
         <!-- Social Links -->
         <div class="flex items-center gap-4 mt-4">
           {
-            social.twitter && (
+            social.whatsapp && (
               <a
-                href={social.twitter}
+                href={social.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter"
+                aria-label="WhatsApp"
                 class="text-text-muted hover:text-text transition-colors"
               >
-                <Icon name="lucide:twitter" class="w-5 h-5" />
+                <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
               </a>
             )
           }
           {
-            social.github && (
+            social.instagram && (
               <a
-                href={social.github}
+                href={social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
+                aria-label="Instagram"
                 class="text-text-muted hover:text-text transition-colors"
               >
-                <Icon name="lucide:github" class="w-5 h-5" />
+                <Icon name="simple-icons:instagram" class="w-5 h-5" />
               </a>
             )
           }
           {
-            social.discord && (
+            social.facebook && (
               <a
-                href={social.discord}
+                href={social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Discord"
+                aria-label="Facebook"
                 class="text-text-muted hover:text-text transition-colors"
               >
-                <Icon name="simple-icons:discord" class="w-5 h-5" />
+                <Icon name="simple-icons:facebook" class="w-5 h-5" />
+              </a>
+            )
+          }
+          {
+            social.x && (
+              <a
+                href={social.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                class="text-text-muted hover:text-text transition-colors"
+              >
+                <Icon name="simple-icons:x" class="w-5 h-5" />
               </a>
             )
           }
@@ -115,7 +145,7 @@ const legalLinks = filterByFeature(footer.legal);
       {
         productLinks.length > 0 && (
           <div>
-            <h3 class="font-semibold text-sm text-text mb-4">Product</h3>
+            <h3 class="font-semibold text-sm text-text mb-4">Producto</h3>
             <ul class="space-y-3">
               {productLinks.map((link) => (
                 <li>
@@ -136,7 +166,7 @@ const legalLinks = filterByFeature(footer.legal);
       {
         solutionsLinks.length > 0 && (
           <div>
-            <h3 class="font-semibold text-sm text-text mb-4">Solutions</h3>
+            <h3 class="font-semibold text-sm text-text mb-4">Soluciones</h3>
             <ul class="space-y-3">
               {solutionsLinks.map((link) => (
                 <li>
@@ -157,7 +187,7 @@ const legalLinks = filterByFeature(footer.legal);
       {
         resourcesLinks.length > 0 && (
           <div>
-            <h3 class="font-semibold text-sm text-text mb-4">Resources</h3>
+            <h3 class="font-semibold text-sm text-text mb-4">Recursos</h3>
             <ul class="space-y-3">
               {resourcesLinks.map((link) => (
                 <li>
@@ -178,7 +208,7 @@ const legalLinks = filterByFeature(footer.legal);
       {
         companyLinks.length > 0 && (
           <div>
-            <h3 class="font-semibold text-sm text-text mb-4">Company</h3>
+            <h3 class="font-semibold text-sm text-text mb-4">Empresa</h3>
             <ul class="space-y-3">
               {companyLinks.map((link) => (
                 <li>
@@ -204,7 +234,7 @@ const legalLinks = filterByFeature(footer.legal);
         <!-- Copyright -->
         <p class="text-sm text-text-muted">
           &copy; {currentYear}
-          {siteConfig.name}. All rights reserved.
+          {siteConfig.name}. Todos los derechos reservados.
         </p>
         <!-- Legal Links -->
         <div class="flex items-center gap-6">

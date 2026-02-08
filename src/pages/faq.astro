@@ -10,119 +10,119 @@ const faqCategories = [
     name: 'General',
     faqs: [
       {
-        question: 'What is ' + siteConfig.name + '?',
+        question: '¿Qué es ' + siteConfig.name + '?',
         answer:
           siteConfig.name +
-          ' is a modern deployment platform that helps developers and teams build, deploy, and scale applications without the infrastructure headaches. We handle the complexity so you can focus on building great products.',
+          ' es una plataforma moderna de despliegue que ayuda a desarrolladores y equipos a construir, desplegar y escalar aplicaciones sin los dolores de cabeza de la infraestructura. Nosotros nos encargamos de la complejidad para que te centres en construir productos.',
       },
       {
-        question: 'Who is ' + siteConfig.name + ' for?',
+        question: '¿Para quién es ' + siteConfig.name + '?',
         answer:
-          'We built ' +
+          'Construimos ' +
           siteConfig.name +
-          " for developers and teams of all sizes—from solo developers working on side projects to enterprise teams shipping production applications. If you write code and need to deploy it, we're here to help.",
+          ' para desarrolladores y equipos de todos los tamaños—desde desarrolladores independientes con proyectos personales hasta equipos empresariales desplegando aplicaciones en producción. Si escribes código y necesitas desplegarlo, estamos aquí para ayudarte.',
       },
       {
-        question: 'What frameworks do you support?',
+        question: '¿Qué frameworks soportan?',
         answer:
-          'We support all major frameworks including Next.js, Astro, Remix, Nuxt, SvelteKit, and any static site generator. Our platform auto-detects your framework and configures the build process automatically.',
+          'Soportamos todos los frameworks principales: Next.js, Astro, Remix, Nuxt, SvelteKit y cualquier generador de sitios estáticos. Nuestra plataforma detecta tu framework automáticamente y configura el proceso de compilación.',
       },
     ],
   },
   {
-    name: 'Pricing & Billing',
+    name: 'Precios y facturación',
     faqs: [
       {
-        question: 'Is there a free tier?',
+        question: '¿Hay un plan gratuito?',
         answer:
-          'Yes! Our Hobby plan is completely free and includes 3 projects, 100 GB bandwidth per month, automatic HTTPS, and preview deployments. No credit card required to get started.',
+          '¡Sí! Nuestro plan Básico es completamente gratuito e incluye 3 proyectos, 100 GB de ancho de banda al mes, HTTPS automático y vistas previas. No se requiere tarjeta de crédito para empezar.',
       },
       {
-        question: 'Can I change plans later?',
+        question: '¿Puedo cambiar de plan más tarde?',
         answer:
-          "Absolutely. You can upgrade or downgrade your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, the new rate applies at your next billing cycle.",
+          'Por supuesto. Puedes subir o bajar de plan en cualquier momento. Al subir, se te cobrará la diferencia prorrateada. Al bajar, el nuevo precio aplica en tu próximo ciclo de facturación.',
       },
       {
-        question: 'What happens if I exceed my bandwidth limit?',
+        question: '¿Qué pasa si supero mi límite de ancho de banda?',
         answer:
-          "We'll notify you when you're approaching your limit. If you exceed it, your sites will continue to work—we'll just reach out to discuss upgrading your plan or purchasing additional bandwidth.",
+          'Te avisaremos cuando te acerques al límite. Si lo superas, tus sitios seguirán funcionando—solo nos pondremos en contacto para hablar de subir de plan o comprar ancho de banda adicional.',
       },
       {
-        question: 'Do you offer discounts for annual billing?',
+        question: '¿Ofrecen descuentos por facturación anual?',
         answer:
-          'Yes! Annual plans come with a 20% discount. You can switch to annual billing from your account settings at any time.',
+          '¡Sí! Los planes anuales tienen un 20% de descuento. Puedes cambiar a facturación anual desde la configuración de tu cuenta en cualquier momento.',
       },
       {
-        question: "Can I get a refund if I'm not satisfied?",
+        question: '¿Puedo obtener un reembolso si no estoy satisfecho?',
         answer:
-          "Yes, we offer a 30-day money-back guarantee on all paid plans. If you're not happy with " +
+          'Sí, ofrecemos garantía de reembolso de 30 días en todos los planes de pago. Si no estás satisfecho con ' +
           siteConfig.name +
-          ', contact support for a full refund.',
+          ', contacta a soporte para un reembolso completo.',
       },
     ],
   },
   {
-    name: 'Technical',
+    name: 'Técnico',
     faqs: [
       {
-        question: 'How fast are deployments?',
+        question: '¿Qué tan rápidos son los despliegues?',
         answer:
-          'Most deployments complete in under 60 seconds. Our optimized build pipeline caches dependencies and uses incremental builds to get your changes live as fast as possible.',
+          'La mayoría de despliegues se completan en menos de 60 segundos. Nuestra canalización optimizada cachea dependencias y usa compilaciones incrementales para poner tus cambios en vivo lo más rápido posible.',
       },
       {
-        question: 'Do you support custom domains?',
+        question: '¿Soportan dominios personalizados?',
         answer:
-          'Yes, you can connect unlimited custom domains to your projects. We automatically provision and renew SSL certificates for all domains at no extra cost.',
+          'Sí, puedes conectar dominios personalizados ilimitados a tus proyectos. Aprovisionamos y renovamos certificados SSL para todos los dominios sin coste adicional.',
       },
       {
-        question: 'Can I use environment variables?',
+        question: '¿Puedo usar variables de entorno?',
         answer:
-          'Yes, you can set environment variables for each project with different values for development, preview, and production environments. All variables are encrypted at rest.',
+          'Sí, puedes configurar variables de entorno para cada proyecto con valores distintos para desarrollo, vista previa y producción. Todas las variables se cifran en reposo.',
       },
       {
-        question: 'What about serverless functions?',
+        question: '¿Y las funciones serverless?',
         answer:
-          'We support serverless functions out of the box. Deploy API routes alongside your frontend with zero configuration. Functions run on our global edge network for low latency.',
+          'Soportamos funciones serverless de serie. Despliega rutas API junto a tu frontend sin configuración. Las funciones se ejecutan en nuestra red edge global para baja latencia.',
       },
     ],
   },
   {
-    name: 'Security & Compliance',
+    name: 'Seguridad y cumplimiento',
     faqs: [
       {
-        question: 'Is my data secure?',
+        question: '¿Están mis datos seguros?',
         answer:
-          'Security is our top priority. All data is encrypted in transit and at rest. We use industry-standard security practices and undergo regular security audits.',
+          'La seguridad es nuestra prioridad. Todos los datos se cifran en tránsito y en reposo. Usamos prácticas estándar del sector y nos sometemos a auditorías de seguridad regulares.',
       },
       {
-        question: 'Do you offer SSO?',
+        question: '¿Ofrecen SSO?',
         answer:
-          'Yes, SSO with SAML is available on our Enterprise plan. We support integration with Okta, Azure AD, Google Workspace, and other identity providers.',
+          'Sí, SSO con SAML está disponible en nuestro plan Enterprise. Soportamos integración con Okta, Azure AD, Google Workspace y otros proveedores de identidad.',
       },
       {
-        question: 'Are you SOC 2 compliant?',
+        question: '¿Son cumplidores de SOC 2?',
         answer:
-          'Yes, we maintain SOC 2 Type II compliance. Enterprise customers can request our compliance reports and security documentation.',
+          'Sí, mantenemos cumplimiento SOC 2 Tipo II. Los clientes Enterprise pueden solicitar nuestros informes de cumplimiento y documentación de seguridad.',
       },
     ],
   },
   {
-    name: 'Support',
+    name: 'Soporte',
     faqs: [
       {
-        question: 'How can I get help?',
+        question: '¿Cómo puedo obtener ayuda?',
         answer:
-          'We offer multiple support channels: community Discord for quick questions, email support for all customers, and priority support with dedicated response times for Pro and Enterprise plans.',
+          'Ofrecemos múltiples canales de soporte: comunidad por WhatsApp para preguntas rápidas, soporte por correo para todos los clientes, y soporte prioritario con tiempos de respuesta dedicados para planes Pro y Enterprise.',
       },
       {
-        question: 'Do you have documentation?',
+        question: '¿Tienen documentación?',
         answer:
-          'Yes! Our comprehensive documentation covers everything from getting started to advanced configurations. Visit our docs section for guides, tutorials, and API references.',
+          '¡Sí! Nuestra documentación cubre desde los primeros pasos hasta configuraciones avanzadas. Visita nuestra sección de documentación para guías, tutoriales y referencias de API.',
       },
       {
-        question: 'What are your support hours?',
+        question: '¿Cuáles son sus horarios de soporte?',
         answer:
-          'Our community Discord is active 24/7. Email support is available Monday-Friday, 9am-6pm PT. Enterprise customers have access to 24/7 priority support.',
+          'El soporte por correo está disponible de lunes a viernes, 9:00-18:00. Los clientes Enterprise tienen acceso a soporte prioritario 24/7.',
       },
     ],
   },
@@ -130,23 +130,23 @@ const faqCategories = [
 ---
 
 <MarketingLayout
-  title={`FAQ - ${siteConfig.name}`}
-  description={`Frequently asked questions about ${siteConfig.name}. Find answers about pricing, features, security, and more.`}
+  title={`Preguntas frecuentes - ${siteConfig.name}`}
+  description={`Preguntas frecuentes sobre ${siteConfig.name}. Encuentra respuestas sobre precios, funcionalidades, seguridad y más.`}
 >
   <PageHeader
-    title="Frequently Asked Questions"
-    subtitle={`Everything you need to know about ${siteConfig.name}. Can't find what you're looking for?`}
+    title="Preguntas frecuentes"
+    subtitle={`Todo lo que necesitas saber sobre ${siteConfig.name}. ¿No encuentras lo que buscas?`}
   >
-    <a href="/contact" class="text-primary hover:underline">Contact our team</a>.
+    <a href="/contact" class="text-primary hover:underline">Contacta a nuestro equipo</a>.
   </PageHeader>
 
   <FAQSection categories={faqCategories} variant="accordion" background="default" />
 
   <CTA
-    title="Still have questions?"
-    description="Can't find the answer you're looking for? Our team is here to help."
-    action={{ label: 'Contact Support', href: '/contact' }}
-    secondaryAction={{ label: 'Join Discord Community', href: siteConfig.social.discord || '#' }}
+    title="¿Aún tienes preguntas?"
+    description="¿No encuentras la respuesta que buscas? Nuestro equipo está aquí para ayudarte."
+    action={{ label: 'Contactar soporte', href: '/contact' }}
+    secondaryAction={{ label: 'Contactar por WhatsApp', href: siteConfig.social.whatsapp || '#' }}
     background="muted"
   />
 </MarketingLayout>

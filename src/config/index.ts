@@ -34,7 +34,7 @@ export type {
 } from '../lib/types';
 
 // Import individual configs to build merged object
-import { name, description, url, author, logo, ogImage, social, legal } from './site';
+import { name, description, url, author, logo, logoLight, logoDark, ogImage, social, legal, whatsappCustomerService } from './site';
 import { contact } from './contact';
 import { navigation } from './navigation';
 import { features } from './features';
@@ -55,10 +55,13 @@ export const siteConfig: SiteConfig = {
   url,
   author,
   logo,
+  logoLight,
+  logoDark,
   ogImage,
   social,
   contact,
   legal,
+  whatsappCustomerService,
   navigation,
   features,
   announcement,

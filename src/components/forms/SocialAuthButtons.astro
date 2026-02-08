@@ -3,34 +3,9 @@
  * SocialAuthButtons - Social authentication buttons with divider
  *
  * @description
- * Displays social login/signup buttons for Google and GitHub with a divider line.
+ * Displays social login/signup buttons for Google and Microsoft with a divider line.
  * Supports both login and register variants with customizable text and URLs.
  * Buttons are displayed only when their respective URLs are provided.
- *
- * @example Default (shows both buttons with placeholder URLs)
- * ```astro
- * <SocialAuthButtons dividerText="Or continue with" />
- * ```
- *
- * @example Login variant
- * ```astro
- * <SocialAuthButtons
- *   dividerText="Or continue with"
- *   googleUrl="/auth/google"
- *   githubUrl="/auth/github"
- *   variant="login"
- * />
- * ```
- *
- * @example Register variant
- * ```astro
- * <SocialAuthButtons
- *   dividerText="Or sign up with"
- *   googleUrl="/auth/google"
- *   githubUrl="/auth/github"
- *   variant="register"
- * />
- * ```
  */
 import { Icon } from 'astro-icon/components';
 
@@ -39,21 +14,21 @@ interface Props {
   dividerText?: string;
   /** Google OAuth URL (shows button if provided or defaults to #) */
   googleUrl?: string;
-  /** GitHub OAuth URL (shows button if provided or defaults to #) */
-  githubUrl?: string;
+  /** Microsoft OAuth URL (shows button if provided or defaults to #) */
+  microsoftUrl?: string;
   /** Variant for button styling/text */
   variant?: 'login' | 'register';
 }
 
 const {
-  dividerText = 'Or continue with',
+  dividerText = 'O continuar con',
   googleUrl = '#',
-  githubUrl = '#',
+  microsoftUrl = '/auth/microsoft',
   variant = 'login',
 } = Astro.props;
 
-const googleLabel = variant === 'register' ? 'Sign up with Google' : 'Continue with Google';
-const githubLabel = variant === 'register' ? 'Sign up with GitHub' : 'Continue with GitHub';
+const googleLabel = variant === 'register' ? 'Registrarse con Google' : 'Continuar con Google';
+const microsoftLabel = variant === 'register' ? 'Registrarse con Microsoft' : 'Continuar con Microsoft';
 ---
 
 <div class="mt-6">
@@ -78,12 +53,12 @@ const githubLabel = variant === 'register' ? 'Sign up with GitHub' : 'Continue w
       <span class="text-sm font-medium">Google</span>
     </a>
     <a
-      href={githubUrl}
+      href={microsoftUrl}
       class="flex items-center justify-center gap-2 px-4 py-3 rounded-md border border-border bg-background text-text hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-      aria-label={githubLabel}
+      aria-label={microsoftLabel}
     >
-      <Icon name="simple-icons:github" class="w-5 h-5" aria-hidden="true" />
-      <span class="text-sm font-medium">GitHub</span>
+      <Icon name="simple-icons:microsoft" class="w-5 h-5" aria-hidden="true" />
+      <span class="text-sm font-medium">Microsoft</span>
     </a>
   </div>
 </div>

@@ -1,0 +1,42 @@
+Problema: Rezago tecnológico de PYMES en Colombia y LATAM
+Necesidad: Mantener su competitividad incrementando productividad
+Solución: Procesos empresariales automatizados
+Producto: Paquete de agentes de IA conectados por un proceso para cumplir un propósito común; Paquete financiero (Lucia-Asistente Contable + Sofía-Analista Financiero + María-Gerente Financiero)
+Precio: 1) Gratis para proyectos personales con acceso limitado. 2) Pro COP 490,000 mensual por el paquete financiero con 20% de descuento si el pago es anual. 3) Personalizado si hay conexiones API y desarrollo técnico
+Mercado: 5,000 clientes potenciales en Colombia con que pueden pagar el precio y estan dispuestos en adquirir la solución tecnológica
+Marketing: Web Page + Scraping (Google + redes sociales) + Gestión de bases de datos para obtener leads + automatización de contactos
+Legal: 1) Registro de marca afinate. 2) Habeas data financiero, tratamiento de datos, política de privacidad, términos y condiciones, y eliminación de datos del usuario, que adicionalmente habiliten la cuenta oficial de Whatsapp API de Meta. 3) Disclaimer contable: No somos contadores públicos, si el usuario tiene obligación fiscal debe contratar un contador público independiente para revisión y firma de estados financieros y presentación de impuestos.
+Técnico: Frontend: Whatsapp / Dashboard app + Backend: Automatizaciones / IA / Base de datos / IDE / GIT / docker / VPN / VPS / Dominio
+Capacidad: 50 clientes por infraestructura técnica desarrollada
+Ingresos esperados: COP 20,000,000 mes (50 clientes * COP 500,000 * 80%)
+Costos esperados: COP 5,000,0000 mes (Costos fijos COP 2,500,000 + Costo variables COP 50,000 por cliente) 
+Rentabilidad esperada: COP 15,000,000 mes con 75% de margen
+Colores de marca: Negro, Blanco y Dorado
+Workspace Google: danlopezla@gmail.com (operación) / afinateia@gmail.com (ventas)
+Diseño Canva: Creación de Imagenes, videos y presentaciones
+Dominio Godaddy: Compra del dominio afinate.com
+Dominio Cloudflare: Protección afinate.com (DNS + SSL + CDN)
+VPS Hetzner: 4 vCPU, 8GB RAM, 160GB SSD, Ashburn, VA, Unbuntu, SSH keys + Back ups
+VPN Tailscale: Hetzner + Local Host + Coolify
+Docker Coolify: N8N + Budibase + Evolution API + Astro
+Automatizaciones n8n: Flujo de procesos + Conexión de proveedores
+Database Supabase: PostgreSQL + RLS + 100GB Storage
+Dashboard Budibase: Tablero de clientes
+GIT GitHub: Puente entre IDE y VPS, despliega el codigo
+IDE Cursor: Codigo
+IDE Antigravity: Codigo
+Web Page Astro: Página WEB e-commerce para ventas
+WhatsApp API Meta: Autoriza el número de teléfono corporativo
+WhatsApp Clientes Evolution API: Conecta el télefono corporativo con los clientes
+Lectura Documentos Gemini 1.5 Pro: Escanea los documentos enviados por los clientes
+Pago electrónico Wompi: Pasarela de pago
+Empresa Legal Camara de comercio de Medellín: Establecimiento de comercio de persona natural
+Clase empresa: Persona Natural en Colombia
+Razón Social: Daniel López Larrea
+NIT: 1037589745-2
+Establecimiento de comercio: afinate
+Camara de comercio: Medellín CCMA
+CIIU Principal 6311 Procesamiento de datos y hosting. RST Grupo 2.
+CIIU Secundario 8211 Servicios administrativos combinados de oficina.
+NIZA Principal 42 Protección de marca para desarrollo de software e I
+NIZA Secundario 35 Protección para gestión de negocios

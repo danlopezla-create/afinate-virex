@@ -10,15 +10,15 @@ import type { ContactInfo, ContactMethod, ContactFAQ } from '../lib/types';
 
 /** Contact information used across contact page and legal pages */
 export const contact: ContactInfo = {
-  email: 'hello@virex.example.com',
-  supportEmail: 'support@virex.example.com',
-  salesEmail: 'sales@virex.example.com',
+  email: 'afinateia@gmail.com',
+  supportEmail: 'afinateia@gmail.com',
+  salesEmail: 'afinateia@gmail.com',
   address: {
-    street: '123 Market Street, Suite 400',
-    city: 'San Francisco',
-    state: 'CA',
-    zip: '94102',
-    country: 'United States',
+    street: '',
+    city: 'Medellín',
+    state: 'Antioquia',
+    zip: '',
+    country: 'Colombia',
   },
 };
 
@@ -31,32 +31,44 @@ export const contactMethods: ContactMethod[] = [
     href: `mailto:${contact.email}`,
   },
   {
-    icon: 'simple-icons:discord',
-    label: 'Discord',
-    value: 'Join Discord',
-    href: 'https://discord.gg/virex',
+    icon: 'simple-icons:whatsapp',
+    label: 'WhatsApp',
+    value: 'Contactar por WhatsApp',
+    href: 'https://wa.me/',
   },
   {
-    icon: 'lucide:twitter',
-    label: 'Twitter',
-    value: '@virex',
-    href: 'https://twitter.com/virex',
+    icon: 'simple-icons:instagram',
+    label: 'Instagram',
+    value: '@afinate',
+    href: 'https://instagram.com/afinate',
+  },
+  {
+    icon: 'simple-icons:facebook',
+    label: 'Facebook',
+    value: 'Afinate',
+    href: 'https://facebook.com/afinate',
+  },
+  {
+    icon: 'simple-icons:x',
+    label: 'X',
+    value: '@afinate',
+    href: 'https://x.com/afinate',
   },
 ];
 
 /** FAQ items displayed on the contact page */
 export const contactFAQs: ContactFAQ[] = [
   {
-    question: "What's your typical response time?",
-    answer: 'We respond to most inquiries within 24 hours during business days.',
+    question: '¿Cuál es su tiempo de respuesta habitual?',
+    answer: 'Respondemos la mayoría de consultas en un plazo de 24 horas en días laborables.',
   },
   {
-    question: 'Do you offer phone support?',
+    question: '¿Ofrecen soporte telefónico?',
     answer:
-      'Phone support is available for Enterprise customers. Others can reach us via email or Discord.',
+      'El soporte telefónico está disponible para clientes Enterprise. El resto puede contactarnos por correo o Discord.',
   },
   {
-    question: 'How do I report a bug?',
-    answer: 'Use the form with "Technical support" as subject, or open an issue on our GitHub.',
+    question: '¿Cómo reporto un error?',
+    answer: 'Use el formulario con el asunto "Soporte técnico" o abra un issue en nuestro GitHub.',
   },
 ];

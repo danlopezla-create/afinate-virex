@@ -3,210 +3,217 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { siteConfig } from '@/config';
 
 const { legal, contact } = siteConfig;
-const fullAddress = `${contact.address.street}, ${contact.address.city}, ${contact.address.state} ${contact.address.zip}`;
+const displayAddress = `${contact.address.city}, ${contact.address.state}, ${contact.address.country}`;
 ---
 
 <MarketingLayout
-  title={`Terms of Service - ${siteConfig.name}`}
-  description={`Terms of Service for ${siteConfig.name}. Please read these terms carefully before using our services.`}
+  title={`Términos del Servicio - ${siteConfig.name}`}
+  description={`Términos del Servicio de ${siteConfig.name}. Lee estos términos con atención antes de usar nuestros servicios.`}
 >
   <section class="py-section">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold text-text">Terms of Service</h1>
-        <p class="mt-4 text-text-muted">Last updated: {legal.lastUpdated}</p>
+        <h1 class="text-4xl font-bold text-text">Términos del Servicio</h1>
+        <p class="mt-4 text-text-muted">Última actualización: {legal.lastUpdated}</p>
       </header>
 
       <div class="prose prose-lg max-w-none dark:prose-invert">
         <p>
-          Welcome to {siteConfig.name}. These Terms of Service ("Terms") govern your access to and
-          use of our website, products, and services ("Services"). By accessing or using our
-          Services, you agree to be bound by these Terms.
+          Bienvenido a {siteConfig.name}. Estos Términos del Servicio ("Términos") rigen tu acceso y
+          uso de nuestro sitio web, productos y servicios ("Servicios"). Al acceder o usar nuestros
+          Servicios, aceptas quedar vinculado por estos Términos.
         </p>
 
-        <h2>1. Acceptance of Terms</h2>
+        <h2>1. Aceptación de los Términos</h2>
         <p>
-          By creating an account or using our Services, you confirm that you are at least 18 years
-          old (or the age of majority in your jurisdiction) and have the legal capacity to enter
-          into these Terms. If you are using our Services on behalf of an organization, you
-          represent that you have the authority to bind that organization to these Terms.
+          Al crear una cuenta o usar nuestros Servicios, confirmas que tienes al menos 18 años (o la
+          mayoría de edad en tu jurisdicción) y capacidad legal para aceptar estos Términos. Si usas
+          nuestros Servicios en nombre de una organización, declaras tener autoridad para obligar
+          a dicha organización a estos Términos.
         </p>
 
-        <h2>2. Account Registration</h2>
-        <p>To access certain features of our Services, you must create an account. You agree to:</p>
+        <h2>2. Registro de cuenta</h2>
+        <p>Para acceder a ciertas funciones de nuestros Servicios debes crear una cuenta. Te comprometes a:</p>
         <ul>
-          <li>Provide accurate, current, and complete information during registration</li>
-          <li>Maintain and promptly update your account information</li>
-          <li>Keep your password secure and confidential</li>
-          <li>Accept responsibility for all activities that occur under your account</li>
-          <li>Notify us immediately of any unauthorized use of your account</li>
+          <li>Proporcionar información veraz, actual y completa en el registro</li>
+          <li>Mantener y actualizar con prontitud la información de tu cuenta</li>
+          <li>Mantener tu contraseña segura y confidencial</li>
+          <li>Aceptar la responsabilidad de todas las actividades bajo tu cuenta</li>
+          <li>Notificarnos de inmediato cualquier uso no autorizado de tu cuenta</li>
         </ul>
         <p>
-          We reserve the right to suspend or terminate accounts that violate these Terms or for any
-          other reason at our sole discretion.
+          Nos reservamos el derecho de suspender o dar por terminadas cuentas que incumplan estos
+          Términos o por cualquier otra razón a nuestra sola discreción.
         </p>
 
-        <h2>3. Acceptable Use</h2>
-        <p>You agree not to use our Services to:</p>
+        <h2>3. Uso aceptable</h2>
+        <p>Te comprometes a no utilizar nuestros Servicios para:</p>
         <ul>
-          <li>Violate any applicable laws, regulations, or third-party rights</li>
-          <li>Upload or transmit malicious code, viruses, or harmful content</li>
-          <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
-          <li>Interfere with or disrupt the integrity or performance of our Services</li>
-          <li>Engage in any activity that could damage, disable, or impair our Services</li>
-          <li>Use our Services for any illegal, fraudulent, or harmful purpose</li>
-          <li>Scrape, crawl, or use automated means to access our Services without permission</li>
-          <li>Resell or redistribute our Services without authorization</li>
+          <li>Vulnerar leyes, normativas o derechos de terceros aplicables</li>
+          <li>Subir o transmitir código malicioso, virus o contenido dañino</li>
+          <li>Intentar acceder sin autorización a nuestros sistemas o a cuentas de otros usuarios</li>
+          <li>Interferir o alterar la integridad o el rendimiento de nuestros Servicios</li>
+          <li>Realizar actividades que dañen, deshabiliten o perjudiquen nuestros Servicios</li>
+          <li>Usar nuestros Servicios con fines ilegales, fraudulentos o perjudiciales</li>
+          <li>Rastrear, indexar o acceder a nuestros Servicios por medios automatizados sin permiso</li>
+          <li>Revender o redistribuir nuestros Servicios sin autorización</li>
         </ul>
 
-        <h2>4. Subscription and Payments</h2>
-        <h3>Billing</h3>
+        <h2>4. Suscripción y pagos</h2>
+        <h3>Facturación</h3>
         <p>
-          Paid subscriptions are billed in advance on a monthly or annual basis. You authorize us to
-          charge your payment method for all fees associated with your subscription.
+          Las suscripciones de pago se facturan por adelantado de forma mensual o anual. Nos
+          autorizas a cargar tu método de pago por las tarifas asociadas a tu suscripción.
         </p>
 
-        <h3>Price Changes</h3>
+        <h3>Cambios de precio</h3>
         <p>
-          We may change our prices at any time. Price changes will take effect at the start of your
-          next billing cycle. We will provide reasonable notice of any price changes.
+          Podemos cambiar nuestros precios en cualquier momento. Los cambios entrarán en vigor al
+          inicio de tu próximo ciclo de facturación. Avisaremos con antelación razonable de cualquier
+          cambio de precio.
         </p>
 
-        <h3>Refunds</h3>
+        <h3>Reembolsos</h3>
         <p>
-          We offer a 30-day money-back guarantee for new subscriptions. After this period, payments
-          are non-refundable except as required by law. You may cancel your subscription at any
-          time, and you will continue to have access until the end of your current billing period.
+          Ofrecemos garantía de reembolso de 30 días para nuevas suscripciones. Pasado ese período,
+          los pagos no son reembolsables salvo que la ley lo exija. Puedes cancelar tu suscripción
+          en cualquier momento y seguirás teniendo acceso hasta el final del período de facturación
+          actual.
         </p>
 
-        <h2>5. Intellectual Property</h2>
-        <h3>Our Content</h3>
+        <h2>5. Propiedad intelectual</h2>
+        <h3>Nuestro contenido</h3>
         <p>
-          Our Services and all associated content, features, and functionality (including but not
-          limited to text, graphics, logos, and software) are owned by {siteConfig.name} and are protected
-          by copyright, trademark, and other intellectual property laws.
+          Nuestros Servicios y todo el contenido, funciones y funcionalidad asociados (incluyendo,
+          entre otros, texto, gráficos, logotipos y software) son propiedad de {siteConfig.name} y están
+          protegidos por leyes de derechos de autor, marcas y otra propiedad intelectual.
         </p>
 
-        <h3>Your Content</h3>
+        <h3>Tu contenido</h3>
         <p>
-          You retain ownership of any content you upload or create using our Services ("Your
-          Content"). By uploading Your Content, you grant us a worldwide, non-exclusive,
-          royalty-free license to use, store, and display Your Content solely for the purpose of
-          providing our Services to you.
+          Conservas la propiedad del contenido que subas o crees usando nuestros Servicios ("Tu
+          Contenido"). Al subir Tu Contenido, nos otorgas una licencia mundial, no exclusiva y libre
+          de regalías para usar, almacenar y mostrar Tu Contenido únicamente para prestarte nuestros
+          Servicios.
         </p>
 
-        <h3>Feedback</h3>
+        <h3>Comentarios y sugerencias</h3>
         <p>
-          If you provide us with feedback, suggestions, or ideas, you grant us the right to use such
-          feedback without restriction or compensation to you.
+          Si nos proporcionas comentarios, sugerencias o ideas, nos otorgas el derecho a utilizar
+          dichos comentarios sin restricción ni compensación para ti.
         </p>
 
-        <h2>6. Service Availability</h2>
+        <h2>6. Disponibilidad del servicio</h2>
         <p>
-          We strive to maintain high availability of our Services but do not guarantee uninterrupted
-          access. We may temporarily suspend access for maintenance, updates, or circumstances
-          beyond our control. We will make reasonable efforts to provide advance notice of planned
-          maintenance.
+          Nos esforzamos por mantener una alta disponibilidad de nuestros Servicios pero no
+          garantizamos el acceso ininterrumpido. Podemos suspender temporalmente el acceso por
+          mantenimiento, actualizaciones o circunstancias fuera de nuestro control. Haremos
+          esfuerzos razonables para avisar con antelación de mantenimientos programados.
         </p>
 
-        <h2>7. Data and Privacy</h2>
+        <h2>7. Datos y privacidad</h2>
         <p>
-          Your use of our Services is also governed by our <a href="/privacy">Privacy Policy</a>,
-          which describes how we collect, use, and protect your personal information. By using our
-          Services, you consent to our data practices as described in the Privacy Policy.
+          El uso de nuestros Servicios también se rige por nuestra <a href="/privacy">Política de
+          Privacidad</a>, que describe cómo recopilamos, usamos y protegemos tu información
+          personal. Al usar nuestros Servicios, aceptas nuestras prácticas de datos descritas en la
+          Política de Privacidad. Dicha política incluye, entre otros, el derecho a solicitar la
+          <strong>eliminación de tus datos de usuario</strong>; para más información y para ejercer
+          ese derecho, consulta la sección "Eliminación de datos de usuario" en la Política de
+          Privacidad y contáctanos a {legal.legalEmail}.
         </p>
 
-        <h2>8. Third-Party Services</h2>
+        <h2>8. Servicios de terceros</h2>
         <p>
-          Our Services may integrate with or contain links to third-party services. We are not
-          responsible for the content, privacy practices, or terms of these third-party services.
-          Your use of third-party services is at your own risk.
+          Nuestros Servicios pueden integrar o contener enlaces a servicios de terceros (por ejemplo
+          WhatsApp o otros servicios de Meta). No somos responsables del contenido, las prácticas
+          de privacidad ni los términos de esos terceros. El uso de servicios de terceros es bajo
+          tu propia responsabilidad.
         </p>
 
-        <h2>9. Disclaimer of Warranties</h2>
+        <h2>9. Exención de garantías</h2>
         <p>
-          OUR SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND,
-          EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF
-          MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT
-          THAT OUR SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR COMPLETELY SECURE.
+          NUESTROS SERVICIOS SE PRESTAN "TAL CUAL" Y "SEGÚN DISPONIBILIDAD", SIN GARANTÍAS DE NINGÚN
+          TIPO, EXPRESAS O IMPLÍCITAS, INCLUIDAS ENTRE OTRAS LAS GARANTÍAS IMPLÍCITAS DE
+          COMERCIABILIDAD, IDONEIDAD PARA UN FIN DETERMINADO Y NO INFRACCIÓN. NO GARANTIZAMOS QUE
+          NUESTROS SERVICIOS SERÁN ININTERRUMPIDOS, EXENTOS DE ERRORES O TOTALMENTE SEGUROS.
         </p>
 
-        <h2>10. Limitation of Liability</h2>
+        <h2>10. Limitación de responsabilidad</h2>
         <p>
-          TO THE MAXIMUM EXTENT PERMITTED BY LAW, {siteConfig.name.toUpperCase()} AND ITS AFFILIATES,
-          OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-          SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA,
-          OR GOODWILL, ARISING OUT OF OR RELATED TO YOUR USE OF OUR SERVICES.
+          EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY, {siteConfig.name.toUpperCase()} Y SUS AFILIADOS,
+          DIRECTORES, EMPLEADOS Y AGENTES NO SERÁN RESPONSABLES POR DAÑOS INDIRECTOS, INCIDENTALES,
+          ESPECIALES, CONSECUENTES O PUNITIVOS, INCLUIDOS ENTRE OTROS PÉRDIDA DE BENEFICIOS, DATOS O
+          FONDO DE COMERCIO, DERIVADOS O RELACIONADOS CON EL USO DE NUESTROS SERVICIOS.
         </p>
         <p>
-          OUR TOTAL LIABILITY FOR ANY CLAIMS ARISING FROM THESE TERMS OR YOUR USE OF OUR SERVICES
-          SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
-        </p>
-
-        <h2>11. Indemnification</h2>
-        <p>
-          You agree to indemnify, defend, and hold harmless {siteConfig.name} and its affiliates from
-          any claims, damages, losses, and expenses (including reasonable attorney's fees) arising from
-          your use of our Services, your violation of these Terms, or your violation of any third-party
-          rights.
+          NUESTRA RESPONSABILIDAD TOTAL POR CUALQUIER RECLAMACIÓN DERIVADA DE ESTOS TÉRMINOS O DEL
+          USO DE NUESTROS SERVICIOS NO EXCEDERÁ EL IMPORTE QUE NOS HAYAS PAGADO EN LOS DOCE (12)
+          MESES ANTERIORES AL RECLAMO.
         </p>
 
-        <h2>12. Termination</h2>
+        <h2>11. Indemnización</h2>
         <p>
-          You may terminate your account at any time by contacting us or using the account settings.
-          We may terminate or suspend your access to our Services immediately, without prior notice,
-          for any reason, including breach of these Terms.
-        </p>
-        <p>
-          Upon termination, your right to use our Services will cease immediately. Provisions of
-          these Terms that by their nature should survive termination will survive, including
-          ownership provisions, warranty disclaimers, and limitations of liability.
+          Te comprometes a indemnizar, defender y mantener indemnes a {siteConfig.name} y sus
+          afiliados frente a reclamaciones, daños, pérdidas y gastos (incluyendo honorarios
+          razonables de abogados) derivados de tu uso de nuestros Servicios, del incumplimiento de
+          estos Términos o de la vulneración de derechos de terceros.
         </p>
 
-        <h2>13. Governing Law</h2>
+        <h2>12. Terminación</h2>
         <p>
-          These Terms shall be governed by and construed in accordance with the laws of the State of
-          {contact.address.state === 'CA' ? 'California' : contact.address.state}, {
-            contact.address.country
-          }, without regard to its conflict of law provisions. Any disputes arising from these Terms
-          shall be resolved in the courts located in {contact.address.city}, {
-            contact.address.state === 'CA' ? 'California' : contact.address.state
-          }.
+          Puedes dar por terminada tu cuenta en cualquier momento contactándonos o desde la
+          configuración de la cuenta. Podemos terminar o suspender tu acceso a nuestros Servicios
+          de inmediato, sin aviso previo, por cualquier motivo, incluido el incumplimiento de estos
+          Términos.
+        </p>
+        <p>
+          Tras la terminación, tu derecho a usar nuestros Servicios cesará de inmediato. Las
+          disposiciones de estos Términos que por su naturaleza deban sobrevivir a la terminación
+          seguirán en vigor, incluidas las de propiedad, exención de garantías y limitación de
+          responsabilidad.
         </p>
 
-        <h2>14. Changes to Terms</h2>
+        <h2>13. Ley aplicable</h2>
         <p>
-          We reserve the right to modify these Terms at any time. We will notify you of material
-          changes by posting the updated Terms on our website and updating the "Last updated" date.
-          Your continued use of our Services after such changes constitutes acceptance of the new
-          Terms.
+          Estos Términos se regirán e interpretarán de acuerdo con las leyes de {contact.address.country}
+          (específicamente el departamento de {contact.address.state}), sin considerar sus normas sobre
+          conflicto de leyes. Cualquier disputa derivada de estos Términos se resolverá en los
+          tribunales competentes de {contact.address.city}, {contact.address.state}, {contact.address.country}.
         </p>
 
-        <h2>15. General Provisions</h2>
+        <h2>14. Cambios en los Términos</h2>
+        <p>
+          Nos reservamos el derecho de modificar estos Términos en cualquier momento. Te
+          notificaremos de cambios sustanciales publicando los Términos actualizados en nuestro
+          sitio y actualizando la fecha de "Última actualización". El uso continuado de nuestros
+          Servicios tras dichos cambios constituye la aceptación de los nuevos Términos.
+        </p>
+
+        <h2>15. Disposiciones generales</h2>
         <ul>
           <li>
-            <strong>Entire Agreement:</strong> These Terms constitute the entire agreement between you
-            and {siteConfig.name} regarding our Services.
+            <strong>Acuerdo completo:</strong> Estos Términos constituyen el acuerdo completo entre
+            tú y {siteConfig.name} respecto a nuestros Servicios.
           </li>
           <li>
-            <strong>Severability:</strong> If any provision of these Terms is found to be unenforceable,
-            the remaining provisions will continue in effect.
+            <strong>Divisibilidad:</strong> Si alguna disposición de estos Términos se considera
+            inaplicable, las demás seguirán en vigor.
           </li>
           <li>
-            <strong>Waiver:</strong> Our failure to enforce any right or provision of these Terms will
-            not be considered a waiver of those rights.
+            <strong>Renuncia:</strong> El que no hagamos valer un derecho o disposición no se
+            considerará una renuncia a ese derecho.
           </li>
           <li>
-            <strong>Assignment:</strong> You may not assign or transfer these Terms without our prior
-            written consent.
+            <strong>Cesión:</strong> No podrás ceder ni transferir estos Términos sin nuestro
+            consentimiento previo por escrito.
           </li>
         </ul>
 
-        <h2>Contact Us</h2>
-        <p>If you have any questions about these Terms of Service, please contact us at:</p>
+        <h2>Contacto</h2>
+        <p>Si tienes preguntas sobre estos Términos del Servicio, contáctanos en:</p>
         <ul>
-          <li>Email: {legal.legalEmail}</li>
-          <li>Address: {fullAddress}</li>
+          <li>Correo: <a href={`mailto:${legal.legalEmail}`}>{legal.legalEmail}</a></li>
+          <li>Dirección: {displayAddress}</li>
         </ul>
       </div>
     </div>

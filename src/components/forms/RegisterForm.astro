@@ -56,7 +56,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
 
   <!-- Full name field -->
   <div>
-    <label for="fullName" class="block text-sm font-medium text-text mb-2"> Full name </label>
+    <label for="fullName" class="block text-sm font-medium text-text mb-2"> Nombre completo </label>
     <input
       type="text"
       id="fullName"
@@ -65,7 +65,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
       minlength="2"
       autocomplete="name"
       class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-      placeholder="John Doe"
+      placeholder="María Rodríguez"
     />
     <p class="mt-1 text-sm text-red-500 hidden" data-error="fullName"></p>
   </div>
@@ -73,7 +73,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
   <!-- Email field -->
   <div>
     <label for="registerEmail" class="block text-sm font-medium text-text mb-2">
-      Email address
+      Correo electrónico
     </label>
     <input
       type="email"
@@ -90,7 +90,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
   <!-- Password field -->
   <div>
     <label for="registerPassword" class="block text-sm font-medium text-text mb-2">
-      Password
+      Contraseña
     </label>
     <input
       type="password"
@@ -102,7 +102,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
       class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
       placeholder="••••••••"
     />
-    <p class="mt-1 text-sm text-text-muted">Must be at least 8 characters</p>
+    <p class="mt-1 text-sm text-text-muted">Mínimo 8 caracteres</p>
     <p class="mt-1 text-sm text-red-500 hidden" data-error="registerPassword"></p>
   </div>
 
@@ -117,13 +117,13 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
         class="h-4 w-4 mt-0.5 rounded border-border text-primary focus:ring-primary focus:ring-offset-background"
       />
       <label for="agreeTerms" class="ml-2 text-sm text-text-muted">
-        I agree to the{' '}
+        Acepto los{' '}
         <a href="/terms" class="text-primary hover:text-primary-dark transition-colors underline">
-          Terms of Service
+          Términos del Servicio
         </a>{' '}
-        and{' '}
+        y la{' '}
         <a href="/privacy" class="text-primary hover:text-primary-dark transition-colors underline">
-          Privacy Policy
+          Política de Privacidad
         </a>
       </label>
     </div>
@@ -154,9 +154,9 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
   <button
     type="submit"
     id="register-submit-button"
-    class="w-full cursor-pointer px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed"
+    class="w-full cursor-pointer px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed"
   >
-    <span id="register-button-text">Create account</span>
+    <span id="register-button-text">Crear cuenta</span>
     <span id="register-button-loading" class="hidden">
       <svg
         class="animate-spin inline-block w-5 h-5 mr-2"
@@ -172,7 +172,7 @@ const { action = '', method = 'POST', netlify = false, redirectUrl = '/' } = Ast
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         ></path>
       </svg>
-      Creating account...
+      Creando cuenta...
     </span>
   </button>
 </form>

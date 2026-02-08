@@ -45,9 +45,10 @@ export interface Navigation {
 }
 
 export interface SocialLinks {
-  twitter?: string;
-  github?: string;
-  discord?: string;
+  whatsapp?: string;
+  instagram?: string;
+  facebook?: string;
+  x?: string;
 }
 
 export interface Address {
@@ -121,10 +122,16 @@ export interface SiteConfig {
   url: string;
   author: string;
   logo: string;
+  /** Logo for light theme (dark text). */
+  logoLight?: string;
+  /** Logo for dark theme (light text). */
+  logoDark?: string;
   ogImage: string;
   contact: ContactInfo;
   legal: LegalConfig;
   social: SocialLinks;
+  /** WhatsApp customer service number (57XXXXXXXXXX for Colombia). */
+  whatsappCustomerService?: string;
   navigation: Navigation;
   features: FeatureFlags;
   announcement: AnnouncementConfig;

@@ -1,5 +1,6 @@
 ---
 import SEO from '@components/common/SEO.astro';
+import WhatsAppFloating from '@ui/WhatsAppFloating.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -27,11 +28,11 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-afinate.svg" />
     <SEO
       title={title}
       description={description}
@@ -72,8 +73,9 @@ const {
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
     >
-      Skip to main content
+      Saltar al contenido principal
     </a>
     <slot />
+    <WhatsAppFloating />
   </body>
 </html>

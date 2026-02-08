@@ -36,10 +36,27 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 >
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
     <div class="flex items-center justify-between h-16">
-      <!-- Logo / Site Name -->
+      <!-- Logo / Site Name (Afinate: black letters in light mode, white in dark mode) -->
       <a href="/" class="flex items-center gap-2 font-semibold text-lg text-text">
         {
-          siteConfig.logo ? (
+          siteConfig.logoLight && siteConfig.logoDark ? (
+            <>
+              <img
+                src={siteConfig.logoLight}
+                alt={siteConfig.name}
+                class="h-8 w-auto dark:hidden"
+                width="120"
+                height="32"
+              />
+              <img
+                src={siteConfig.logoDark}
+                alt={siteConfig.name}
+                class="h-8 w-auto hidden dark:block"
+                width="120"
+                height="32"
+              />
+            </>
+          ) : siteConfig.logo ? (
             <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
           ) : (
             siteConfig.name
@@ -78,7 +95,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
           primaryCTA && (
             <a
               href={primaryCTA.href}
-              class="px-4 py-2 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary-dark transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {primaryCTA.label}
             </a>
@@ -159,7 +176,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         primaryCTA && (
           <a
             href={primaryCTA.href}
-            class="block px-3 py-3 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors text-base font-medium text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+            class="block px-3 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary-dark transition-colors text-base font-medium text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
           >
             {primaryCTA.label}
           </a>

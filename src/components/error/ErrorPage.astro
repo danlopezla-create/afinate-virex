@@ -47,10 +47,27 @@ const { code, title, message, showHomeButton = true, showContactButton = true } 
 
 <div class="container mx-auto px-6 text-center">
   <div class="max-w-md mx-auto">
-    <!-- Logo -->
+    <!-- Logo (Afinate: black letters in light mode, white in dark mode) -->
     <div class="inline-flex items-center gap-2 mb-12">
       {
-        siteConfig.logo ? (
+        siteConfig.logoLight && siteConfig.logoDark ? (
+          <>
+            <img
+              src={siteConfig.logoLight}
+              alt={siteConfig.name}
+              class="h-8 w-auto dark:hidden"
+              width="120"
+              height="32"
+            />
+            <img
+              src={siteConfig.logoDark}
+              alt={siteConfig.name}
+              class="h-8 w-auto hidden dark:block"
+              width="120"
+              height="32"
+            />
+          </>
+        ) : siteConfig.logo ? (
           <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
         ) : (
           <span class="font-semibold text-xl text-text">{siteConfig.name}</span>
@@ -78,7 +95,7 @@ const { code, title, message, showHomeButton = true, showContactButton = true } 
           {showHomeButton && (
             <a
               href="/"
-              class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors"
+              class="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-md hover:bg-primary-dark transition-colors"
             >
               Go to Homepage
             </a>

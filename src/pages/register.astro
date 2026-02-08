@@ -13,8 +13,8 @@ import { siteConfig } from '@/config';
 ---
 
 <MarketingLayout
-  title={`Create Account - ${siteConfig.name}`}
-  description="Create your free account and start building with our platform today."
+  title={`Crear cuenta - ${siteConfig.name}`}
+  description="Crea tu cuenta gratis y empieza a usar nuestra plataforma hoy."
 >
   <section class="py-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,24 +23,24 @@ import { siteConfig } from '@/config';
         <div class="bg-surface rounded-lg border border-border p-8 shadow-sm">
           <!-- Header -->
           <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-text">Create your account</h1>
-            <p class="mt-2 text-text-muted">Start your free trial today</p>
+            <h1 class="text-2xl font-bold text-text">Crea tu cuenta</h1>
+            <p class="mt-2 text-text-muted">Empieza tu prueba gratis hoy</p>
           </div>
 
           <!-- Register Form -->
           <RegisterForm />
 
-          <!-- Social Auth -->
-          <SocialAuthButtons dividerText="Or sign up with" variant="register" />
+          <!-- Social Auth: Microsoft + Google -->
+          <SocialAuthButtons dividerText="O regístrate con" variant="register" />
 
           <!-- Login link -->
           <p class="mt-6 text-center text-sm text-text-muted">
-            Already have an account?{' '}
+            ¿Ya tienes cuenta?{' '}
             <a
               href="/login"
               class="font-medium text-primary hover:text-primary-dark transition-colors"
             >
-              Sign in
+              Iniciar sesión
             </a>
           </p>
         </div>

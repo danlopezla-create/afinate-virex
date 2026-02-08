@@ -70,6 +70,10 @@ interface Props {
   badges?: Badge[];
   /** Payment methods with logo images */
   paymentMethods?: PaymentMethod[];
+  /** Optional title above payment methods (e.g. "Aceptamos") */
+  paymentTitle?: string;
+  /** Optional text note when no payment logos (e.g. Wompi PSE info) */
+  paymentNote?: string;
   /** Visual variant */
   variant?: 'default' | 'compact' | 'centered';
   /** Section background style */
@@ -79,6 +83,8 @@ interface Props {
 const {
   title,
   guarantee,
+  paymentTitle,
+  paymentNote,
   badges = [
     { icon: 'lucide:shield-check', label: 'Secure checkout' },
     { icon: 'lucide:lock', label: '256-bit SSL encryption' },
@@ -161,31 +167,37 @@ const bgClass = {
           )
         }
 
-        {/* Payment Methods */}
+        {/* Payment Methods or payment note (e.g. Wompi PSE) */}
         {
-          paymentMethods.length > 0 && (
+          (paymentMethods.length > 0 || paymentNote) && (
             <div
               class:list={[
                 variant === 'centered' ? '' : 'md:text-right',
                 !guarantee && badges.length === 0 ? 'md:col-span-3' : '',
               ]}
             >
-              <p class="text-xs text-text-muted mb-3 uppercase tracking-wide">We accept</p>
-              <div
-                class:list={[
-                  'flex flex-wrap items-center gap-4',
-                  variant === 'centered' ? 'justify-center' : 'md:justify-end',
-                ]}
-              >
-                {paymentMethods.map((method) => (
-                  <img
-                    src={method.logo}
-                    alt={method.name}
-                    class="h-6 w-auto transition-opacity"
-                    loading="lazy"
-                  />
-                ))}
-              </div>
+              <p class="text-xs text-text-muted mb-3 uppercase tracking-wide">
+                {paymentTitle || 'Aceptamos'}
+              </p>
+              {paymentMethods.length > 0 ? (
+                <div
+                  class:list={[
+                    'flex flex-wrap items-center gap-4',
+                    variant === 'centered' ? 'justify-center' : 'md:justify-end',
+                  ]}
+                >
+                  {paymentMethods.map((method) => (
+                    <img
+                      src={method.logo}
+                      alt={method.name}
+                      class="h-6 w-auto transition-opacity"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p class="text-sm text-text-muted">{paymentNote}</p>
+              )}
             </div>
           )
         }

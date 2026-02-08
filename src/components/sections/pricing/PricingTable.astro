@@ -63,6 +63,14 @@ interface Props {
   footerLink?: { label: string; href: string };
   /** Section background style */
   background?: 'default' | 'muted' | 'accent';
+  /** Currency code or symbol (e.g. 'COP' or '$'). If COP, formats with dot thousands. */
+  currency?: string;
+  /** Label for monthly period */
+  monthlyLabel?: string;
+  /** Label for annual period */
+  annualLabel?: string;
+  /** Label for per-month suffix (e.g. '/ mensual') */
+  perMonthLabel?: string;
 }
 
 const {
@@ -73,6 +81,10 @@ const {
   defaultPeriod = 'monthly',
   footerLink,
   background = 'default',
+  currency = '$',
+  monthlyLabel = 'Monthly',
+  annualLabel = 'Annual',
+  perMonthLabel = '/month',
 } = Astro.props;
 
 const hasHeading = title || subtitle;
@@ -83,6 +95,8 @@ const bgClass = {
   accent: 'bg-primary/5',
 }[background];
 
+const isCOP = currency === 'COP';
+
 // Calculate annual prices with discount
 function getAnnualPrice(monthlyPrice: number): number {
   const yearlyTotal = monthlyPrice * 12;
@@ -91,7 +105,9 @@ function getAnnualPrice(monthlyPrice: number): number {
 }
 
 function formatPrice(price: number): string {
-  return price === 0 ? '$0' : `$${price}`;
+  if (price === 0) return isCOP ? 'COP 0' : '$0';
+  if (isCOP) return 'COP ' + (price >= 1000 ? price.toLocaleString('es-CO') : price);
+  return `$${price}`;
 }
 ---
 
@@ -116,12 +132,12 @@ function formatPrice(price: number): string {
           class:list={[
             'pricing-toggle-btn cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-all',
             defaultPeriod === 'monthly'
-              ? 'bg-primary text-white shadow-sm'
+              ? 'bg-primary text-primary-foreground shadow-sm'
               : 'text-text-muted hover:text-text',
           ]}
           aria-pressed={defaultPeriod === 'monthly'}
         >
-          Monthly
+          {monthlyLabel}
         </button>
         <button
           type="button"
@@ -129,12 +145,12 @@ function formatPrice(price: number): string {
           class:list={[
             'pricing-toggle-btn cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-all flex items-center gap-2',
             defaultPeriod === 'annual'
-              ? 'bg-primary text-white shadow-sm'
+              ? 'bg-primary text-primary-foreground shadow-sm'
               : 'text-text-muted hover:text-text',
           ]}
           aria-pressed={defaultPeriod === 'annual'}
         >
-          Annual
+          {annualLabel}
           {
             annualDiscount > 0 && (
               <span
@@ -160,7 +176,7 @@ function formatPrice(price: number): string {
           const hasNumericPrice = plan.monthlyPrice !== null;
           const monthlyPrice = plan.monthlyPrice ?? 0;
           const annualPrice = hasNumericPrice ? getAnnualPrice(monthlyPrice) : 0;
-          const badgeText = plan.badge || (plan.highlighted ? 'Most Popular' : null);
+          const badgeText = plan.badge || (plan.highlighted ? 'Recomendado' : null);
 
           return (
             <div
@@ -197,7 +213,7 @@ function formatPrice(price: number): string {
                         <span class="text-4xl font-bold text-text">
                           {formatPrice(monthlyPrice)}
                         </span>
-                        <span class="text-text-muted">/month</span>
+                        <span class="text-text-muted">{perMonthLabel}</span>
                       </div>
 
                       {/* Annual Price Display */}
@@ -206,15 +222,15 @@ function formatPrice(price: number): string {
                         data-period="annual"
                       >
                         <span class="text-4xl font-bold text-text">{formatPrice(annualPrice)}</span>
-                        <span class="text-text-muted">/month</span>
+                        <span class="text-text-muted">{perMonthLabel}</span>
                         {monthlyPrice > 0 && (
                           <div class="mt-1">
                             <span class="text-xs text-text-muted line-through mr-2">
-                              {formatPrice(monthlyPrice)}/mo
+                              {formatPrice(monthlyPrice)}{perMonthLabel}
                             </span>
                             <span class="text-xs text-primary font-medium">
-                              Save {formatPrice((monthlyPrice - annualPrice) * 12)}
-                              /year
+                              Ahorras {formatPrice((monthlyPrice - annualPrice) * 12)}
+                              /año
                             </span>
                           </div>
                         )}
@@ -223,9 +239,9 @@ function formatPrice(price: number): string {
                   ) : (
                     <div class="price-display">
                       <span class="text-4xl font-bold text-text">
-                        {plan.customPrice || 'Custom'}
+                        {plan.customPrice || 'Personalizado'}
                       </span>
-                      <span class="text-text-muted">/month</span>
+                      <span class="text-text-muted">{perMonthLabel}</span>
                     </div>
                   )}
                 </div>
@@ -246,7 +262,7 @@ function formatPrice(price: number): string {
                   class:list={[
                     'block w-full text-center px-6 py-3 rounded-md font-medium transition-colors',
                     plan.highlighted
-                      ? 'bg-primary text-white hover:bg-primary-dark'
+                      ? 'bg-primary text-primary-foreground hover:bg-primary-dark'
                       : 'bg-surface border border-border text-text hover:bg-background hover:border-primary/50',
                   ]}
                 >

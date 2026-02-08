@@ -1,10 +1,14 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+/* Dark mode: use .dark class on html (not system preference) so logo light/dark switch works correctly */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* Brand Colors */
-  --color-primary: oklch(0.55 0.2 265);
-  --color-primary-dark: oklch(0.45 0.2 265);
+  /* Brand Colors - Afinate yellow #F9D423; dark text on primary for contrast */
+  --color-primary: oklch(0.88 0.17 95);
+  --color-primary-dark: oklch(0.75 0.16 95);
+  --color-primary-foreground: oklch(0.22 0 0);
   --color-secondary: oklch(0.65 0.25 350);
 
   /* Semantic Colors */

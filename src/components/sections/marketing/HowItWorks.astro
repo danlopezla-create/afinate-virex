@@ -91,7 +91,7 @@ const hasHeading = title || subtitle;
             {steps.map((step, index) => (
               <div class="relative text-center">
                 {/* Step number or icon */}
-                <div class="relative z-10 mx-auto w-24 h-24 flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold mb-6">
+                <div class="relative z-10 mx-auto w-24 h-24 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold mb-6">
                   {step.icon ? (
                     <Icon name={step.icon} class="w-10 h-10" />
                   ) : showNumbers ? (
@@ -129,7 +129,7 @@ const hasHeading = title || subtitle;
               {steps.map((step, index) => (
                 <div class="relative flex items-start gap-6">
                   {/* Step number */}
-                  <div class="relative z-10 shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white font-bold -ml-6">
+                  <div class="relative z-10 shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-primary text-primary-foreground font-bold -ml-6">
                     {showNumbers ? (
                       index + 1
                     ) : step.icon ? (

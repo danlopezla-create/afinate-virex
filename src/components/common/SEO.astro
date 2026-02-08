@@ -85,9 +85,12 @@ const organizationSchema = {
   name: siteConfig.name,
   url: siteConfig.url,
   logo: new URL(siteConfig.logo, siteConfig.url).href,
-  sameAs: [siteConfig.social.twitter, siteConfig.social.github, siteConfig.social.discord].filter(
-    Boolean
-  ),
+  sameAs: [
+    siteConfig.social.whatsapp,
+    siteConfig.social.instagram,
+    siteConfig.social.facebook,
+    siteConfig.social.x,
+  ].filter(Boolean),
 };
 
 const articleSchema =

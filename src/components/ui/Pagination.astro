@@ -76,7 +76,7 @@ const isNextDisabled = currentPage === totalPages;
           class:list={[
             'px-4 py-2 text-sm font-medium rounded-md transition-colors',
             page === currentPage
-              ? 'bg-primary text-white'
+              ? 'bg-primary text-primary-foreground'
               : 'bg-surface text-text-muted hover:bg-primary/10 hover:text-primary',
           ]}
           aria-current={page === currentPage ? 'page' : undefined}

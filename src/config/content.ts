@@ -11,19 +11,19 @@ import type { AnnouncementConfig, ContentStrings } from '../lib/types';
 /** Announcement bar configuration */
 export const announcement: AnnouncementConfig = {
   /** Show/hide the announcement bar */
-  enabled: true,
+  enabled: false,
 
   /** Unique ID - change this to reset dismissal for new announcements */
   id: 'launch-2025',
 
   /** Announcement text */
-  text: '🚀 Virex 2.0 is here!',
+  text: '🚀 Afinate 2.0 ya está aquí',
 
   /** Optional link URL */
   href: '/changelog',
 
   /** Optional link text */
-  linkText: "See what's new",
+  linkText: 'Ver novedades',
 
   /** Visual style: 'primary' | 'secondary' | 'gradient' */
   variant: 'primary',
@@ -35,12 +35,12 @@ export const announcement: AnnouncementConfig = {
 /** Configurable content strings for various sections */
 export const content: ContentStrings = {
   newsletter: {
-    title: 'Stay in the loop',
-    description: 'Get the latest updates, tips, and news delivered to your inbox.',
-    placeholder: 'Enter your email',
-    buttonText: 'Subscribe',
-    successMessage: 'Thanks for subscribing! Check your inbox to confirm.',
-    errorMessage: 'Something went wrong. Please try again.',
-    privacyNote: 'We respect your privacy. Unsubscribe at any time.',
+    title: 'Mantente informado',
+    description: 'Recibe las últimas novedades, consejos y noticias en tu correo.',
+    placeholder: 'Introduce tu correo',
+    buttonText: 'Suscribirse',
+    successMessage: '¡Gracias por suscribirte! Revisa tu bandeja para confirmar.',
+    errorMessage: 'Algo salió mal. Por favor, inténtalo de nuevo.',
+    privacyNote: 'Respetamos tu privacidad. Cancela la suscripción cuando quieras.',
   },
 };
