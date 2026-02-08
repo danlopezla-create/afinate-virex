@@ -1,230 +1,248 @@
 ---
 /**
- * Documentation Landing Page
- *
- * @description
- * A landing page for documentation that displays all available docs
- * organized by section with descriptions and quick links.
+ * Recursos - Documentación y información legal de Afinate
+ * Incluye: Equipo de IA (Lucía, Sofía, María), información legal, Habeas data, disclaimer contable.
  */
-import { getCollection, type CollectionEntry } from 'astro:content';
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
-
-type DocsEntry = CollectionEntry<'docs'>;
-
-// Get all non-draft docs
-const allDocs = await getCollection('docs', ({ data }: { data: DocsEntry['data'] }) => !data.draft);
-
-// Group docs by section and sort by order
-interface DocItem {
-  title: string;
-  description: string;
-  slug: string;
-  order: number;
-}
-
-interface DocsSection {
-  section: string;
-  items: DocItem[];
-}
-
-const sectionMap = new Map<string, DocItem[]>();
-
-for (const doc of allDocs) {
-  const sectionName = doc.data.section;
-  if (!sectionMap.has(sectionName)) {
-    sectionMap.set(sectionName, []);
-  }
-  sectionMap.get(sectionName)!.push({
-    title: doc.data.title,
-    description: doc.data.description,
-    slug: doc.id,
-    order: doc.data.order,
-  });
-}
-
-// Sort items within each section by order
-const docsSections: DocsSection[] = [];
-for (const [sectionName, items] of sectionMap) {
-  items.sort((a, b) => a.order - b.order);
-  docsSections.push({ section: sectionName, items });
-}
-
-// Sort sections by the minimum order of their items
-docsSections.sort((a, b) => {
-  const aMinOrder = Math.min(...a.items.map((i) => i.order));
-  const bMinOrder = Math.min(...b.items.map((i) => i.order));
-  return aMinOrder - bMinOrder;
-});
-
-// Get the first doc for "Get Started" button
-const firstDoc = allDocs.sort((a: DocsEntry, b: DocsEntry) => a.data.order - b.data.order)[0];
-
-// Section icons mapping
-const sectionIcons: Record<string, string> = {
-  'Getting Started': 'lucide:rocket',
-  Configuration: 'lucide:settings',
-  Customization: 'lucide:palette',
-  Guides: 'lucide:book-open',
-  Reference: 'lucide:file-text',
-  FAQ: 'lucide:help-circle',
-};
-
-function getSectionIcon(section: string): string {
-  return sectionIcons[section] || 'lucide:file-text';
-}
 ---
 
 <MarketingLayout
-  title={`Documentation - ${siteConfig.name}`}
-  description={`Learn how to use ${siteConfig.name}. Guides, tutorials, and reference documentation to help you get started.`}
+  title={`Recursos - ${siteConfig.name}`}
+  description="Equipo de IA, información legal, privacidad, términos, Habeas data y disclaimer contable de Afinate."
 >
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="py-section bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl sm:text-5xl font-bold text-text">Documentation</h1>
+        <h1 class="text-4xl sm:text-5xl font-bold text-text">Recursos</h1>
         <p class="mt-6 text-lg text-text-muted">
-          Everything you need to know about {siteConfig.name}. From getting started to advanced
-          configuration.
+          Toda la información sobre el equipo financiero de IA de {siteConfig.name}, la documentación legal
+          y los avisos importantes para el uso de la plataforma.
         </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          {
-            firstDoc && (
-              <a
-                href={`/docs/${firstDoc.id}`}
-                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary-dark transition-colors"
-              >
-                <Icon name="lucide:book-open" class="w-5 h-5" />
-                Get Started
-              </a>
-            )
-          }
-          <a
-            href="#sections"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border bg-background text-text font-medium hover:bg-surface transition-colors"
-          >
-            <Icon name="lucide:list" class="w-5 h-5" />
-            Browse All
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="#equipo-ia" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary-dark transition-colors">
+            <Icon name="lucide:bot" class="w-5 h-5" />
+            Equipo de IA
+          </a>
+          <a href="#informacion-legal" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-border bg-background text-text font-medium hover:bg-surface transition-colors">
+            <Icon name="lucide:scale" class="w-5 h-5" />
+            Información legal
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quick Links -->
-  <section class="py-12 border-b border-border">
+  <!-- Equipo de IA: Lucía, Sofía, María -->
+  <section id="equipo-ia" class="py-section bg-background">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <a
-          href="/docs/installation"
-          class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface/80 transition-colors group"
-        >
-          <div
-            class="p-2 rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
-          >
-            <Icon name="lucide:download" class="w-5 h-5" />
-          </div>
-          <span class="font-medium text-text">Installation</span>
-        </a>
-        <a
-          href="/docs/configuration"
-          class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface/80 transition-colors group"
-        >
-          <div
-            class="p-2 rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
-          >
-            <Icon name="lucide:settings" class="w-5 h-5" />
-          </div>
-          <span class="font-medium text-text">Configuration</span>
-        </a>
-        <a
-          href="/docs/customization"
-          class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface/80 transition-colors group"
-        >
-          <div
-            class="p-2 rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
-          >
-            <Icon name="lucide:palette" class="w-5 h-5" />
-          </div>
-          <span class="font-medium text-text">Customization</span>
-        </a>
-        <a
-          href="/docs/faq"
-          class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface/80 transition-colors group"
-        >
-          <div
-            class="p-2 rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
-          >
-            <Icon name="lucide:help-circle" class="w-5 h-5" />
-          </div>
-          <span class="font-medium text-text">FAQ</span>
-        </a>
-      </div>
-    </div>
-  </section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-text mb-2">Equipo Financiero de IA</h2>
+      <p class="text-text-muted mb-10 max-w-2xl">
+        Tres agentes de IA trabajan en conjunto para ofrecer contabilidad, análisis y gestión financiera
+        de forma autónoma. A continuación se amplía la información de cada uno, vinculada desde la página de producto.
+      </p>
 
-  <!-- Documentation Sections -->
-  <section id="sections" class="py-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-12">
-        {
-          docsSections.map((section) => (
-            <div>
-              <div class="flex items-center gap-3 mb-6">
-                <div class="p-2 rounded-md bg-primary/10 text-primary">
-                  <Icon name={getSectionIcon(section.section)} class="w-6 h-6" />
-                </div>
-                <h2 class="text-2xl font-bold text-text">{section.section}</h2>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {section.items.map((doc) => (
-                  <a
-                    href={`/docs/${doc.slug}`}
-                    class="block p-6 rounded-lg border border-border bg-background hover:border-primary hover:shadow-md transition-all group"
-                  >
-                    <h3 class="font-semibold text-text group-hover:text-primary transition-colors">
-                      {doc.title}
-                    </h3>
-                    <p class="mt-2 text-sm text-text-muted line-clamp-2">{doc.description}</p>
-                    <div class="mt-4 flex items-center gap-1 text-sm text-primary font-medium">
-                      Read more
-                      <Icon
-                        name="lucide:arrow-right"
-                        class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      />
-                    </div>
-                  </a>
-                ))}
-              </div>
+      <div class="space-y-16">
+        <!-- Lucía -->
+        <div id="lucia" class="scroll-mt-24">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="w-full md:w-72 shrink-0">
+              <img
+                src="/Lucia-Asistente%20Contable%20de%20IA.png"
+                alt="Lucía - Asistente Contable de IA"
+                class="rounded-xl border border-border shadow-md w-full object-contain"
+                loading="lazy"
+              />
             </div>
-          ))
-        }
+            <div class="flex-1">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">La Base</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-text">Lucía – Asistente Contable de IA</h3>
+              <p class="mt-4 text-text-muted leading-relaxed">
+                Lucía es la base del flujo financiero: procesa facturas, recibos y extractos bancarios de forma
+                autónoma, organizando tu libro mayor y garantizando que tu contabilidad esté al día. Recibe
+                documentos vía WhatsApp o desde la app, extrae los datos clave, automatiza el registro contable
+                y concilia bancos. Es el primer eslabón del equipo; sin Lucía, Sofía y María no tendrían
+                información estructurada para analizar.
+              </p>
+              <ul class="mt-4 space-y-2 text-text-muted">
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Recepción de documentos por WhatsApp o app</li>
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Extracción automática de datos de facturas y extractos</li>
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Automatización del libro mayor y conciliación bancaria</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sofía -->
+        <div id="sofia" class="scroll-mt-24">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="w-full md:w-72 shrink-0">
+              <img
+                src="/Sofia-Analista%20Financiera%20de%20IA.png"
+                alt="Sofía - Analista Financiera de IA"
+                class="rounded-xl border border-border shadow-md w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex-1">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">El Rendimiento</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-text">Sofía – Analista Financiera de IA</h3>
+              <p class="mt-4 text-text-muted leading-relaxed">
+                Sofía toma la información ya organizada por Lucía y construye los estados financieros básicos:
+                estado de resultados, balance general y flujo de caja. Genera tanto reportes históricos como
+                proyecciones futuras, dando visibilidad sobre el desempeño y la tendencia de la empresa.
+                Actúa como la capa de análisis que transforma datos contables en información para la toma de decisiones.
+              </p>
+              <ul class="mt-4 space-y-2 text-text-muted">
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Construcción de estados financieros históricos</li>
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Proyección de estados financieros futuros</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- María -->
+        <div id="maria" class="scroll-mt-24">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="w-full md:w-72 shrink-0">
+              <img
+                src="/Maria-Gerente%20Financiera%20de%20IA.png"
+                alt="María - Gerente Financiera de IA"
+                class="rounded-xl border border-border shadow-md w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex-1">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">El Experto</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-text">María – Gerente Financiera de IA</h3>
+              <p class="mt-4 text-text-muted leading-relaxed">
+                María utiliza la información generada por Sofía para revisar el desempeño financiero de tu empresa,
+                proponer ajustes y responder consultas de alto nivel. Controla la desviación presupuestal, ayuda
+                a redefinir metas y objetivos, y responde preguntas con el contexto completo de tu negocio.
+                Es la capa de gestión y asesoría del equipo de IA.
+              </p>
+              <ul class="mt-4 space-y-2 text-text-muted">
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Control de desviación presupuestal</li>
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Redefinición de metas y objetivos</li>
+                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Respuesta a consultas con contexto de tu empresa</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Help Section -->
-  <section class="py-section bg-surface">
+  <!-- Información legal -->
+  <section id="informacion-legal" class="py-section bg-surface scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-text mb-2">Información legal</h2>
+      <p class="text-text-muted mb-10 max-w-2xl">
+        Política de privacidad, términos y condiciones, Habeas data financiero y aviso importante sobre
+        el uso de la plataforma en materia contable y fiscal.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <a
+          href="/privacy"
+          class="block p-6 rounded-xl border border-border bg-background hover:border-primary hover:shadow-md transition-all group"
+        >
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Icon name="lucide:shield" class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-semibold text-text group-hover:text-primary">Política de privacidad</h3>
+          </div>
+          <p class="mt-3 text-sm text-text-muted">
+            Cómo recopilamos, usamos y protegemos tu información personal y los datos que procesamos en la plataforma.
+          </p>
+          <span class="inline-flex items-center gap-1 mt-3 text-sm text-primary font-medium">Ver política →</span>
+        </a>
+
+        <a
+          href="/terms"
+          class="block p-6 rounded-xl border border-border bg-background hover:border-primary hover:shadow-md transition-all group"
+        >
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Icon name="lucide:file-text" class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-semibold text-text group-hover:text-primary">Términos y condiciones</h3>
+          </div>
+          <p class="mt-3 text-sm text-text-muted">
+            Condiciones de uso del sitio web y de los servicios de {siteConfig.name}, derechos y obligaciones.
+          </p>
+          <span class="inline-flex items-center gap-1 mt-3 text-sm text-primary font-medium">Ver términos →</span>
+        </a>
+      </div>
+
+      <!-- Habeas data financiero -->
+      <div class="mt-12 p-6 rounded-xl border border-border bg-background">
+        <h3 class="text-lg font-semibold text-text flex items-center gap-2">
+          <Icon name="lucide:database" class="w-5 h-5 text-primary" />
+          Habeas data financiero
+        </h3>
+        <p class="mt-4 text-text-muted leading-relaxed">
+          En cumplimiento de la normativa colombiana de protección de datos personales (Ley 1581 de 2012 y
+          Decreto 1377 de 2013), {siteConfig.name} informa que los datos financieros y contables que usted
+          proporcione o que se generen a partir del uso de la plataforma (documentos, transacciones, estados
+          financieros, información de contacto y datos de facturación) serán tratados con fines de prestación
+          del servicio, mejora del producto, cumplimiento legal y, cuando aplique, comunicación comercial
+          autorizada. Usted tiene derecho a conocer, actualizar, rectificar y solicitar la supresión de sus
+          datos, así como a revocar el consentimiento, mediante solicitud enviada a {siteConfig.legal?.legalEmail ?? 'afinateia@gmail.com'}.
+          Los datos se almacenan y procesan con medidas técnicas y organizativas adecuadas para garantizar
+          su seguridad y confidencialidad.
+        </p>
+      </div>
+
+      <!-- Disclaimer contable -->
+      <div class="mt-8 p-6 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
+        <h3 class="text-lg font-semibold text-text flex items-center gap-2">
+          <Icon name="lucide:alert-triangle" class="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          Aviso importante (disclaimer contable)
+        </h3>
+        <p class="mt-4 text-text-muted leading-relaxed">
+          <strong class="text-text">No somos contadores públicos.</strong> {siteConfig.name} es una plataforma
+          tecnológica que utiliza inteligencia artificial para apoyar la organización y el procesamiento de
+          información contable y financiera. Los reportes, estados y datos generados por la plataforma tienen
+          fines de apoyo a la gestión y no sustituyen la revisión, firma o responsabilidad de un contador
+          público titulado.
+        </p>
+        <p class="mt-4 text-text-muted leading-relaxed">
+          Si usted o su empresa tienen <strong class="text-text">obligaciones fiscales o legales</strong> que
+          exijan la intervención de un contador público (por ejemplo, presentación de impuestos, firma de
+          estados financieros, dictámenes o certificaciones), debe contratar los servicios de un
+          <strong class="text-text">contador público independiente</strong> para la revisión, firma y
+          presentación ante las autoridades que correspondan. Afinate no asume responsabilidad por el uso
+          que el usuario haga de la información generada por la plataforma en materia tributaria, contable o
+          legal, ni por la omisión de contar con un profesional cuando la normativa lo requiera.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ayuda -->
+  <section class="py-section bg-background">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-2xl font-bold text-text">Need more help?</h2>
-        <p class="mt-4 text-text-muted">Can't find what you're looking for? We're here to help.</p>
+        <h2 class="text-2xl font-bold text-text">¿Necesitas más información?</h2>
+        <p class="mt-4 text-text-muted">Estamos disponibles para resolver tus dudas sobre la plataforma o los aspectos legales.</p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border bg-background text-text font-medium hover:bg-background/80 transition-colors"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border bg-background text-text font-medium hover:bg-surface transition-colors"
           >
             <Icon name="lucide:mail" class="w-5 h-5" />
-            Contact Support
+            Contactar
           </a>
           <a
             href="/faq"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border bg-background text-text font-medium hover:bg-background/80 transition-colors"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border bg-background text-text font-medium hover:bg-surface transition-colors"
           >
             <Icon name="lucide:help-circle" class="w-5 h-5" />
-            View FAQ
+            Preguntas frecuentes
           </a>
         </div>
       </div>

@@ -5,152 +5,119 @@ import SecurityBadges from '@sections/pricing/SecurityBadges.astro';
 import ValuesSection from '@sections/team/ValuesSection.astro';
 import FAQSection from '@sections/content/FAQSection.astro';
 import CTA from '@sections/marketing/CTA.astro';
+import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
 
 const certifications = [
   {
-    name: 'SOC 2 Tipo II',
-    icon: 'lucide:shield-check',
+    name: 'Supabase (PostgreSQL + RLS)',
+    icon: 'lucide:database',
     description:
-      'Auditoría independiente anual de controles de seguridad, disponibilidad y confidencialidad.',
-    href: '#',
+      'Base de datos con Row Level Security para que cada cliente acceda solo a sus datos. Políticas de acceso definidas por aplicación.',
   },
   {
-    name: 'Cumplimiento GDPR',
-    icon: 'lucide:globe',
-    description: 'Cumplimiento pleno del Reglamento General de Protección de Datos de la UE.',
-    href: '#',
+    name: 'Cloudflare (SSL + CDN)',
+    icon: 'lucide:shield',
+    description:
+      'Dominio protegido con DNS, certificados SSL y CDN. Tráfico web cifrado y protección frente a amenazas comunes.',
   },
   {
-    name: 'ISO 27001',
-    icon: 'lucide:award',
-    description: 'Sistema de gestión de seguridad de la información certificado.',
-    href: '#',
-  },
-  {
-    name: 'Preparado para HIPAA',
-    icon: 'lucide:heart-pulse',
-    description: 'Acuerdo BAA disponible para organizaciones sanitarias que gestionan datos PHI.',
-    href: '#',
-  },
-  {
-    name: 'PCI DSS',
+    name: 'Wompi (pagos)',
     icon: 'lucide:credit-card',
-    description: 'Proveedor de nivel 1 para seguridad de datos de tarjetas de pago.',
-    href: '#',
+    description:
+      'Pasarela de pago que cumple estándares de seguridad para transacciones. No almacenamos datos de tarjetas.',
   },
   {
-    name: 'Cumplimiento CCPA',
-    icon: 'lucide:user-check',
-    description: 'Cumplimiento de la Ley de Privacidad del Consumidor de California.',
-    href: '#',
+    name: 'Backups y disponibilidad',
+    icon: 'lucide:refresh-cw',
+    description:
+      'Copias de seguridad en VPS (Hetzner) y almacenamiento Supabase. Infraestructura preparada para recuperación.',
   },
 ];
 
 const securityFeatures = [
   {
     icon: 'lucide:lock',
-    title: 'Cifrado en reposo y en tránsito',
+    title: 'Cifrado en tránsito',
     description:
-      'Todos los datos se cifran con AES-256 en reposo y TLS 1.3 en tránsito. Tus datos están protegidos en cada paso.',
+      'Toda la comunicación con la web y los servicios se realiza por HTTPS (TLS) gracias a Cloudflare y configuración en servidor. Los datos no viajan en claro.',
   },
   {
     icon: 'lucide:key',
-    title: 'Inicio de sesión único (SSO)',
+    title: 'Control de acceso a datos',
     description:
-      'Soporte SSO empresarial con SAML 2.0 y OIDC. Integración con Okta, Azure AD, Google Workspace y más.',
+      'Supabase utiliza Row Level Security (RLS) en PostgreSQL. Las consultas se filtran por usuario/tenant para que cada cliente solo vea su propia información.',
   },
   {
-    icon: 'lucide:users',
-    title: 'Control de acceso por roles',
+    icon: 'lucide:server',
+    title: 'Infraestructura aislada',
     description:
-      'Permisos granulares con roles personalizados. Controla exactamente quién puede acceder a qué en tu organización.',
+      'Backend y automatizaciones (n8n, Evolution API, Budibase) se ejecutan en VPS (Hetzner) con Docker/Coolify y VPN (Tailscale), reduciendo superficie de exposición.',
   },
   {
-    icon: 'lucide:history',
-    title: 'Registros de auditoría',
+    icon: 'lucide:file-check',
+    title: 'Procesamiento de documentos con IA',
     description:
-      'Registros de auditoría completos para todas las acciones. Rastrea quién hizo qué, cuándo y desde dónde.',
+      'Los documentos que procesa el equipo de IA (Lucía, Sofía, María) se envían a proveedores con prácticas de seguridad y privacidad alineadas al uso empresarial.',
   },
   {
-    icon: 'lucide:shield',
-    title: 'Protección DDoS',
+    icon: 'lucide:message-circle',
+    title: 'Canal WhatsApp oficial',
     description:
-      'Mitigación DDoS de nivel empresarial en el edge. Tus aplicaciones permanecen en línea durante ataques.',
+      'Conexión con la API de WhatsApp de Meta para atención al cliente, con uso conforme a sus políticas de seguridad y privacidad.',
   },
   {
-    icon: 'lucide:scan',
-    title: 'Escaneo de vulnerabilidades',
+    icon: 'lucide:wallet',
+    title: 'Pagos con Wompi',
     description:
-      'Escaneo de seguridad continuo y pruebas de penetración. Encontramos los problemas antes que los atacantes.',
-  },
-  {
-    icon: 'lucide:database',
-    title: 'Residencia de datos',
-    description:
-      'Elige dónde residen tus datos. Regiones disponibles: EE.UU., UE y Asia-Pacífico.',
-  },
-  {
-    icon: 'lucide:refresh-cw',
-    title: 'Copias de seguridad automáticas',
-    description: 'Copias de seguridad diarias automatizadas con recuperación puntual. Tus datos siempre están seguros.',
+      'Los pagos se procesan mediante Wompi (PSE, tarjetas). No almacenamos datos sensibles de medios de pago; la pasarela cumple estándares de la industria.',
   },
 ];
 
 const securityFAQs = [
   {
-    question: '¿Cómo gestionan el cifrado de datos?',
+    question: '¿Dónde se almacenan los datos de mi empresa?',
     answer:
-      'Todos los datos se cifran en reposo con AES-256 y en tránsito con TLS 1.3. Las claves se gestionan mediante un servicio dedicado con rotación automática.',
+      'Los datos de negocio y documentos se almacenan en Supabase (PostgreSQL) con políticas RLS. La infraestructura de procesos (n8n, dashboard) corre en un VPS dedicado con backups configurados.',
   },
   {
-    question: '¿Dónde se almacenan mis datos?',
+    question: '¿Cómo se protegen los datos en tránsito?',
     answer:
-      'Por defecto, los datos se almacenan en nuestros centros de datos en EE.UU. Los clientes Enterprise pueden elegir regiones específicas: UE (Frankfurt), Asia-Pacífico (Singapur) y más.',
+      'Todo el tráfico entre tu navegador y nuestros servicios utiliza HTTPS (TLS). El dominio está protegido con Cloudflare, que aporta SSL y capa de protección adicional.',
   },
   {
-    question: '¿Ofrecen BAA para cumplimiento HIPAA?',
+    question: '¿Quién puede ver la información de mi cuenta?',
     answer:
-      'Sí, ofrecemos acuerdos BAA para organizaciones sanitarias en nuestro plan Enterprise. Contacta a ventas para hablar de tus requisitos HIPAA.',
+      'Solo tu organización tiene acceso a sus propios datos gracias a Row Level Security en la base de datos. Afinate accede únicamente cuando es necesario para soporte o mantenimiento, con criterios internos de confidencialidad.',
   },
   {
-    question: '¿Con qué frecuencia realizan auditorías de seguridad?',
+    question: '¿Cómo reportar una vulnerabilidad o incidente?',
     answer:
-      'Sometemos auditorías SOC 2 Tipo II anuales por auditores independientes. También realizamos pruebas de penetración trimestrales y escaneo de vulnerabilidades continuo.',
-  },
-  {
-    question: '¿Qué ocurre en caso de un incidente de seguridad?',
-    answer:
-      'Tenemos un plan de respuesta a incidentes completo. Los clientes afectados son notificados en 72 horas tras una brecha confirmada. Nuestro equipo de seguridad está disponible 24/7.',
-  },
-  {
-    question: '¿Puedo solicitar un cuestionario o evaluación de seguridad?',
-    answer:
-      'Sí, proporcionamos SIG, CAIQ y cuestionarios personalizados para clientes Enterprise. Contacta a nuestro equipo de seguridad en afinateia@gmail.com.',
+      'Puedes reportar vulnerabilidades o incidentes de seguridad a afinateia@gmail.com. Revisaremos cada reporte y te responderemos en un plazo razonable.',
   },
 ];
 ---
 
 <MarketingLayout
   title={`Seguridad - ${siteConfig.name}`}
-  description="Conoce nuestras prácticas de seguridad, certificaciones de cumplimiento y cómo protegemos tus datos."
+  description="Cómo afinate protege tus datos: stack técnico, cifrado, control de acceso y buenas prácticas."
 >
   <PageHeader
-    title="Seguridad en la que puedes confiar"
-    subtitle="Nos tomamos la seguridad en serio. Tus datos están protegidos por medidas de nivel empresarial y certificaciones líderes del sector."
+    title="Seguridad"
+    subtitle="Protegemos tus datos con un stack moderno: base de datos con control de acceso, cifrado en tránsito, pagos seguros e infraestructura aislada."
   />
 
   <SecurityBadges
-    title="Cumplimiento y certificaciones"
-    subtitle="Estándares de seguridad y cumplimiento verificados de forma independiente."
+    title="Garantías técnicas y cumplimiento"
+    subtitle="Pilares de nuestra arquitectura para la seguridad y privacidad de la información."
     badges={certifications}
     variant="cards"
     background="muted"
   />
 
   <ValuesSection
-    title="Funcionalidades de seguridad"
-    subtitle="Seguridad integrada en cada capa de nuestra plataforma."
+    title="Cómo te protegemos"
+    subtitle="Medidas de seguridad integradas en la plataforma y en la operación."
     items={securityFeatures}
     variant="with-icon"
     columns={2}
@@ -161,48 +128,50 @@ const securityFAQs = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-text">Seguridad de infraestructura</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text">Stack técnico y buenas prácticas</h2>
           <div class="mt-6 space-y-4 text-text-muted">
             <p>
-              Nuestra infraestructura corre en proveedores cloud líderes con certificaciones SOC 2 e ISO 27001.
-              Aprovechamos su seguridad física, de red y excelencia operativa.
+              La web está construida con <strong class="text-text">Astro</strong> y se sirve de forma segura.
+              Los datos y la lógica de negocio dependen de <strong class="text-text">Supabase</strong> (PostgreSQL con RLS,
+              almacenamiento y backups). La capa de pago la gestiona <strong class="text-text">Wompi</strong>;
+              el procesamiento de documentos con IA utiliza APIs de proveedores con compromisos de privacidad.
             </p>
             <p>
-              Todos los sistemas se despliegan en redes privadas con reglas de firewall estrictas. El acceso
-              a sistemas de producción requiere autenticación multifactor y se registra para auditoría.
+              Las automatizaciones, el dashboard
+              y la conexión con <strong class="text-text">WhatsApp (Evolution API)</strong> se ejecutan en un
+              <strong class="text-text">VPS (Hetzner)</strong> gestionado con <strong class="text-text">Docker y Coolify</strong>,
+              accesible por <strong class="text-text">VPN (Tailscale)</strong> para reducir riesgos. El dominio está
+              protegido con <strong class="text-text">Cloudflare</strong> (DNS, SSL y CDN).
             </p>
             <p>
-              Mantenemos un plan de recuperación ante desastres completo con pruebas regulares. Nuestra
-              infraestructura está diseñada para alta disponibilidad con failover automático en múltiples zonas.
+              Nos comprometemos a mantener actualizado el stack, aplicar parches de seguridad y revisar el acceso
+              a los sistemas. Si necesitas documentación específica o un cuestionario de seguridad, contáctanos.
             </p>
           </div>
           <div class="mt-8">
             <a
               href="/contact"
-              class="inline-flex items-center px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary-dark transition-colors"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary-dark transition-colors"
             >
-              Solicitar documentación de seguridad
+              <Icon name="lucide:mail" class="w-5 h-5" />
+              Solicitar información de seguridad
             </a>
           </div>
         </div>
         <div class="bg-background rounded-xl border border-border p-8">
-          <h3 class="font-semibold text-text mb-6">Contactos de seguridad</h3>
+          <h3 class="font-semibold text-text mb-6">Contacto de seguridad</h3>
           <div class="space-y-4">
             <div>
-              <p class="text-sm text-text-muted">Reportar una vulnerabilidad</p>
+              <p class="text-sm text-text-muted">Reportar vulnerabilidad o incidente</p>
               <a href="mailto:afinateia@gmail.com" class="text-primary hover:underline">
                 afinateia@gmail.com
               </a>
             </div>
             <div>
-              <p class="text-sm text-text-muted">Cuestionarios de seguridad</p>
+              <p class="text-sm text-text-muted">Cuestionarios o documentación</p>
               <a href="mailto:afinateia@gmail.com" class="text-primary hover:underline">
                 afinateia@gmail.com
               </a>
-            </div>
-            <div>
-              <p class="text-sm text-text-muted">Programa de bug bounty</p>
-              <a href="#" class="text-primary hover:underline"> Ver detalles del programa → </a>
             </div>
           </div>
         </div>
@@ -212,7 +181,7 @@ const securityFAQs = [
 
   <FAQSection
     title="Preguntas frecuentes de seguridad"
-    subtitle="Preguntas habituales sobre nuestras prácticas de seguridad."
+    subtitle="Respuestas sobre almacenamiento, cifrado y prácticas de afinate."
     faqs={securityFAQs}
     variant="accordion"
     background="default"
@@ -220,8 +189,8 @@ const securityFAQs = [
 
   <CTA
     title="¿Necesitas más información?"
-    description="Nuestro equipo de seguridad está encantado de hablar de tus requisitos específicos y proporcionar documentación adicional."
-    action={{ label: 'Contactar equipo de seguridad', href: '/contact' }}
+    description="Nuestro equipo está disponible para resolver dudas sobre seguridad, cumplimiento o requisitos específicos de tu organización."
+    action={{ label: 'Contactar', href: '/contact' }}
     background="muted"
   />
 </MarketingLayout>

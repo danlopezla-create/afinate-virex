@@ -1,186 +1,122 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import PageHeader from '@sections/content/PageHeader.astro';
-import CaseStudyCard from '@sections/social-proof/CaseStudyCard.astro';
-import LogoCloud from '@sections/marketing/LogoCloud.astro';
-import StatsSection from '@sections/social-proof/StatsSection.astro';
-import CTA from '@sections/marketing/CTA.astro';
 import { siteConfig } from '@/config';
-
-const featuredCases = [
-  {
-    company: 'TechCorp',
-    logo: '/images/logos/logoipsum-1.svg',
-    industry: 'Tecnología',
-    quote:
-      'Afinate transformó nuestro flujo de despliegue. Pasamos de despliegues de 2 horas a menos de 5 minutos. Las vistas previas por sí solas nos ahorraron incontables horas de QA.',
-    author: 'Sarah Chen',
-    role: 'VP de Ingeniería',
-    metrics: [
-      { value: '95%', label: 'Despliegues más rápidos' },
-      { value: '50%', label: 'Reducción de costes' },
-      { value: '99.99%', label: 'Tiempo activo' },
-    ],
-    href: '#',
-    featured: true,
-  },
-  {
-    company: 'StartupXYZ',
-    logo: '/images/logos/logoipsum-2.svg',
-    industry: 'Fintech',
-    quote:
-      "Como startup en rápido crecimiento, necesitábamos infraestructura que pudiera seguir el ritmo. El autoescalado de Afinate manejó nuestro pico de tráfico 10x durante el lanzamiento sin problemas.",
-    author: 'Michael Rodríguez',
-    role: 'CTO y cofundador',
-    metrics: [
-      { value: '10x', label: 'Tráfico manejado' },
-      { value: '0', label: 'Incidencias de caída' },
-      { value: '3h', label: 'Ahorradas por semana' },
-    ],
-    href: '#',
-    featured: true,
-  },
-];
-
-const gridCases = [
-  {
-    company: 'DesignStudio',
-    logo: '/images/logos/logoipsum-3.svg',
-    industry: 'Agencia creativa',
-    quote:
-      'Las vistas previas cambiaron cómo trabajamos con clientes. Ven los cambios al instante sin que montemos servidores de pruebas.',
-    author: 'Emma Wilson',
-    role: 'Directora técnica',
-    metrics: [
-      { value: '80%', label: 'Feedback más rápido' },
-      { value: '12', label: 'Proyectos/mes' },
-    ],
-    href: '#',
-  },
-  {
-    company: 'E-Commerce Plus',
-    logo: '/images/logos/logoipsum-4.svg',
-    industry: 'E-commerce',
-    quote:
-      "El Black Friday solía ser estresante. Con la red edge de Afinate, nuestro sitio se mantuvo rápido incluso con 5x el tráfico normal.",
-    author: 'David Park',
-    role: 'Director de ingeniería',
-    metrics: [
-      { value: '5x', label: 'Tráfico pico' },
-      { value: '<100ms', label: 'Tiempo de respuesta' },
-    ],
-    href: '#',
-  },
-  {
-    company: 'HealthTech Inc',
-    logo: '/images/logos/logoipsum-5.svg',
-    industry: 'Salud',
-    quote:
-      "La seguridad y el cumplimiento eran nuestras prioridades. La certificación SOC 2 de Afinate y el SSL automático dejaron satisfecho a nuestro equipo de seguridad.",
-    author: 'Dra. Lisa Thompson',
-    role: 'Directora de tecnología',
-    metrics: [
-      { value: '100%', label: 'Cumplimiento' },
-      { value: 'Cero', label: 'Incidencias de seguridad' },
-    ],
-    href: '#',
-  },
-  {
-    company: 'MediaGroup',
-    logo: '/images/logos/logoipsum-6.svg',
-    industry: 'Medios y publicaciones',
-    quote:
-      "Publicamos cientos de artículos al día. Las compilaciones incrementales de Afinate significan que las actualizaciones van en vivo en segundos, no en minutos.",
-    author: 'James Miller',
-    role: 'Líder de ingeniería',
-    metrics: [
-      { value: '500+', label: 'Despliegues diarios' },
-      { value: '8s', label: 'Tiempo de compilación' },
-    ],
-    href: '#',
-  },
-  {
-    company: 'EduLearn',
-    logo: '/images/logos/logoipsum-1.svg',
-    industry: 'Educación',
-    quote:
-      "Nuestra plataforma sirve a estudiantes de todo el mundo. La red edge de Afinate garantiza tiempos de carga rápidos tanto en Tokio como en Toronto.",
-    author: 'Anna Kowalski',
-    role: 'VP de producto',
-    metrics: [
-      { value: '200+', label: 'Ubicaciones edge' },
-      { value: '40ms', label: 'Latencia global' },
-    ],
-    href: '#',
-  },
-  {
-    company: 'SaaS Solutions',
-    logo: '/images/logos/logoipsum-2.svg',
-    industry: 'Software B2B',
-    quote:
-      'La migración desde nuestro hosting anterior fue fluida. Las herramientas CLI y la documentación hicieron que la transición fuera sencilla.',
-    author: 'Robert Chang',
-    role: 'Gerente de DevOps',
-    metrics: [
-      { value: '2 días', label: 'Tiempo de migración' },
-      { value: '60%', label: 'Ahorro en costes' },
-    ],
-    href: '#',
-  },
-];
-
-const stats = [
-  { value: '10.000+', label: 'Empresas confían en Afinate' },
-  { value: '99.99%', label: 'Tiempo activo promedio' },
-  { value: '50M+', label: 'Despliegues al mes' },
-  { value: '200+', label: 'Ubicaciones edge' },
-];
 ---
 
 <MarketingLayout
   title={`Clientes - ${siteConfig.name}`}
-  description="Descubre cómo empresas de todos los tamaños usan Afinate para desplegar más rápido, escalar sin esfuerzo y ofrecer mejores experiencias."
+  description="Conoce los perfiles de clientes que utilizan Afinate: proyectos personales, empresas sin ERP y empresas con ERP."
 >
   <PageHeader
-    title="Historias de clientes"
-    subtitle="Descubre cómo equipos de todo el mundo usan Afinate para desplegar más rápido y escalar con confianza."
+    title="Tipos de clientes"
+    subtitle="Desde el emprendedor hasta la gran empresa."
   />
 
-  <StatsSection stats={stats} background="muted" />
+  <!-- Sección 1: Proyectos Personales -->
+  <section class="py-section bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <h2 id="proyectos-personales" class="text-2xl sm:text-3xl font-bold text-text">
+            Proyectos Personales
+          </h2>
+          <p class="mt-4 text-lg text-text-muted leading-relaxed">
+            Estos clientes utilizan la plataforma de Afinate de forma <strong class="text-text">gratuita</strong> para
+            sus pruebas o validaciones. Ideal para emprendedores, freelancers o personas que quieren organizar su
+            contabilidad personal sin compromiso inicial. Incluye acceso limitado al tablero inteligente y hasta
+            50 documentos procesados, permitiendo evaluar el valor del equipo financiero de IA antes de escalar.
+          </p>
+        </div>
+        <div class="order-1 lg:order-2">
+          <img
+            src="/Proyectos.png"
+            alt="Proyectos personales con Afinate"
+            class="w-full rounded-xl border border-border shadow-lg object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <CaseStudyCard
-    title="Casos de éxito destacados"
-    subtitle="Profundiza en cómo empresas líderes transformaron su flujo de despliegue."
-    cases={featuredCases}
-    variant="featured"
-    background="default"
-  />
+  <!-- Sección 2: Empresas sin Sistema ERP -->
+  <section class="py-section bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="/PYME.png"
+            alt="Empresas sin ERP con Afinate"
+            class="w-full rounded-xl border border-border shadow-lg object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <h2 id="empresas-sin-erp" class="text-2xl sm:text-3xl font-bold text-text">
+            Empresas sin Sistema ERP
+          </h2>
+          <p class="mt-4 text-lg text-text-muted leading-relaxed">
+            Estos clientes utilizan la plataforma de Afinate de forma <strong class="text-text">paga (Precio Pyme)</strong>.
+            Son empresas que no cuentan con sistema contable o ERP; por eso se les habilita el conjunto completo de
+            herramientas necesarias para activar el proceso financiero autónomo.
+          </p>
+          <ul class="mt-6 space-y-2 text-text-muted">
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">•</span>
+              <span>Acceso completo al tablero inteligente y al equipo de IA (Lucía, Sofía y María).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">•</span>
+              <span>Capacidad ampliada de documentos procesados y consultas con la IA.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">•</span>
+              <span>Soporte al cliente para acompañar la adopción y el uso diario.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <CaseStudyCard
-    title="Más historias de clientes"
-    subtitle="Únete a miles de equipos que confían en Afinate para sus despliegues."
-    cases={gridCases}
-    variant="grid"
-    background="muted"
-  />
+  <!-- Sección 3: Empresas con Sistema ERP -->
+  <section class="py-section bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <h2 id="empresas-con-erp" class="text-2xl sm:text-3xl font-bold text-text">
+            Empresas con Sistema ERP
+          </h2>
+          <p class="mt-4 text-lg text-text-muted leading-relaxed">
+            Estos clientes utilizan la plataforma de Afinate de forma <strong class="text-text">paga (Precio ERP)</strong>,
+            integrando su ERP existente mediante API. La solución puede incluir <strong class="text-text">desarrollos a
+            la medida</strong> adicionales para cumplir con las expectativas de este perfil: sincronización de datos,
+            reportes personalizados, flujos específicos y conexión segura con sus sistemas actuales.
+          </p>
+        </div>
+        <div class="order-1 lg:order-2">
+          <img
+            src="/ERP.png"
+            alt="Empresas con ERP integrado con Afinate"
+            class="w-full rounded-xl border border-border shadow-lg object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <LogoCloud
-    title="Con la confianza de equipos innovadores"
-    logos={[
-      { name: 'Logo 1', src: '/images/logos/logoipsum-1.svg' },
-      { name: 'Logo 2', src: '/images/logos/logoipsum-2.svg' },
-      { name: 'Logo 3', src: '/images/logos/logoipsum-3.svg' },
-      { name: 'Logo 4', src: '/images/logos/logoipsum-4.svg' },
-      { name: 'Logo 5', src: '/images/logos/logoipsum-5.svg' },
-      { name: 'Logo 6', src: '/images/logos/logoipsum-6.svg' },
-    ]}
-    background="default"
-  />
-
-  <CTA
-    title="¿Listo para unirte?"
-    description="Empieza a desplegar con Afinate hoy y comprueba la diferencia por ti mismo."
-    action={{ label: 'Prueba gratis', href: '/register' }}
-    background="muted"
-  />
+  <!-- Estructura preparada para recomendaciones de clientes (oculta hasta tener casos reales) -->
+  <section id="recomendaciones-clientes" class="hidden py-section bg-background" aria-hidden="true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-text text-center">
+        Lo que dicen nuestros clientes
+      </h2>
+      <p class="mt-4 text-center text-text-muted max-w-2xl mx-auto">
+        Próximamente: testimonios y recomendaciones de empresas que utilizan Afinate.
+      </p>
+      <!-- Aquí se podrán añadir CaseStudyCard o testimonios cuando existan clientes reales -->
+    </div>
+  </section>
 </MarketingLayout>
