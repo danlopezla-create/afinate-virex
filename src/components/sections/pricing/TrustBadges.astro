@@ -188,12 +188,20 @@ const bgClass = {
                   ]}
                 >
                   {paymentMethods.map((method) =>
-                    method.name === 'PSE' ? (
-                      <span
-                        class="inline-flex items-center justify-center min-w-[3.5rem] h-9 px-3 rounded-md bg-surface border border-border text-text font-bold text-sm"
-                        aria-label="PSE"
-                      >
-                        PSE
+                    method.name === 'Wompi' ? (
+                      <span class="inline-flex items-center">
+                        <img
+                          src={method.logo}
+                          alt={method.name}
+                          class="h-7 w-auto transition-opacity dark:hidden"
+                          loading="lazy"
+                        />
+                        <img
+                          src={method.logo}
+                          alt={method.name}
+                          class="h-7 w-auto hidden dark:block dark:invert"
+                          loading="lazy"
+                        />
                       </span>
                     ) : (
                       <img

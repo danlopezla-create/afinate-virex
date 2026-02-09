@@ -27,7 +27,6 @@ export const navigation: Navigation = {
       { label: 'Blog', href: '/blog', feature: 'blog' },
     ],
     cta: [
-      { label: 'Demo', href: '/dashboard', variant: 'ghost' },
       { label: 'Iniciar sesión', href: '/login', variant: 'ghost' },
       { label: 'Registrarse', href: '/register', variant: 'primary' },
     ],
@@ -48,7 +47,7 @@ export const navigation: Navigation = {
       { label: 'Estado', href: '/status' },
       { label: 'Seguridad', href: '/security' },
       { label: 'Buenas prácticas', href: '/security#stack-tecnico' },
-      { label: 'Equipo de IA', href: '/docs#equipo-ia' },
+      { label: 'Automatizaciones', href: '/docs#automatizaciones' },
     ],
     legal: [
       { label: 'Privacidad', href: '/privacy' },

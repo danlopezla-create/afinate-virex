@@ -152,7 +152,7 @@ const allOperational = services.every((s) => s.status === 'operational');
     <!-- Overall Status Banner -->
     <div
       class:list={[
-        'p-6 rounded-lg mb-8 text-center',
+        'p-6 rounded-lg mb-6 text-center',
         allOperational
           ? 'bg-green-100 dark:bg-green-950 border border-green-300 dark:border-green-800'
           : 'bg-yellow-100 dark:bg-yellow-950 border border-yellow-300 dark:border-yellow-800',
@@ -216,8 +216,8 @@ const allOperational = services.every((s) => s.status === 'operational');
     </div>
 
     <!-- Incident History -->
-    <div class="mt-12">
-      <h2 class="text-xl font-bold text-text mb-6">{t.incidents}</h2>
+    <div class="mt-8">
+      <h2 class="text-xl font-bold text-text mb-4">{t.incidents}</h2>
 
       {
         incidents.length > 0 ? (
@@ -267,7 +267,7 @@ const allOperational = services.every((s) => s.status === 'operational');
     <!-- Subscribe to Updates -->
     {
       (twitterUrl || supportEmail) && (
-        <div class="mt-12 p-6 rounded-lg bg-surface border border-border text-center">
+        <div class="mt-8 p-6 rounded-lg bg-surface border border-border text-center">
           <h3 class="text-lg font-semibold text-text">{t.stayUpdated}</h3>
           <p class="mt-2 text-text-muted">
             {t.stayUpdatedDesc}

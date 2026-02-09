@@ -1,84 +1,117 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import PageHeader from '@sections/content/PageHeader.astro';
-import ValuesSection from '@sections/team/ValuesSection.astro';
-import ContentSection from '@sections/content/ContentSection.astro';
-import CTA from '@sections/marketing/CTA.astro';
+import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
 
-const values = [
+const valores = [
   {
-    title: 'Productividad real',
-    description:
-      'Construimos herramientas que ahorran tiempo y reducen errores. La contabilidad y la información financiera deben estar al día sin consumir horas de trabajo manual.',
+    nombre: 'Organización',
+    descripcion: 'La organización es la base que permite estructurar procesos eficientes y escalables. En afinate, aplicamos organización en cada automatización para garantizar que la información contable y financiera esté siempre ordenada y accesible, facilitando la toma de decisiones estratégicas para las Pymes.',
+    icono: 'lucide:layers',
   },
   {
-    title: 'Simplicidad',
-    description:
-      'Procesar documentos, consultar datos y tomar decisiones no debería requerir ser experto en contabilidad. La IA y un buen producto ponen la información al alcance de todos.',
+    nombre: 'Disciplina',
+    descripcion: 'La disciplina nos permite mantener la consistencia en la ejecución de nuestros procesos y en la mejora continua de la plataforma. Este valor asegura que cada cliente reciba un servicio confiable y de calidad constante, construyendo confianza a largo plazo.',
+    icono: 'lucide:target',
   },
   {
-    title: 'Transparencia',
-    description:
-      'Precios claros, sin costes ocultos. Y en lo legal: privacidad, términos, habeas data y disclaimer contable visibles para que sepas con qué estás trabajando.',
+    nombre: 'Responsabilidad',
+    descripcion: 'Asumimos la responsabilidad de proteger los datos financieros de nuestros clientes y de entregar herramientas que realmente aporten valor a sus negocios. Este compromiso se refleja en nuestra transparencia legal, seguridad técnica y en el apoyo constante para que las Pymes crezcan de manera sostenible.',
+    icono: 'lucide:shield-check',
   },
   {
-    title: 'Construcción ágil',
-    description:
-      'Apostamos por desarrollo iterativo, herramientas de IA y buenas prácticas técnicas para llevar al mercado soluciones útiles de forma sostenible.',
+    nombre: 'Transparencia',
+    descripcion: 'La transparencia es fundamental en nuestras relaciones con clientes, desde precios claros hasta políticas de privacidad y términos de servicio accesibles. Creemos que la confianza se construye con honestidad y claridad, permitiendo que las Pymes tomen decisiones informadas sobre su gestión financiera.',
+    icono: 'lucide:eye',
   },
 ];
 ---
 
 <MarketingLayout
   title={`Nosotros - ${siteConfig.name}`}
-  description="Conoce la historia y el equipo detrás de afinate: plataforma de gestión financiera y contable con IA, creada en Medellín en 2026."
+  description="Conoce la visión, misión y valores de afinate: plataforma de gestión financiera y contable con IA, creada para ser el departamento financiero de las Pymes en Latinoamérica."
 >
-  <PageHeader title="Sobre afinate" align="left" maxWidth="lg">
-    <p class="mt-6 text-lg text-text-muted leading-relaxed">
-      {siteConfig.name} nació el <strong class="text-text">5 de febrero de 2026</strong> en
-      <strong class="text-text">Medellín, Colombia</strong>, con una idea simple: que emprendedores y
-      pymes tengan la contabilidad al día y la información financiera útil sin dedicar horas a
-      tareas repetitivas ni depender de una sola persona para entender los números.
-    </p>
-    <p class="mt-4 text-lg text-text-muted leading-relaxed">
-      El proyecto lo impulsa un <strong class="text-text">solopreneur</strong> con formación en
-      administración de negocios (énfasis en proyectos y finanzas) y experiencia en consultoría y en
-      la creación de varias startups. La construcción del producto combina
-      <strong class="text-text">vibe coding</strong> y herramientas de IA para iterar rápido y
-      ofrecer valor desde el primer día: un equipo de agentes de IA (Lucía, Sofía y María) que
-      procesan documentos, mantienen el libro mayor, responden preguntas y apoyan la toma de
-      decisiones.
-    </p>
-    <p class="mt-4 text-lg text-text-muted leading-relaxed">
-      No somos una gran corporación ni una plantilla numerosa; somos un proyecto enfocado en
-      resolver un problema concreto para negocios que quieren orden, claridad y apoyo tecnológico
-      en sus procesos financieros y contables.
-    </p>
-  </PageHeader>
+  <!-- Fundador -->
+  <section class="py-10 md:py-12 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl font-bold text-text mb-8">Fundador</h1>
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="w-full md:w-80 shrink-0">
+            <img
+              src="/Daniel-Fundador.png"
+              alt="Daniel López Larrea - Fundador de afinate"
+              class="rounded-xl border border-border shadow-md w-full object-contain"
+              loading="eager"
+            />
+          </div>
+          <div class="flex-1">
+            <p class="text-lg text-text-muted leading-relaxed mb-4">
+              Daniel es una líder tranquilo, empático y comprometido. Con la convicción de aportarle valor a la sociedad, a participado en la 
+              creación de diferentes proyectos e iniciativas, proporcionándole un conocimiento profundo de las necesidades industriales, que de
+              la mano con la tecnología, le ha permitido desarrollar soluciones de alto impacto, incrementando la productivdad de las empresas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <ValuesSection
-    title="Nuestros valores"
-    items={values}
-    variant="card"
-    columns={2}
-    background="default"
-  />
+  <!-- Visión -->
+  <section class="py-10 md:py-12 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
+          <Icon name="lucide:compass" class="w-8 h-8" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-text mb-6">Visión</h2>
+        <p class="text-xl text-text-muted leading-relaxed">
+          Ser el departamento financiero de las Pyme en Latinoamerica
+        </p>
+        <p class="mt-6 text-lg text-text-muted leading-relaxed">
+        </p>
+    </div>
+  </section>
 
-  <ContentSection
-    title="Qué hacemos"
-    content={[
-      'afinate ofrece una plataforma de gestión financiera y contable impulsada por IA. Incluye recepción de documentos (por ejemplo por WhatsApp), procesamiento automático con Lucía (asistente contable), análisis y consultas en lenguaje natural con Sofía (analista financiera) y apoyo a la gestión con María (gerente financiera de IA).',
-      'Los planes van desde un nivel básico gratuito hasta opciones para pymes y un plan ERP personalizado para integración con sistemas existentes. Toda la información sobre precios, seguridad, equipo de IA y aspectos legales (privacidad, términos, habeas data, disclaimer contable) está disponible en el sitio.',
-    ]}
-    background="muted"
-  />
+  <!-- Misión -->
+  <section class="py-10 md:py-12 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
+          <Icon name="lucide:rocket" class="w-8 h-8" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-text mb-6">Misión</h2>
+        <p class="text-xl text-text-muted leading-relaxed">
+          Automatizar todos los procesos contables y administrativos
+        </p>
+    </div>
+  </section>
 
-  <CTA
-    title="¿Quieres conocer la plataforma?"
-    description="Reserva una demo o regístrate para probar afinate con tu información."
-    action={{ label: 'Programar demo', href: '/demo' }}
-    secondaryAction={{ label: 'Registrarse', href: '/register' }}
-    background="default"
-  />
+  <!-- Valores -->
+  <section class="py-10 md:py-12 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4">Valores</h2>
+        <p class="text-lg text-text-muted">
+          Los valores que guían cada decisión y acción en afinate
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {valores.map((valor) => (
+          <div class="p-6 rounded-xl border border-border bg-background hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Icon name={valor.icono} class="w-6 h-6 text-primary" />
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-text mb-3">{valor.nombre}</h3>
+                <p class="text-text-muted leading-relaxed">{valor.descripcion}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 </MarketingLayout>

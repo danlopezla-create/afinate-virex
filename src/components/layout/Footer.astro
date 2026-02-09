@@ -124,6 +124,10 @@ const empresaLinks = filterByFeature(footer.empresa);
             )
           }
         </div>
+        <p class="text-sm text-text-muted mt-4">
+          &copy; {currentYear}
+          {siteConfig.name}. Todos los derechos reservados.
+        </p>
       </div>
 
       <!-- Solución -->
@@ -211,24 +215,5 @@ const empresaLinks = filterByFeature(footer.empresa);
       }
     </div>
 
-    <div class="mt-12 pt-8 border-t border-background">
-      <div
-        class="flex flex-col items-center md:flex-row md:justify-between gap-4 text-center md:text-left"
-      >
-        <p class="text-sm text-text-muted">
-          &copy; {currentYear}
-          {siteConfig.name}. Todos los derechos reservados.
-        </p>
-        <div class="flex items-center gap-6">
-          {
-            legalLinks.map((link) => (
-              <a href={link.href} class="text-sm text-text-muted hover:text-text transition-colors">
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
   </div>
 </footer>

@@ -14,7 +14,6 @@ const services = [
   { name: 'Canal WhatsApp (atención y documentos)', status: 'operational' as const },
   { name: 'SSL y DNS', status: 'operational' as const },
 ];
-
 // Historial de incidencias (ejemplo; en producción conectar con sistema real)
 const recentIncidents: Array<{
   date: string;
@@ -24,7 +23,6 @@ const recentIncidents: Array<{
   updates: Array<{ time: string; message: string }>;
 }> = [];
 ---
-
 <MarketingLayout
   title={`Estado del sistema - ${siteConfig.name}`}
   description={`Estado actual de los servicios de ${siteConfig.name}: web, API, procesamiento con IA, base de datos, pagos y WhatsApp.`}
@@ -32,8 +30,7 @@ const recentIncidents: Array<{
   <PageHeader
     title="Estado del sistema"
     subtitle={`Estado operativo del stack técnico de ${siteConfig.name}: aplicación, API, IA, base de datos, pagos y canal WhatsApp.`}
-  />
-
+  >
   <StatusOverview
     services={services}
     incidents={recentIncidents}

@@ -15,12 +15,12 @@ const plans = [
       'Hasta 50 documentos procesados',
     ],
     highlighted: false,
-    cta: { label: 'Registrarse gratis', href: '/register' },
+    cta: { label: 'Regístrate gratis', href: '/register' },
   },
   {
     name: 'Pyme',
     monthlyPrice: 490000,
-    description: 'Para pequeñas y medianas empresas',
+    description: 'Para empresas sin sistema contable o ERP',
     features: [
       'Acceso al equipo financiero de IA',
       'Acceso completo al tablero inteligente',
@@ -30,13 +30,13 @@ const plans = [
     ],
     highlighted: true,
     badge: 'Recomendado',
-    cta: { label: 'Prueba gratis', href: '/register' },
+    cta: { label: 'Adquierelo ya', href: '/register' },
   },
   {
     name: 'ERP',
     monthlyPrice: null,
     customPrice: 'Personalizado',
-    description: 'Para integración API con su ERP existente',
+    description: 'Para empresas con sistema contable o ERP',
     features: [
       'Acceso al equipo financiero de IA',
       'Acceso a un tablero personalizado',
@@ -45,7 +45,7 @@ const plans = [
       'Servicio al cliente personalizado',
     ],
     highlighted: false,
-    cta: { label: 'Contactar ventas', href: '/demo' },
+    cta: { label: 'Solicitar demo', href: '/demo' },
   },
 ];
 ---
@@ -67,10 +67,11 @@ const plans = [
   />
 
   <TrustBadges
+    variant="compact"
     guarantee={{
       title: 'Garantía de reembolso de 30 días',
       description:
-        'Prueba sin riesgo. ¿No satisfecho? Obtén un reembolso completo en 30 días, sin preguntas.',
+        'Prueba sin riesgo. ¿No satisfecho? Obtén un reembolso completo de tu prueba, sin preguntas.',
     }}
     badges={[
       { icon: 'lucide:shield-check', label: 'Checkout seguro' },
@@ -79,12 +80,14 @@ const plans = [
       { icon: 'lucide:smartphone', label: 'Pago con Wompi (PSE, tarjetas)' },
     ]}
     paymentMethods={[
-      { name: 'PSE', logo: '/images/payments/pse.svg' },
+      { name: 'Wompi', logo: '/images/payments/LOGO-WOMPI-BC.png' },
+      { name: 'PSE', logo: '/images/payments/pse-logo.webp' },
       { name: 'Visa', logo: '/images/payments/visa.svg' },
       { name: 'Mastercard', logo: '/images/payments/mastercard.svg' },
     ]}
     paymentNote="Pago seguro con Wompi: PSE, tarjetas débito y crédito (Visa, Mastercard)."
   />
+  </div>
 
   <!-- Secciones ocultas: Compara los planes, Preguntas frecuentes, ¿Necesitas algo personalizado? -->
 </MarketingLayout>

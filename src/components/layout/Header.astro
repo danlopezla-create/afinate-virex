@@ -25,9 +25,9 @@ const mainNavItems = headerNav.main.filter(
   (item) => !item.feature || features[item.feature as keyof FeatureFlags]
 );
 
-// Separate CTA buttons by variant
+// Separate CTA buttons by variant (Demo goes last, next to theme toggle)
 const ghostCTAs = headerNav.cta.filter((cta) => cta.variant === 'ghost');
-const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
+const primaryCTAs = headerNav.cta.filter((cta) => cta.variant === 'primary');
 ---
 
 <header
@@ -78,9 +78,8 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         }
       </div>
 
-      <!-- Desktop Actions - Right -->
+      <!-- Desktop Actions - Right (ThemeToggle, Demo, Iniciar sesión, Registrarse) -->
       <div class="hidden md:flex items-center gap-4">
-        <ThemeToggle />
         {
           ghostCTAs.map((cta) => (
             <a
@@ -92,15 +91,16 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
           ))
         }
         {
-          primaryCTA && (
+          primaryCTAs.map((cta) => (
             <a
-              href={primaryCTA.href}
+              href={cta.href}
               class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary-dark transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              {primaryCTA.label}
+              {cta.label}
             </a>
-          )
+          ))
         }
+        <ThemeToggle />
       </div>
 
       <!-- Mobile menu button -->
@@ -173,14 +173,14 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         ))
       }
       {
-        primaryCTA && (
+        primaryCTAs.map((cta) => (
           <a
-            href={primaryCTA.href}
+            href={cta.href}
             class="block px-3 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary-dark transition-colors text-base font-medium text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
           >
-            {primaryCTA.label}
+            {cta.label}
           </a>
-        )
+        ))
       }
     </div>
   </nav>
