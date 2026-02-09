@@ -30,20 +30,20 @@ const benefits = [
 const faqs = [
   {
     question: '¿Cuánto dura la demo?',
-    answer: 'Las demos suelen durar 30-45 minutos, incluyendo tiempo para preguntas.',
+    answer: 'La demo suele durar entre 30 y 45 minutos, incluyendo tiempo para preguntas sobre contabilidad, flujos y precios.',
   },
   {
     question: '¿Quién debería asistir?',
     answer:
-      'Recomendamos incluir a los responsables técnicos y líderes de equipo que usarán la plataforma.',
+      'Recomendamos que asistan quien tome decisiones financieras o de procesos y quien vaya a usar el día a día la plataforma (contabilidad, documentos, reportes).',
   },
   {
     question: '¿Hay algún compromiso?',
-    answer: 'No se requiere ningún compromiso. La demo es completamente gratuita y sin condiciones.',
+    answer: 'No. La demo es gratuita y sin compromiso. Sirve para que conozcas el producto y decidir si afinate se ajusta a tu negocio.',
   },
   {
-    question: '¿Puedo obtener una prueba después de la demo?',
-    answer: '¡Sí! Ofrecemos pruebas extendidas para equipos que evalúan afinate para uso empresarial.',
+    question: '¿Puedo probar la plataforma después de la demo?',
+    answer: 'Sí. Si te interesa seguir, podemos coordinar un periodo de prueba según el plan que mejor se ajuste a tu necesidad (pyme o ERP).',
   },
 ];
 ---
@@ -84,22 +84,7 @@ const faqs = [
             }
           </div>
 
-          {/* Social proof */}
-          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface border border-border">
-            <div class="flex -space-x-2">
-              {
-                [1, 2, 3, 4].map((i) => (
-                  <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-background flex items-center justify-center text-xs font-medium text-primary">
-                    {String.fromCharCode(64 + i)}
-                  </div>
-                ))
-              }
-            </div>
-            <div>
-              <p class="text-sm font-medium text-text">Únete a más de 10.000 equipos</p>
-              <p class="text-xs text-text-muted">que confían en afinate para sus procesos financieros</p>
-            </div>
-          </div>
+          {/* Social proof: oculto por solicitud */}
         </div>
 
         {/* Right: Form */}

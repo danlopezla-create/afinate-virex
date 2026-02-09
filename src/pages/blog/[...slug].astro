@@ -6,65 +6,37 @@ import { calculateReadingTime } from '@/lib/utils';
 
 type BlogPost = CollectionEntry<'blog'>;
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-  // Solo generar rutas para publicaciones visibles (7 feb 2026) para evitar 500 en entradas antiguas
-  const FEATURE_DATE = '2026-02-07';
-  const start = new Date(FEATURE_DATE);
-  start.setHours(0, 0, 0, 0);
-  const end = new Date(FEATURE_DATE);
-  end.setHours(23, 59, 59, 999);
-  const visible = posts.filter((p: BlogPost) => {
-    const t = p.data.publishedDate.getTime();
-    return t >= start.getTime() && t <= end.getTime();
-  });
-  return visible.map((post: BlogPost) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+// En modo server (output: 'server') getStaticPaths se ignora; hay que resolver el post por slug en cada request.
+const slug = Astro.params.slug;
+if (!slug || typeof slug !== 'string') {
+  return Astro.redirect('/404');
 }
 
-interface Props {
-  post: BlogPost;
+const allPosts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
+const post = allPosts.find((p: BlogPost) => p.id === slug);
+if (!post) {
+  return Astro.redirect('/404');
 }
 
-const { post } = Astro.props;
 const { Content } = await render(post);
 
-// Get related posts (solo de publicaciones visibles del 7 feb 2026)
-const allPosts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const FEATURE_DATE = '2026-02-07';
-const start = new Date(FEATURE_DATE);
-start.setHours(0, 0, 0, 0);
-const end = new Date(FEATURE_DATE);
-end.setHours(23, 59, 59, 999);
-const visiblePosts = allPosts.filter((p: BlogPost) => {
-  const t = p.data.publishedDate.getTime();
-  return t >= start.getTime() && t <= end.getTime();
-});
-
-interface RelatedPostWithScore {
-  post: BlogPost;
-  sharedTags: number;
-}
-
+// Posts relacionados (misma lógica de visibilidad: no draft)
+const visiblePosts = allPosts;
 const relatedPosts: BlogPost[] = visiblePosts
   .filter((p: BlogPost) => p.id !== post.id)
   .map(
-    (p: BlogPost): RelatedPostWithScore => ({
+    (p: BlogPost): { post: BlogPost; sharedTags: number } => ({
       post: p,
       sharedTags: p.data.tags.filter((tag: string) => post.data.tags.includes(tag)).length,
     })
   )
-  .filter((p: RelatedPostWithScore) => p.sharedTags > 0)
-  .sort((a: RelatedPostWithScore, b: RelatedPostWithScore) => {
-    if (b.sharedTags !== a.sharedTags) {
-      return b.sharedTags - a.sharedTags;
-    }
+  .filter((p: { post: BlogPost; sharedTags: number }) => p.sharedTags > 0)
+  .sort((a, b) => {
+    if (b.sharedTags !== a.sharedTags) return b.sharedTags - a.sharedTags;
     return b.post.data.publishedDate.getTime() - a.post.data.publishedDate.getTime();
   })
   .slice(0, 3)
-  .map((p: RelatedPostWithScore) => p.post);
+  .map((p: { post: BlogPost }) => p.post);
 ---
 
 <BlogLayout

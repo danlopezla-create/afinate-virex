@@ -4,7 +4,6 @@ import PageHeader from '@sections/content/PageHeader.astro';
 import SecurityBadges from '@sections/pricing/SecurityBadges.astro';
 import ValuesSection from '@sections/team/ValuesSection.astro';
 import FAQSection from '@sections/content/FAQSection.astro';
-import CTA from '@sections/marketing/CTA.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
 
@@ -128,7 +127,7 @@ const securityFAQs = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-text">Stack técnico y buenas prácticas</h2>
+          <h2 id="stack-tecnico" class="text-2xl sm:text-3xl font-bold text-text scroll-mt-24">Stack técnico y buenas prácticas</h2>
           <div class="mt-6 space-y-4 text-text-muted">
             <p>
               La web se sirve de forma segura. Los datos y la lógica de negocio dependen de una base de datos
@@ -184,10 +183,4 @@ const securityFAQs = [
     background="default"
   />
 
-  <CTA
-    title="¿Necesitas más información?"
-    description="Nuestro equipo está disponible para resolver dudas sobre seguridad, cumplimiento o requisitos específicos de tu organización."
-    action={{ label: 'Contactar', href: '/contact' }}
-    background="muted"
-  />
 </MarketingLayout>

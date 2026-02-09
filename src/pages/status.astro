@@ -4,48 +4,42 @@ import PageHeader from '@sections/content/PageHeader.astro';
 import StatusOverview from '@sections/product/StatusOverview.astro';
 import { siteConfig } from '@/config';
 
-// This is a placeholder status page. In production, you would typically:
-// 1. Use a dedicated status page service (Statuspage.io, Instatus, etc.)
-// 2. Fetch real-time status from your monitoring system
-// 3. Display actual incident history
-
+// Stack técnico de afinate: servicios que pueden monitorearse
 const services = [
-  { name: 'Sitio web y panel', status: 'operational' as const },
-  { name: 'API', status: 'operational' as const },
-  { name: 'Sistema de compilación', status: 'operational' as const },
-  { name: 'Red edge (CDN)', status: 'operational' as const },
-  { name: 'DNS', status: 'operational' as const },
-  { name: 'Certificados SSL', status: 'operational' as const },
+  { name: 'Sitio web y app', status: 'operational' as const },
+  { name: 'API y backend', status: 'operational' as const },
+  { name: 'Procesamiento de documentos (IA)', status: 'operational' as const },
+  { name: 'Base de datos (libro mayor, usuarios)', status: 'operational' as const },
+  { name: 'Pasarela de pago (Wompi)', status: 'operational' as const },
+  { name: 'Canal WhatsApp (atención y documentos)', status: 'operational' as const },
+  { name: 'SSL y DNS', status: 'operational' as const },
 ];
 
-// Incidencias de ejemplo - reemplazar con datos reales
-const recentIncidents = [
-  {
-    date: '10 de diciembre de 2024',
-    title: 'Aumento de latencia en API',
-    status: 'resolved' as const,
-    description:
-      'Experimentamos tiempos de respuesta elevados en la API durante aproximadamente 15 minutos. El problema ha sido identificado y resuelto.',
-    updates: [
-      { time: '14:45 UTC', message: 'Problema resuelto. Todos los sistemas operando con normalidad.' },
-      { time: '14:30 UTC', message: 'Hemos identificado la causa y estamos implementando la solución.' },
-      { time: '14:15 UTC', message: 'Investigando reportes de respuestas lentas de la API.' },
-    ],
-  },
-];
+// Historial de incidencias (ejemplo; en producción conectar con sistema real)
+const recentIncidents: Array<{
+  date: string;
+  title: string;
+  status: 'resolved' | 'investigating' | 'identified' | 'monitoring';
+  description: string;
+  updates: Array<{ time: string; message: string }>;
+}> = [];
 ---
 
 <MarketingLayout
   title={`Estado del sistema - ${siteConfig.name}`}
-  description={`Estado actual del sistema e historial de incidencias de ${siteConfig.name}. Comprueba el estado operativo de nuestros servicios.`}
+  description={`Estado actual de los servicios de ${siteConfig.name}: web, API, procesamiento con IA, base de datos, pagos y WhatsApp.`}
 >
-  <PageHeader title="Estado del sistema" subtitle={`Estado actual de los servicios de ${siteConfig.name}`} />
+  <PageHeader
+    title="Estado del sistema"
+    subtitle={`Estado operativo del stack técnico de ${siteConfig.name}: aplicación, API, IA, base de datos, pagos y canal WhatsApp.`}
+  />
 
   <StatusOverview
     services={services}
     incidents={recentIncidents}
-    twitterUrl={siteConfig.social.x}
-    supportEmail={siteConfig.contact.supportEmail}
+    twitterUrl={siteConfig.social?.x}
+    supportEmail={siteConfig.contact?.supportEmail}
     background="default"
+    lang="es"
   />
 </MarketingLayout>

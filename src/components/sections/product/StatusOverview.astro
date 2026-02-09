@@ -58,9 +58,57 @@ interface Props {
   supportEmail?: string;
   /** Section background style */
   background?: 'default' | 'muted' | 'accent';
+  /** Language for labels (es = Spanish) */
+  lang?: 'en' | 'es';
 }
 
-const { services, incidents = [], twitterUrl, supportEmail, background = 'default' } = Astro.props;
+const { services, incidents = [], twitterUrl, supportEmail, background = 'default', lang = 'en' } = Astro.props;
+
+const labels = {
+  en: {
+    allOperational: 'All Systems Operational',
+    someIssues: 'Some Systems Experiencing Issues',
+    lastUpdated: 'Last updated',
+    services: 'Services',
+    incidents: 'Recent Incidents',
+    noIncidents: 'No incidents reported in the last 30 days.',
+    stayUpdated: 'Stay Updated',
+    stayUpdatedDesc: 'Get notified about scheduled maintenance and incidents.',
+    followTwitter: 'Follow on Twitter',
+    emailNotifications: 'Email Notifications',
+    operational: 'Operational',
+    degraded: 'Degraded Performance',
+    partial: 'Partial Outage',
+    major: 'Major Outage',
+    maintenance: 'Under Maintenance',
+    resolved: 'Resolved',
+    investigating: 'Investigating',
+    identified: 'Identified',
+    monitoring: 'Monitoring',
+  },
+  es: {
+    allOperational: 'Todos los sistemas operativos',
+    someIssues: 'Algunos sistemas presentan incidencias',
+    lastUpdated: 'Última actualización',
+    services: 'Servicios',
+    incidents: 'Incidencias recientes',
+    noIncidents: 'No se han reportado incidencias en los últimos 30 días.',
+    stayUpdated: 'Mantente informado',
+    stayUpdatedDesc: 'Recibe avisos de mantenimiento programado e incidencias.',
+    followTwitter: 'Seguir en X',
+    emailNotifications: 'Notificaciones por correo',
+    operational: 'Operativo',
+    degraded: 'Rendimiento degradado',
+    partial: 'Fallo parcial',
+    major: 'Fallo mayor',
+    maintenance: 'En mantenimiento',
+    resolved: 'Resuelto',
+    investigating: 'Investigando',
+    identified: 'Causa identificada',
+    monitoring: 'En monitoreo',
+  },
+};
+const t = labels[lang];
 
 const bgClass = {
   default: 'bg-background',
@@ -68,32 +116,25 @@ const bgClass = {
   accent: 'bg-primary/5',
 }[background];
 
-const statusConfig: Record<ServiceStatus, { label: string; color: string; textColor: string }> = {
-  operational: {
-    label: 'Operational',
-    color: 'bg-green-500',
-    textColor: 'text-green-600 dark:text-green-400',
-  },
-  degraded: {
-    label: 'Degraded Performance',
-    color: 'bg-yellow-500',
-    textColor: 'text-yellow-600 dark:text-yellow-400',
-  },
-  partial: {
-    label: 'Partial Outage',
-    color: 'bg-orange-500',
-    textColor: 'text-orange-600 dark:text-orange-400',
-  },
-  major: {
-    label: 'Major Outage',
-    color: 'bg-red-500',
-    textColor: 'text-red-600 dark:text-red-400',
-  },
-  maintenance: {
-    label: 'Under Maintenance',
-    color: 'bg-blue-500',
-    textColor: 'text-blue-600 dark:text-blue-400',
-  },
+const statusConfig: Record<ServiceStatus, { color: string; textColor: string }> = {
+  operational: { color: 'bg-green-500', textColor: 'text-green-600 dark:text-green-400' },
+  degraded: { color: 'bg-yellow-500', textColor: 'text-yellow-600 dark:text-yellow-400' },
+  partial: { color: 'bg-orange-500', textColor: 'text-orange-600 dark:text-orange-400' },
+  major: { color: 'bg-red-500', textColor: 'text-red-600 dark:text-red-400' },
+  maintenance: { color: 'bg-blue-500', textColor: 'text-blue-600 dark:text-blue-400' },
+};
+const statusLabelKey: Record<ServiceStatus, keyof typeof labels.en> = {
+  operational: 'operational',
+  degraded: 'degraded',
+  partial: 'partial',
+  major: 'major',
+  maintenance: 'maintenance',
+};
+const incidentLabelKey: Record<IncidentStatus, keyof typeof labels.en> = {
+  resolved: 'resolved',
+  investigating: 'investigating',
+  identified: 'identified',
+  monitoring: 'monitoring',
 };
 
 const incidentStatusColors: Record<IncidentStatus, string> = {
@@ -123,14 +164,14 @@ const allOperational = services.every((s) => s.status === 'operational');
             <>
               <span class="w-3 h-3 rounded-full bg-green-500" />
               <span class="text-lg font-semibold text-green-900 dark:text-green-100">
-                All Systems Operational
+                {t.allOperational}
               </span>
             </>
           ) : (
             <>
               <span class="w-3 h-3 rounded-full bg-yellow-500" />
               <span class="text-lg font-semibold text-yellow-900 dark:text-yellow-100">
-                Some Systems Experiencing Issues
+                {t.someIssues}
               </span>
             </>
           )
@@ -144,8 +185,8 @@ const allOperational = services.every((s) => s.status === 'operational');
             : 'text-yellow-900 dark:text-yellow-100',
         ]}
       >
-        Last updated: {
-          new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
+        {t.lastUpdated}: {
+          new Date().toLocaleString(lang === 'es' ? 'es-ES' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })
         } UTC
       </p>
     </div>
@@ -153,17 +194,18 @@ const allOperational = services.every((s) => s.status === 'operational');
     <!-- Service Status List -->
     <div class="rounded-lg border border-border overflow-hidden">
       <div class="bg-surface px-4 py-3 border-b border-border">
-        <h2 class="font-semibold text-text">Services</h2>
+        <h2 class="font-semibold text-text">{t.services}</h2>
       </div>
       <div class="divide-y divide-border">
         {
           services.map((service) => {
             const config = statusConfig[service.status];
+            const label = t[statusLabelKey[service.status]];
             return (
               <div class="flex items-center justify-between px-4 py-4 bg-background">
                 <span class="text-text">{service.name}</span>
                 <div class="flex items-center gap-2">
-                  <span class:list={['text-sm font-medium', config.textColor]}>{config.label}</span>
+                  <span class:list={['text-sm font-medium', config.textColor]}>{label}</span>
                   <span class:list={['w-2.5 h-2.5 rounded-full', config.color]} />
                 </div>
               </div>
@@ -175,7 +217,7 @@ const allOperational = services.every((s) => s.status === 'operational');
 
     <!-- Incident History -->
     <div class="mt-12">
-      <h2 class="text-xl font-bold text-text mb-6">Recent Incidents</h2>
+      <h2 class="text-xl font-bold text-text mb-6">{t.incidents}</h2>
 
       {
         incidents.length > 0 ? (
@@ -193,7 +235,7 @@ const allOperational = services.every((s) => s.status === 'operational');
                           incidentStatusColors[incident.status],
                         ]}
                       >
-                        {incident.status}
+                        {t[incidentLabelKey[incident.status]]}
                       </span>
                     </div>
                   </div>
@@ -216,7 +258,7 @@ const allOperational = services.every((s) => s.status === 'operational');
           </div>
         ) : (
           <div class="text-center py-8 px-4 rounded-lg border border-border">
-            <p class="text-text-muted">No incidents reported in the last 30 days.</p>
+            <p class="text-text-muted">{t.noIncidents}</p>
           </div>
         )
       }
@@ -226,9 +268,9 @@ const allOperational = services.every((s) => s.status === 'operational');
     {
       (twitterUrl || supportEmail) && (
         <div class="mt-12 p-6 rounded-lg bg-surface border border-border text-center">
-          <h3 class="text-lg font-semibold text-text">Stay Updated</h3>
+          <h3 class="text-lg font-semibold text-text">{t.stayUpdated}</h3>
           <p class="mt-2 text-text-muted">
-            Get notified about scheduled maintenance and incidents.
+            {t.stayUpdatedDesc}
           </p>
           <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
             {twitterUrl && (
@@ -236,15 +278,15 @@ const allOperational = services.every((s) => s.status === 'operational');
                 href={twitterUrl}
                 class="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-text font-medium hover:bg-background transition-colors text-sm"
               >
-                Follow on Twitter
+                {t.followTwitter}
               </a>
             )}
             {supportEmail && (
               <a
-                href={`mailto:${supportEmail}?subject=Subscribe to Status Updates`}
+                href={`mailto:${supportEmail}?subject=${lang === 'es' ? 'Suscripción a avisos de estado' : 'Subscribe to Status Updates'}`}
                 class="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-text font-medium hover:bg-background transition-colors text-sm"
               >
-                Email Notifications
+                {t.emailNotifications}
               </a>
             )}
           </div>
@@ -252,16 +294,15 @@ const allOperational = services.every((s) => s.status === 'operational');
       )
     }
 
-    <!-- Note about placeholder -->
-    <p class="mt-8 text-sm text-text-muted text-center">
-      This is a placeholder status page. For production, consider using a dedicated service like{
-        ' '
-      }
-      <a href="https://www.atlassian.com/software/statuspage" class="text-primary hover:underline"
-        >Statuspage</a
-      >,{' '}
-      <a href="https://instatus.com" class="text-primary hover:underline">Instatus</a>, or{' '}
-      <a href="https://betteruptime.com" class="text-primary hover:underline">Better Uptime</a>.
-    </p>
+    {
+      lang === 'en' && (
+        <p class="mt-8 text-sm text-text-muted text-center">
+          This is a placeholder status page. For production, consider using a dedicated service like{' '}
+          <a href="https://www.atlassian.com/software/statuspage" class="text-primary hover:underline">Statuspage</a>,{' '}
+          <a href="https://instatus.com" class="text-primary hover:underline">Instatus</a>, or{' '}
+          <a href="https://betteruptime.com" class="text-primary hover:underline">Better Uptime</a>.
+        </p>
+      )
+    }
   </div>
 </section>

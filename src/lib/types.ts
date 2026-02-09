@@ -27,16 +27,14 @@ export interface HeaderNavigation {
 }
 
 export interface FooterNavigation {
-  /** Product-related links */
-  product: NavigationItem[];
-  /** Solutions/use-case links */
-  solutions: NavigationItem[];
-  /** Resources like docs, blog */
-  resources: NavigationItem[];
-  /** Company info links */
-  company: NavigationItem[];
-  /** Legal links */
+  /** Solución: Demo, Producto, Precio, Clientes */
+  solucion: NavigationItem[];
+  /** Infraestructura: Estado, Seguridad, Buenas prácticas, Equipo de IA */
+  infraestructura: NavigationItem[];
+  /** Legal: Privacidad, Términos, Habeas data, Disclaimer contable */
   legal: NavigationItem[];
+  /** Empresa: Nosotros, Contacto, FAQ, Blog */
+  empresa: NavigationItem[];
 }
 
 export interface Navigation {

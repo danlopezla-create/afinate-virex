@@ -187,14 +187,23 @@ const bgClass = {
                     variant === 'centered' ? 'justify-center' : 'md:justify-end',
                   ]}
                 >
-                  {paymentMethods.map((method) => (
-                    <img
-                      src={method.logo}
-                      alt={method.name}
-                      class="h-7 w-auto transition-opacity"
-                      loading="lazy"
-                    />
-                  ))}
+                  {paymentMethods.map((method) =>
+                    method.name === 'PSE' ? (
+                      <span
+                        class="inline-flex items-center justify-center min-w-[3.5rem] h-9 px-3 rounded-md bg-surface border border-border text-text font-bold text-sm"
+                        aria-label="PSE"
+                      >
+                        PSE
+                      </span>
+                    ) : (
+                      <img
+                        src={method.logo}
+                        alt={method.name}
+                        class="h-7 w-auto transition-opacity"
+                        loading="lazy"
+                      />
+                    )
+                  )}
                 </div>
               )}
             </div>

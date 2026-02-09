@@ -35,36 +35,32 @@ export const navigation: Navigation = {
 
   /**
    * Footer Navigation
-   * Organized into 5 columns: Product, Solutions, Resources, Company, Legal
+   * 4 columnas: Solución, Infraestructura, Legal, Empresa. (Careers, Testimonials, Changelog, Roadmap ocultos.)
    */
   footer: {
-    product: [
+    solucion: [
+      { label: 'Demo', href: '/demo' },
       { label: 'Producto', href: '/features' },
-      { label: 'Integraciones', href: '/integrations' },
-      { label: 'Seguridad', href: '/security' },
       { label: 'Precio', href: '/pricing' },
-      { label: 'Preguntas frecuentes', href: '/faq' },
-    ],
-    solutions: [
       { label: 'Clientes', href: '/customers' },
-      { label: 'Solicitar demo', href: '/demo' },
+    ],
+    infraestructura: [
       { label: 'Estado', href: '/status' },
-    ],
-    resources: [
-      { label: 'Recursos', href: '/docs', feature: 'docs' },
-      { label: 'Blog', href: '/blog', feature: 'blog' },
-      { label: 'Changelog', href: '/changelog', feature: 'changelog' },
-      { label: 'Hoja de ruta', href: '/roadmap', feature: 'roadmap' },
-    ],
-    company: [
-      { label: 'Nosotros', href: '/about' },
-      { label: 'Carreras', href: '/careers' },
-      { label: 'Contacto', href: '/contact' },
-      { label: 'Testimonios', href: '/testimonials', feature: 'testimonials' },
+      { label: 'Seguridad', href: '/security' },
+      { label: 'Buenas prácticas', href: '/security#stack-tecnico' },
+      { label: 'Equipo de IA', href: '/docs#equipo-ia' },
     ],
     legal: [
       { label: 'Privacidad', href: '/privacy' },
       { label: 'Términos', href: '/terms' },
+      { label: 'Habeas data', href: '/docs#informacion-legal' },
+      { label: 'Disclaimer contable', href: '/docs#informacion-legal' },
+    ],
+    empresa: [
+      { label: 'Nosotros', href: '/about' },
+      { label: 'Contacto', href: '/contact' },
+      { label: 'Preguntas frecuentes', href: '/faq' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
 };

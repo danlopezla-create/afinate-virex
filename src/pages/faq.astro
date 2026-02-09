@@ -13,19 +13,17 @@ const faqCategories = [
         question: '¿Qué es ' + siteConfig.name + '?',
         answer:
           siteConfig.name +
-          ' es una plataforma moderna de despliegue que ayuda a desarrolladores y equipos a construir, desplegar y escalar aplicaciones sin los dolores de cabeza de la infraestructura. Nosotros nos encargamos de la complejidad para que te centres en construir productos.',
+          ' es una plataforma de gestión financiera y contable impulsada por IA. Incluye un equipo de agentes de IA (Lucía, Sofía y María) que automatizan la contabilidad, el análisis financiero y la toma de decisiones: procesamiento de documentos, libro mayor, conciliación bancaria y reportes en lenguaje natural.',
       },
       {
         question: '¿Para quién es ' + siteConfig.name + '?',
         answer:
-          'Construimos ' +
-          siteConfig.name +
-          ' para desarrolladores y equipos de todos los tamaños—desde desarrolladores independientes con proyectos personales hasta equipos empresariales desplegando aplicaciones en producción. Si escribes código y necesitas desplegarlo, estamos aquí para ayudarte.',
+          'Está pensado para emprendedores, pymes y equipos que quieren tener la contabilidad al día sin dedicar horas manuales. Es útil para quien recibe facturas por WhatsApp o correo, necesita organizar estados financieros y prefiere consultar la información en lenguaje natural en lugar de solo ver tablas.',
       },
       {
-        question: '¿Qué frameworks soportan?',
+        question: '¿Qué hace el equipo de IA (Lucía, Sofía, María)?',
         answer:
-          'Soportamos todos los frameworks principales: Next.js, Astro, Remix, Nuxt, SvelteKit y cualquier generador de sitios estáticos. Nuestra plataforma detecta tu framework automáticamente y configura el proceso de compilación.',
+          'Lucía procesa documentos y mantiene el libro mayor; Sofía analiza datos y responde preguntas financieras; María actúa como gerente financiera y ayuda en proyecciones y decisiones. Los tres trabajan de forma integrada sobre la misma información actualizada.',
       },
     ],
   },
@@ -35,74 +33,72 @@ const faqCategories = [
       {
         question: '¿Hay un plan gratuito?',
         answer:
-          '¡Sí! Nuestro plan Básico es completamente gratuito e incluye 3 proyectos, 100 GB de ancho de banda al mes, HTTPS automático y vistas previas. No se requiere tarjeta de crédito para empezar.',
+          'Sí. El plan Básico es gratuito e incluye un proyecto personal, acceso limitado al tablero inteligente y hasta 50 documentos procesados. No se requiere tarjeta de crédito para empezar.',
       },
       {
         question: '¿Puedo cambiar de plan más tarde?',
         answer:
-          'Por supuesto. Puedes subir o bajar de plan en cualquier momento. Al subir, se te cobrará la diferencia prorrateada. Al bajar, el nuevo precio aplica en tu próximo ciclo de facturación.',
+          'Sí. Puedes subir o bajar de plan cuando lo necesites. Al subir, se aplica la diferencia; al bajar, el nuevo precio rige en el siguiente ciclo de facturación.',
       },
       {
-        question: '¿Qué pasa si supero mi límite de ancho de banda?',
+        question: '¿Qué métodos de pago aceptan?',
         answer:
-          'Te avisaremos cuando te acerques al límite. Si lo superas, tus sitios seguirán funcionando—solo nos pondremos en contacto para hablar de subir de plan o comprar ancho de banda adicional.',
+          'Aceptamos PSE, tarjetas débito y crédito (Visa, Mastercard) a través de Wompi. El pago es seguro y no almacenamos datos de tu tarjeta.',
       },
       {
-        question: '¿Ofrecen descuentos por facturación anual?',
+        question: '¿Hay descuento por pago anual?',
         answer:
-          '¡Sí! Los planes anuales tienen un 20% de descuento. Puedes cambiar a facturación anual desde la configuración de tu cuenta en cualquier momento.',
+          'Sí. Los planes anuales tienen descuento. Puedes elegir facturación mensual o anual desde la configuración de tu cuenta.',
       },
       {
-        question: '¿Puedo obtener un reembolso si no estoy satisfecho?',
+        question: '¿Ofrecen reembolso?',
         answer:
-          'Sí, ofrecemos garantía de reembolso de 30 días en todos los planes de pago. Si no estás satisfecho con ' +
-          siteConfig.name +
-          ', contacta a soporte para un reembolso completo.',
+          'Sí, ofrecemos garantía de reembolso de 30 días en los planes de pago. Si no estás satisfecho, contacta a soporte para gestionar el reembolso.',
       },
     ],
   },
   {
-    name: 'Técnico',
+    name: 'Producto y uso',
     faqs: [
       {
-        question: '¿Qué tan rápidos son los despliegues?',
+        question: '¿Cómo envío documentos a la plataforma?',
         answer:
-          'La mayoría de despliegues se completan en menos de 60 segundos. Nuestra canalización optimizada cachea dependencias y usa compilaciones incrementales para poner tus cambios en vivo lo más rápido posible.',
+          'Puedes enviar facturas, recibos y extractos por WhatsApp al número oficial de afinate o subirlos desde la aplicación. Lucía (asistente contable) los procesa y organiza en tu libro mayor.',
       },
       {
-        question: '¿Soportan dominios personalizados?',
+        question: '¿Puedo conectar mi banco o ERP?',
         answer:
-          'Sí, puedes conectar dominios personalizados ilimitados a tus proyectos. Aprovisionamos y renovamos certificados SSL para todos los dominios sin coste adicional.',
+          'El plan ERP está pensado para integración API con tu sistema existente. Para opciones específicas (bancos, ERPs) contacta al equipo mediante la página de demo o contacto.',
       },
       {
-        question: '¿Puedo usar variables de entorno?',
+        question: '¿Los datos están seguros?',
         answer:
-          'Sí, puedes configurar variables de entorno para cada proyecto con valores distintos para desarrollo, vista previa y producción. Todas las variables se cifran en reposo.',
+          'Sí. Usamos cifrado en tránsito (HTTPS), base de datos con Row Level Security para que cada cliente solo vea sus datos, y pasarela de pago que cumple estándares de la industria. Más detalles en la página de Seguridad.',
       },
       {
-        question: '¿Y las funciones serverless?',
+        question: '¿Sustituye a un contador?',
         answer:
-          'Soportamos funciones serverless de serie. Despliega rutas API junto a tu frontend sin configuración. Las funciones se ejecutan en nuestra red edge global para baja latencia.',
+          'No. afinate es una herramienta de apoyo que organiza y procesa información contable y financiera. Para obligaciones que exijan firma de contador público (impuestos, estados financieros, dictámenes) debes contar con un profesional. Ver aviso legal (disclaimer) en Recursos.',
       },
     ],
   },
   {
-    name: 'Seguridad y cumplimiento',
+    name: 'Seguridad y datos',
     faqs: [
       {
-        question: '¿Están mis datos seguros?',
+        question: '¿Dónde se almacenan mis datos?',
         answer:
-          'La seguridad es nuestra prioridad. Todos los datos se cifran en tránsito y en reposo. Usamos prácticas estándar del sector y nos sometemos a auditorías de seguridad regulares.',
+          'Los datos se almacenan en base de datos con políticas de acceso (RLS) para que cada cliente solo acceda a su información. La infraestructura incluye backups y medidas de recuperación.',
       },
       {
-        question: '¿Ofrecen SSO?',
+        question: '¿Quién puede ver la información de mi cuenta?',
         answer:
-          'Sí, SSO con SAML está disponible en nuestro plan Enterprise. Soportamos integración con Okta, Azure AD, Google Workspace y otros proveedores de identidad.',
+          'Solo tu organización ve sus propios datos. afinate accede únicamente cuando es necesario para soporte o mantenimiento, con criterios internos de confidencialidad.',
       },
       {
-        question: '¿Son cumplidores de SOC 2?',
+        question: '¿Cómo reportar un incidente de seguridad?',
         answer:
-          'Sí, mantenemos cumplimiento SOC 2 Tipo II. Los clientes Enterprise pueden solicitar nuestros informes de cumplimiento y documentación de seguridad.',
+          'Puedes reportar vulnerabilidades o incidentes a afinateia@gmail.com. Revisamos cada reporte y respondemos en un plazo razonable.',
       },
     ],
   },
@@ -110,19 +106,19 @@ const faqCategories = [
     name: 'Soporte',
     faqs: [
       {
-        question: '¿Cómo puedo obtener ayuda?',
+        question: '¿Cómo obtengo ayuda?',
         answer:
-          'Ofrecemos múltiples canales de soporte: comunidad por WhatsApp para preguntas rápidas, soporte por correo para todos los clientes, y soporte prioritario con tiempos de respuesta dedicados para planes Pro y Enterprise.',
+          'Puedes escribirnos por correo (afinateia@gmail.com), WhatsApp o desde el formulario de contacto. Para clientes del plan Pyme y ERP hay soporte incluido.',
       },
       {
-        question: '¿Tienen documentación?',
+        question: '¿Dónde está la información legal (privacidad, términos, habeas data)?',
         answer:
-          '¡Sí! Nuestra documentación cubre desde los primeros pasos hasta configuraciones avanzadas. Visita nuestra sección de documentación para guías, tutoriales y referencias de API.',
+          'En la sección Recursos (/docs) encontrarás política de privacidad, términos, habeas data financiero y el aviso importante (disclaimer contable). También hay enlaces en el pie de página.',
       },
       {
-        question: '¿Cuáles son sus horarios de soporte?',
+        question: '¿Cuáles son los horarios de soporte?',
         answer:
-          'El soporte por correo está disponible de lunes a viernes, 9:00-18:00. Los clientes Enterprise tienen acceso a soporte prioritario 24/7.',
+          'Respondemos consultas en días laborables. El tiempo de respuesta habitual es de hasta 24 horas para temas generales.',
       },
     ],
   },
@@ -131,7 +127,7 @@ const faqCategories = [
 
 <MarketingLayout
   title={`Preguntas frecuentes - ${siteConfig.name}`}
-  description={`Preguntas frecuentes sobre ${siteConfig.name}. Encuentra respuestas sobre precios, funcionalidades, seguridad y más.`}
+  description={`Preguntas frecuentes sobre ${siteConfig.name}. Precios, funcionalidades, seguridad, soporte y más.`}
 >
   <PageHeader
     title="Preguntas frecuentes"
@@ -144,9 +140,9 @@ const faqCategories = [
 
   <CTA
     title="¿Aún tienes preguntas?"
-    description="¿No encuentras la respuesta que buscas? Nuestro equipo está aquí para ayudarte."
-    action={{ label: 'Contactar soporte', href: '/contact' }}
-    secondaryAction={{ label: 'Contactar por WhatsApp', href: siteConfig.social.whatsapp || '#' }}
+    description="Nuestro equipo está disponible por correo y WhatsApp para ayudarte."
+    action={{ label: 'Contactar', href: '/contact' }}
+    secondaryAction={{ label: 'WhatsApp', href: siteConfig.social?.whatsapp || '#' }}
     background="muted"
   />
 </MarketingLayout>

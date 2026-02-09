@@ -59,16 +59,17 @@ export const contactMethods: ContactMethod[] = [
 /** FAQ items displayed on the contact page */
 export const contactFAQs: ContactFAQ[] = [
   {
-    question: '¿Cuál es su tiempo de respuesta habitual?',
-    answer: 'Respondemos la mayoría de consultas en un plazo de 24 horas en días laborables.',
+    question: '¿Cuál es el tiempo de respuesta habitual?',
+    answer: 'Respondemos la mayoría de consultas en un plazo de 24 horas en días laborables (correo y WhatsApp).',
   },
   {
-    question: '¿Ofrecen soporte telefónico?',
+    question: '¿Puedo contactarlos por WhatsApp?',
     answer:
-      'El soporte telefónico está disponible para clientes Enterprise. El resto puede contactarnos por correo o Discord.',
+      'Sí. Puedes escribirnos por WhatsApp para consultas comerciales, soporte o dudas sobre la plataforma. El número está en esta página y en el pie del sitio.',
   },
   {
-    question: '¿Cómo reporto un error?',
-    answer: 'Use el formulario con el asunto "Soporte técnico" o abra un issue en nuestro GitHub.',
+    question: '¿Cómo reporto un error o una incidencia?',
+    answer:
+      'Usa el formulario de contacto con asunto "Soporte técnico" o escríbenos a afinateia@gmail.com indicando el problema. Te responderemos para dar seguimiento.',
   },
 ];

@@ -1,122 +1,84 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import PageHeader from '@sections/content/PageHeader.astro';
-import StatsSection from '@sections/social-proof/StatsSection.astro';
-import VideoEmbed from '@sections/content/VideoEmbed.astro';
 import ValuesSection from '@sections/team/ValuesSection.astro';
-import TeamSection from '@sections/team/TeamSection.astro';
 import ContentSection from '@sections/content/ContentSection.astro';
 import CTA from '@sections/marketing/CTA.astro';
 import { siteConfig } from '@/config';
 
-const team = [
-  {
-    name: 'Sarah Mitchell',
-    role: 'CEO & Co-founder',
-    bio: 'Former infrastructure lead at a major cloud provider. Sarah started afinate to make deployment accessible to every developer.',
-    avatar: '/images/team/sarah-mitchell.webp',
-  },
-  {
-    name: 'James Chen',
-    role: 'CTO & Co-founder',
-    bio: 'Built distributed systems at scale for 15 years. James leads our engineering team and architecture decisions.',
-    avatar: '/images/team/james-chen.webp',
-  },
-  {
-    name: 'Maria Rodriguez',
-    role: 'VP of Product',
-    bio: 'Product leader with a passion for developer tools. Maria ensures every feature we ship solves real problems.',
-    avatar: '/images/team/maria-rodriguez.webp',
-  },
-  {
-    name: 'David Kim',
-    role: 'VP of Engineering',
-    bio: 'Scaling expert who loves building reliable systems. David leads our platform and infrastructure teams.',
-    avatar: '/images/team/david-kim.webp',
-  },
-];
-
 const values = [
   {
-    title: 'Developer First',
+    title: 'Productividad real',
     description:
-      'We build for developers because we are developers. Every decision starts with how it impacts the people using our platform.',
+      'Construimos herramientas que ahorran tiempo y reducen errores. La contabilidad y la información financiera deben estar al día sin consumir horas de trabajo manual.',
   },
   {
-    title: 'Simplicity Wins',
+    title: 'Simplicidad',
     description:
-      'Complex problems deserve simple solutions. We work hard to hide complexity so you can focus on building.',
+      'Procesar documentos, consultar datos y tomar decisiones no debería requerir ser experto en contabilidad. La IA y un buen producto ponen la información al alcance de todos.',
   },
   {
-    title: 'Reliability Matters',
+    title: 'Transparencia',
     description:
-      'Your users depend on your app, and you depend on us. We take that responsibility seriously.',
+      'Precios claros, sin costes ocultos. Y en lo legal: privacidad, términos, habeas data y disclaimer contable visibles para que sepas con qué estás trabajando.',
   },
   {
-    title: 'Transparency Always',
+    title: 'Construcción ágil',
     description:
-      'No hidden fees, no surprise limits, no confusing pricing. What you see is what you get.',
+      'Apostamos por desarrollo iterativo, herramientas de IA y buenas prácticas técnicas para llevar al mercado soluciones útiles de forma sostenible.',
   },
-];
-
-const stats = [
-  { value: '50K+', label: 'Developers' },
-  { value: '10M+', label: 'Deployments' },
-  { value: '99.99%', label: 'Uptime' },
-  { value: '200+', label: 'Edge Locations' },
 ];
 ---
 
 <MarketingLayout
-  title={`About - ${siteConfig.name}`}
-  description="Learn about the team and mission behind afinate, the modern deployment platform for developers."
+  title={`Nosotros - ${siteConfig.name}`}
+  description="Conoce la historia y el equipo detrás de afinate: plataforma de gestión financiera y contable con IA, creada en Medellín en 2026."
 >
-  <PageHeader title="We're building the future of deployment" align="left" maxWidth="lg">
+  <PageHeader title="Sobre afinate" align="left" maxWidth="lg">
     <p class="mt-6 text-lg text-text-muted leading-relaxed">
-      afinate started with a simple observation: deploying applications shouldn't be hard. Yet
-      developers everywhere were spending hours configuring CI/CD pipelines, managing
-      infrastructure, and debugging deployment issues.
+      {siteConfig.name} nació el <strong class="text-text">5 de febrero de 2026</strong> en
+      <strong class="text-text">Medellín, Colombia</strong>, con una idea simple: que emprendedores y
+      pymes tengan la contabilidad al día y la información financiera útil sin dedicar horas a
+      tareas repetitivas ni depender de una sola persona para entender los números.
     </p>
     <p class="mt-4 text-lg text-text-muted leading-relaxed">
-      We founded afinate in 2021 to change that. Our mission is to make deployment so simple that it
-      disappears—letting developers focus entirely on building great products.
+      El proyecto lo impulsa un <strong class="text-text">solopreneur</strong> con formación en
+      administración de negocios (énfasis en proyectos y finanzas) y experiencia en consultoría y en
+      la creación de varias startups. La construcción del producto combina
+      <strong class="text-text">vibe coding</strong> y herramientas de IA para iterar rápido y
+      ofrecer valor desde el primer día: un equipo de agentes de IA (Lucía, Sofía y María) que
+      procesan documentos, mantienen el libro mayor, responden preguntas y apoyan la toma de
+      decisiones.
+    </p>
+    <p class="mt-4 text-lg text-text-muted leading-relaxed">
+      No somos una gran corporación ni una plantilla numerosa; somos un proyecto enfocado en
+      resolver un problema concreto para negocios que quieren orden, claridad y apoyo tecnológico
+      en sus procesos financieros y contables.
     </p>
   </PageHeader>
 
-  <StatsSection stats={stats} background="muted" />
-
-  <VideoEmbed
-    title="See afinate in action"
-    subtitle="Watch how easy it is to deploy your first application in under 2 minutes."
-    videoId="dQw4w9WgXcQ"
-    provider="youtube"
-    maxWidth="lg"
-    background="default"
-  />
-
   <ValuesSection
-    title="Our values"
+    title="Nuestros valores"
     items={values}
     variant="card"
     columns={2}
     background="default"
   />
 
-  <TeamSection title="Meet the team" members={team} columns={4} background="muted" />
-
   <ContentSection
-    title="Backed by the best"
+    title="Qué hacemos"
     content={[
-      "We're proud to be backed by leading investors who share our vision for the future of developer tools. Our investors include top-tier venture capital firms and angels who have built and scaled developer-focused companies.",
-      "With their support, we're building a platform that will serve millions of developers worldwide.",
+      'afinate ofrece una plataforma de gestión financiera y contable impulsada por IA. Incluye recepción de documentos (por ejemplo por WhatsApp), procesamiento automático con Lucía (asistente contable), análisis y consultas en lenguaje natural con Sofía (analista financiera) y apoyo a la gestión con María (gerente financiera de IA).',
+      'Los planes van desde un nivel básico gratuito hasta opciones para pymes y un plan ERP personalizado para integración con sistemas existentes. Toda la información sobre precios, seguridad, equipo de IA y aspectos legales (privacidad, términos, habeas data, disclaimer contable) está disponible en el sitio.',
     ]}
-    background="default"
+    background="muted"
   />
 
   <CTA
-    title="Join us on our mission"
-    description="We're always looking for talented people who want to make deployment better for everyone."
-    action={{ label: 'View Open Positions', href: '/careers' }}
-    background="muted"
+    title="¿Quieres conocer la plataforma?"
+    description="Reserva una demo o regístrate para probar afinate con tu información."
+    action={{ label: 'Programar demo', href: '/demo' }}
+    secondaryAction={{ label: 'Registrarse', href: '/register' }}
+    background="default"
   />
 </MarketingLayout>
