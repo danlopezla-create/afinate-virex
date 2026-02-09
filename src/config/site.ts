@@ -4,7 +4,7 @@ import type { SocialLinks, LegalConfig } from '../lib/types';
 export const name = 'afínate';
 
 /** Site description for SEO and meta tags */
-export const description = 'Tu equipo financiero de élite: Lucía, Sofía y María. Precisión y tecnología para escalar tu PYME.';
+export const description = 'Procesos Autónomos para tu Empresa.';
 
 /** Production URL of your site */
 export const url = 'https://afinate.com';
