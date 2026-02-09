@@ -112,12 +112,12 @@ const solidBgClass = {
   accent: 'bg-primary/5',
 }[background];
 
-// Determine if we need light text (for dark backgrounds)
+// Determine if we need light text (for dark backgrounds; codeRain keeps theme colors)
 const needsLightText =
   textColor === 'light' ||
   (textColor === 'auto' && (backgroundType === 'image' || backgroundType === 'video') && overlay);
 
-// Text color classes
+// Text color classes (codeRain uses theme so text stays readable)
 const textClasses = needsLightText
   ? {
       heading: 'text-white',
@@ -140,6 +140,9 @@ const minHeightClass = {
 // Alignment classes
 const alignClass = align === 'left' ? 'text-left' : 'text-center mx-auto';
 const buttonAlignClass = align === 'left' ? 'justify-start' : 'justify-center';
+
+// Estilo de overlay en frontmatter para evitar error de parsing en template
+const overlayStyle = { opacity: overlayOpacity / 100 };
 ---
 
 <section
@@ -159,10 +162,10 @@ const buttonAlignClass = align === 'left' ? 'justify-start' : 'justify-center';
     )
   }
 
-  {/* Video Background */}
+  {/* Video Background - solo ambientación, no interfiere con el texto */}
   {
     backgroundType === 'video' && backgroundVideo && (
-      <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <video
           autoplay
           muted
@@ -180,7 +183,7 @@ const buttonAlignClass = align === 'left' ? 'justify-start' : 'justify-center';
   {/* Overlay */}
   {
     overlay && (backgroundType === 'image' || backgroundType === 'video') && (
-      <div class="absolute inset-0 z-1 bg-black" style={`opacity: ${overlayOpacity / 100}`} />
+      <div class="absolute inset-0 z-1 bg-black" style={overlayStyle} />
     )
   }
 

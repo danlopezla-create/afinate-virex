@@ -9,7 +9,7 @@
 import type { SocialLinks, LegalConfig } from '../lib/types';
 
 /** Site name displayed in header, footer, and meta tags */
-export const name = import.meta.env.SITE_NAME || 'Afinate';
+export const name = import.meta.env.SITE_NAME || 'afinate';
 
 /** Site description for SEO and meta tags */
 export const description =
@@ -19,9 +19,9 @@ export const description =
 export const url = import.meta.env.SITE_URL || 'http://localhost:4321';
 
 /** Author name for meta tags and copyright */
-export const author = import.meta.env.SITE_AUTHOR || 'Afinate';
+export const author = import.meta.env.SITE_AUTHOR || 'afinate';
 
-/** Path to logo file (relative to /public); fallback and SEO/JSON-LD (Afinate light) */
+/** Path to logo file (relative to /public); fallback and SEO/JSON-LD (afinate light) */
 export const logo = '/logo-light-afinate.svg';
 
 /** Logo for light theme (black letters, visible on light background) */
@@ -33,7 +33,7 @@ export const logoDark = '/logo-dark-afinate.svg';
 /** Path to Open Graph image (relative to /public) */
 export const ogImage = '/images/og-image.png';
 
-/** Social media links - Afinate accounts (add real URLs when ready) */
+/** Social media links - afinate accounts (add real URLs when ready) */
 export const social: SocialLinks = {
   whatsapp: 'https://wa.me/',
   instagram: 'https://instagram.com/afinate',

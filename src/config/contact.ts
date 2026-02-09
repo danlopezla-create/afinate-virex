@@ -45,7 +45,7 @@ export const contactMethods: ContactMethod[] = [
   {
     icon: 'simple-icons:facebook',
     label: 'Facebook',
-    value: 'Afinate',
+    value: 'afinate',
     href: 'https://facebook.com/afinate',
   },
   {

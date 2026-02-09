@@ -10,19 +10,19 @@ const plans = [
     monthlyPrice: 0,
     description: 'Para proyectos personales',
     features: [
-      'Equipo financiero de IA',
+      '1 proyecto personal',
       'Acceso limitado al tablero inteligente',
       'Hasta 50 documentos procesados',
     ],
     highlighted: false,
-    cta: { label: 'Comenzar gratis', href: '/register' },
+    cta: { label: 'Registrarse gratis', href: '/register' },
   },
   {
     name: 'Pyme',
     monthlyPrice: 490000,
-    description: 'Para empresas sin sistema ERP',
+    description: 'Para pequeñas y medianas empresas',
     features: [
-      'Equipo financiero de IA',
+      '1 empresa',
       'Acceso completo al tablero inteligente',
       'Hasta 500 documentos procesados',
       'Hasta 300 consultas con la IA',
@@ -36,9 +36,9 @@ const plans = [
     name: 'ERP',
     monthlyPrice: null,
     customPrice: 'Personalizado',
-    description: 'Para empresas con sistema ERP',
+    description: 'Para integración API con su ERP existente',
     features: [
-      'Equipo financiero de IA y desarrollos',
+      '1 o más empresas',
       'Acceso a un tablero personalizado',
       'Documentos procesados ilimitados',
       'Acceso ilimitado a consultas con la IA',
@@ -78,7 +78,11 @@ const plans = [
       { icon: 'lucide:credit-card', label: 'Cumplimiento PCI' },
       { icon: 'lucide:smartphone', label: 'Pago con Wompi (PSE, tarjetas)' },
     ]}
-    paymentMethods={[]}
+    paymentMethods={[
+      { name: 'PSE', logo: '/images/payments/pse.svg' },
+      { name: 'Visa', logo: '/images/payments/visa.svg' },
+      { name: 'Mastercard', logo: '/images/payments/mastercard.svg' },
+    ]}
     paymentNote="Pago seguro con Wompi: PSE, tarjetas débito y crédito (Visa, Mastercard)."
   />
 

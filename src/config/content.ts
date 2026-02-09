@@ -17,7 +17,7 @@ export const announcement: AnnouncementConfig = {
   id: 'launch-2025',
 
   /** Announcement text */
-  text: '🚀 Afinate 2.0 ya está aquí',
+  text: '🚀 afinate 2.0 ya está aquí',
 
   /** Optional link URL */
   href: '/changelog',

@@ -25,10 +25,9 @@ export const navigation: Navigation = {
       { label: 'Seguridad', href: '/security' },
       { label: 'Recursos', href: '/docs', feature: 'docs' },
       { label: 'Blog', href: '/blog', feature: 'blog' },
-      { label: 'Demo', href: '/dashboard' },
     ],
     cta: [
-      { label: 'Descarga app', href: '/#descarga-app', variant: 'ghost' },
+      { label: 'Demo', href: '/dashboard', variant: 'ghost' },
       { label: 'Iniciar sesión', href: '/login', variant: 'ghost' },
       { label: 'Registrarse', href: '/register', variant: 'primary' },
     ],

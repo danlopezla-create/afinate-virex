@@ -20,7 +20,7 @@ const formattedDate = formatDate(publishedDate, {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-});
+}, 'es-ES');
 ---
 
 <MarketingLayout
@@ -53,7 +53,7 @@ const formattedDate = formatDate(publishedDate, {
           </span>
           <span class="flex items-center gap-1">
             <Icon name="lucide:clock" class="w-4 h-4" />
-            {readingTime} min read
+            {readingTime} min de lectura
           </span>
         </div>
 

@@ -8,7 +8,17 @@ type BlogPost = CollectionEntry<'blog'>;
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-  return posts.map((post: BlogPost) => ({
+  // Solo generar rutas para publicaciones visibles (7 feb 2026) para evitar 500 en entradas antiguas
+  const FEATURE_DATE = '2026-02-07';
+  const start = new Date(FEATURE_DATE);
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(FEATURE_DATE);
+  end.setHours(23, 59, 59, 999);
+  const visible = posts.filter((p: BlogPost) => {
+    const t = p.data.publishedDate.getTime();
+    return t >= start.getTime() && t <= end.getTime();
+  });
+  return visible.map((post: BlogPost) => ({
     params: { slug: post.id },
     props: { post },
   }));
@@ -21,15 +31,24 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-// Get related posts based on shared tags
+// Get related posts (solo de publicaciones visibles del 7 feb 2026)
 const allPosts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
+const FEATURE_DATE = '2026-02-07';
+const start = new Date(FEATURE_DATE);
+start.setHours(0, 0, 0, 0);
+const end = new Date(FEATURE_DATE);
+end.setHours(23, 59, 59, 999);
+const visiblePosts = allPosts.filter((p: BlogPost) => {
+  const t = p.data.publishedDate.getTime();
+  return t >= start.getTime() && t <= end.getTime();
+});
 
 interface RelatedPostWithScore {
   post: BlogPost;
   sharedTags: number;
 }
 
-const relatedPosts: BlogPost[] = allPosts
+const relatedPosts: BlogPost[] = visiblePosts
   .filter((p: BlogPost) => p.id !== post.id)
   .map(
     (p: BlogPost): RelatedPostWithScore => ({
@@ -63,19 +82,19 @@ const relatedPosts: BlogPost[] = allPosts
   {
     relatedPosts.length > 0 && (
       <aside class="mt-16 pt-12 border-t border-border">
-        <h2 class="text-2xl font-bold text-text mb-8">Related Posts</h2>
+        <h2 class="text-2xl font-bold text-text mb-8">Entradas relacionadas</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {relatedPosts.map((relatedPost) => (
             <a href={`/blog/${relatedPost.id}`} class="group block">
               <article class="h-full p-4 rounded-lg border border-border hover:border-primary transition-colors">
                 <div class="text-sm text-text-muted mb-2">
-                  {relatedPost.data.publishedDate.toLocaleDateString('en-US', {
+                  {relatedPost.data.publishedDate.toLocaleDateString('es-ES', {
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric',
                   })}
                   <span class="mx-1">·</span>
-                  {calculateReadingTime(relatedPost.body || '')} min read
+                  {calculateReadingTime(relatedPost.body || '')} min de lectura
                 </div>
                 <h3 class="font-semibold text-text group-hover:text-primary transition-colors line-clamp-2">
                   {relatedPost.data.title}

@@ -11,7 +11,19 @@ type BlogPost = CollectionEntry<'blog'>;
 const POSTS_PER_PAGE = 6;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const sortedPosts = [...posts].sort(
+
+// Solo mostrar la publicación del 7 de febrero de 2026 (resto ocultas)
+const FEATURE_DATE = '2026-02-07';
+const featuredDateStart = new Date(FEATURE_DATE);
+featuredDateStart.setHours(0, 0, 0, 0);
+const featuredDateEnd = new Date(FEATURE_DATE);
+featuredDateEnd.setHours(23, 59, 59, 999);
+const visiblePosts = posts.filter((p: BlogPost) => {
+  const d = p.data.publishedDate.getTime();
+  return d >= featuredDateStart.getTime() && d <= featuredDateEnd.getTime();
+});
+
+const sortedPosts = [...visiblePosts].sort(
   (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
 
@@ -20,8 +32,8 @@ const currentPage = 1;
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 const paginatedPosts: BlogPost[] = sortedPosts.slice(0, POSTS_PER_PAGE);
 
-// Get all unique tags
-const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
+// Get all unique tags from visible posts only
+const allTags = [...new Set(visiblePosts.flatMap((post: BlogPost) => post.data.tags))].sort();
 
 // Helper to get typed tags
 const getTypedTags = (tags: string[]) => tags.slice(0, 3);
@@ -29,14 +41,14 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
 
 <MarketingLayout
   title={`Blog - ${siteConfig.name}`}
-  description={`Latest news, updates, and insights from the ${siteConfig.name} team.`}
+  description={`Artículos y reflexiones del equipo de ${siteConfig.name}.`}
 >
   <section class="py-section">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h1 class="text-4xl sm:text-5xl font-bold text-text">Blog</h1>
         <p class="mt-4 text-lg text-text-muted max-w-2xl mx-auto">
-          Latest news, updates, and insights from the {siteConfig.name} team.
+          Artículos y reflexiones del equipo de {siteConfig.name}.
         </p>
       </div>
 
@@ -45,12 +57,12 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
         allTags.length > 0 && (
           <div class="mb-10">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
+              <span class="text-sm font-medium text-text-muted mr-2">Filtrar por etiqueta:</span>
               <a
                 href="/blog"
                 class="px-3 py-1.5 text-sm font-medium rounded-md bg-primary text-primary-foreground"
               >
-                All
+                Todos
               </a>
               {allTags.map((tag) => (
                 <a
@@ -88,14 +100,14 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
                   <div class="flex-1">
                     <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
                       <span>
-                        {post.data.publishedDate.toLocaleDateString('en-US', {
+                        {post.data.publishedDate.toLocaleDateString('es-ES', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric',
                         })}
                       </span>
                       <span>·</span>
-                      <span>{calculateReadingTime(post.body || '')} min read</span>
+                      <span>{calculateReadingTime(post.body || '')} min de lectura</span>
                     </div>
                     <h2 class="text-xl font-bold text-text group-hover:text-primary transition-colors">
                       {post.data.title}
@@ -121,7 +133,7 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
       {
         sortedPosts.length === 0 && (
           <div class="text-center py-12">
-            <p class="text-text-muted">No blog posts yet. Check back soon!</p>
+            <p class="text-text-muted">Aún no hay entradas. ¡Vuelve pronto!</p>
           </div>
         )
       }

@@ -10,19 +10,19 @@ import { siteConfig } from '@/config';
 
 const certifications = [
   {
-    name: 'Supabase (PostgreSQL + RLS)',
+    name: 'Base de datos (RLS)',
     icon: 'lucide:database',
     description:
       'Base de datos con Row Level Security para que cada cliente acceda solo a sus datos. Políticas de acceso definidas por aplicación.',
   },
   {
-    name: 'Cloudflare (SSL + CDN)',
+    name: 'SSL y CDN',
     icon: 'lucide:shield',
     description:
       'Dominio protegido con DNS, certificados SSL y CDN. Tráfico web cifrado y protección frente a amenazas comunes.',
   },
   {
-    name: 'Wompi (pagos)',
+    name: 'Pasarela de pago',
     icon: 'lucide:credit-card',
     description:
       'Pasarela de pago que cumple estándares de seguridad para transacciones. No almacenamos datos de tarjetas.',
@@ -31,7 +31,7 @@ const certifications = [
     name: 'Backups y disponibilidad',
     icon: 'lucide:refresh-cw',
     description:
-      'Copias de seguridad en VPS (Hetzner) y almacenamiento Supabase. Infraestructura preparada para recuperación.',
+      'Copias de seguridad en servidor y almacenamiento en base de datos. Infraestructura preparada para recuperación.',
   },
 ];
 
@@ -40,19 +40,19 @@ const securityFeatures = [
     icon: 'lucide:lock',
     title: 'Cifrado en tránsito',
     description:
-      'Toda la comunicación con la web y los servicios se realiza por HTTPS (TLS) gracias a Cloudflare y configuración en servidor. Los datos no viajan en claro.',
+      'Toda la comunicación con la web y los servicios se realiza por HTTPS (TLS). Los datos no viajan en claro.',
   },
   {
     icon: 'lucide:key',
     title: 'Control de acceso a datos',
     description:
-      'Supabase utiliza Row Level Security (RLS) en PostgreSQL. Las consultas se filtran por usuario/tenant para que cada cliente solo vea su propia información.',
+      'La base de datos utiliza Row Level Security (RLS). Las consultas se filtran por usuario para que cada cliente solo vea su propia información.',
   },
   {
     icon: 'lucide:server',
     title: 'Infraestructura aislada',
     description:
-      'Backend y automatizaciones (n8n, Evolution API, Budibase) se ejecutan en VPS (Hetzner) con Docker/Coolify y VPN (Tailscale), reduciendo superficie de exposición.',
+      'Backend, automatizaciones y panel de control se ejecutan en servidor dedicado con contenedores y VPN, reduciendo superficie de exposición.',
   },
   {
     icon: 'lucide:file-check',
@@ -68,9 +68,9 @@ const securityFeatures = [
   },
   {
     icon: 'lucide:wallet',
-    title: 'Pagos con Wompi',
+    title: 'Pasarela de pago',
     description:
-      'Los pagos se procesan mediante Wompi (PSE, tarjetas). No almacenamos datos sensibles de medios de pago; la pasarela cumple estándares de la industria.',
+      'Los pagos se procesan mediante una pasarela que cumple estándares de la industria. No almacenamos datos sensibles de medios de pago.',
   },
 ];
 
@@ -78,17 +78,17 @@ const securityFAQs = [
   {
     question: '¿Dónde se almacenan los datos de mi empresa?',
     answer:
-      'Los datos de negocio y documentos se almacenan en Supabase (PostgreSQL) con políticas RLS. La infraestructura de procesos (n8n, dashboard) corre en un VPS dedicado con backups configurados.',
+      'Los datos de negocio y documentos se almacenan en base de datos con políticas RLS. La infraestructura de procesos y el panel de control corren en servidor dedicado con backups configurados.',
   },
   {
     question: '¿Cómo se protegen los datos en tránsito?',
     answer:
-      'Todo el tráfico entre tu navegador y nuestros servicios utiliza HTTPS (TLS). El dominio está protegido con Cloudflare, que aporta SSL y capa de protección adicional.',
+      'Todo el tráfico entre tu navegador y nuestros servicios utiliza HTTPS (TLS). El dominio está protegido con SSL y una capa adicional de protección.',
   },
   {
     question: '¿Quién puede ver la información de mi cuenta?',
     answer:
-      'Solo tu organización tiene acceso a sus propios datos gracias a Row Level Security en la base de datos. Afinate accede únicamente cuando es necesario para soporte o mantenimiento, con criterios internos de confidencialidad.',
+      'Solo tu organización tiene acceso a sus propios datos gracias a Row Level Security en la base de datos. afinate accede únicamente cuando es necesario para soporte o mantenimiento, con criterios internos de confidencialidad.',
   },
   {
     question: '¿Cómo reportar una vulnerabilidad o incidente?',
@@ -131,17 +131,14 @@ const securityFAQs = [
           <h2 class="text-2xl sm:text-3xl font-bold text-text">Stack técnico y buenas prácticas</h2>
           <div class="mt-6 space-y-4 text-text-muted">
             <p>
-              La web está construida con <strong class="text-text">Astro</strong> y se sirve de forma segura.
-              Los datos y la lógica de negocio dependen de <strong class="text-text">Supabase</strong> (PostgreSQL con RLS,
-              almacenamiento y backups). La capa de pago la gestiona <strong class="text-text">Wompi</strong>;
-              el procesamiento de documentos con IA utiliza APIs de proveedores con compromisos de privacidad.
+              La web se sirve de forma segura. Los datos y la lógica de negocio dependen de una base de datos
+              con RLS, almacenamiento y backups. La capa de pago la gestiona una pasarela de pago;
+              el procesamiento de documentos con IA utiliza APIs con compromisos de privacidad.
             </p>
             <p>
-              Las automatizaciones, el dashboard
-              y la conexión con <strong class="text-text">WhatsApp (Evolution API)</strong> se ejecutan en un
-              <strong class="text-text">VPS (Hetzner)</strong> gestionado con <strong class="text-text">Docker y Coolify</strong>,
-              accesible por <strong class="text-text">VPN (Tailscale)</strong> para reducir riesgos. El dominio está
-              protegido con <strong class="text-text">Cloudflare</strong> (DNS, SSL y CDN).
+              Las automatizaciones, el panel de control y la conexión con mensajería oficial se ejecutan en
+              servidor dedicado gestionado con contenedores, accesible por VPN para reducir riesgos. El dominio
+              está protegido con DNS, SSL y CDN.
             </p>
             <p>
               Nos comprometemos a mantener actualizado el stack, aplicar parches de seguridad y revisar el acceso

@@ -49,7 +49,8 @@ export function formatDate(
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-  }
+  },
+  locale = 'en-US'
 ): string {
-  return new Intl.DateTimeFormat('en-US', options).format(date);
+  return new Intl.DateTimeFormat(locale, options).format(date);
 }
