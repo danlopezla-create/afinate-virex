@@ -18,7 +18,7 @@ export const logoLight = '/logo-light-afinate.svg';
 export const logoDark = '/logo-dark-afinate.svg';
 
 /** Path to Open Graph image */
-export const ogImage = 'https://afinate.com/images/og-image.png';
+export const ogImage = 'hgtttps://afinate.com/images/og-image.png';
 
 /** Social media links - Actualizado con tu WhatsApp */
 export const social: SocialLinks = {
