@@ -17,8 +17,8 @@ export const logo = '/logo-light-afinate.svg';
 export const logoLight = '/logo-light-afinate.svg';
 export const logoDark = '/logo-dark-afinate.svg';
 
-/** Path to Open Graph image */
-export const ogImage = 'hgtttps://afinate.com/images/og-image.png';
+/** Path to Open Graph image (WhatsApp, Facebook, Twitter). Recomendado: 1200×630 px, PNG/JPG, bajo 1 MB. */
+export const ogImage = '/images/og-image.png';
 
 /** Social media links - Actualizado con tu WhatsApp */
 export const social: SocialLinks = {
