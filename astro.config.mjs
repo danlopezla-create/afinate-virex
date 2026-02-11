@@ -9,8 +9,10 @@ import { siteConfig } from './src/config';
 const isCloudflare = !!process.env.CF_PAGES;
 
 // Importamos el adaptador de forma dinámica para evitar que tu ARM64 explote
-const adapter = isCloudflare 
-  ? (await import('@astrojs/cloudflare')).default() 
+const adapter = isCloudflare
+  ? (await import('@astrojs/cloudflare')).default({
+      imageService: 'compile', // sharp solo en build; Cloudflare no soporta sharp en runtime
+    })
   : (await import('@astrojs/node')).default({ mode: 'standalone' });
 
 export default defineConfig({

@@ -2,9 +2,18 @@
  * Microsoft OAuth - Redirect to Microsoft login
  * GET /auth/microsoft - Redirects user to Microsoft Entra ID authorize URL.
  * Requires env: AZURE_CLIENT_ID, AZURE_TENANT_ID (or "common"), SITE_URL
+ * Uses Web Crypto API (no node:crypto) for Cloudflare Workers compatibility.
  */
 import type { APIRoute } from 'astro';
-import { randomBytes } from 'node:crypto';
+
+function secureRandomBase64Url(bytesLength: number): string {
+  const bytes = new Uint8Array(bytesLength);
+  crypto.getRandomValues(bytes);
+  return btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
 
 const AZURE_CLIENT_ID = import.meta.env.AZURE_CLIENT_ID;
 const AZURE_TENANT_ID = import.meta.env.AZURE_TENANT_ID || 'common';
@@ -18,7 +27,7 @@ export const GET: APIRoute = async ({ redirect }) => {
   if (!AZURE_CLIENT_ID) {
     return redirect('/login?error=azure_not_configured');
   }
-  const state = randomBytes(24).toString('base64url');
+  const state = secureRandomBase64Url(24);
   const authorizeUrl = new URL(`https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/authorize`);
   authorizeUrl.searchParams.set('client_id', AZURE_CLIENT_ID);
   authorizeUrl.searchParams.set('response_type', 'code');

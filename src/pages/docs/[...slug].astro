@@ -3,6 +3,8 @@ import DocsLayout from '@/layouts/DocsLayout.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
+export const prerender = true;
+
 type DocsEntry = CollectionEntry<'docs'>;
 
 export async function getStaticPaths() {

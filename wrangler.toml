@@ -1,0 +1,17 @@
+# Cloudflare Pages / Workers - Wrangler config
+# Para sesiones de Astro se requiere un KV namespace con binding "SESSION".
+#
+# Opción A - Cloudflare Pages (deploy por Git): en el Dashboard ve a
+#   Tu proyecto > Settings > Functions > KV namespace bindings
+# y añade un binding con nombre "SESSION" y el namespace que crees en Storage > KV.
+#
+# Opción B - Crear namespace por CLI y usar este archivo:
+#   npx wrangler kv:namespace create "SESSION"
+# Luego reemplaza REPLACE_WITH_YOUR_KV_NAMESPACE_ID abajo por el id devuelto.
+
+name = "afinate-virex"
+compatibility_date = "2025-02-01"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

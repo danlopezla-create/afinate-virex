@@ -21,6 +21,8 @@ import Modal from '@dashboard-ui/Modal.astro';
 import { getProject, getProjects, getTeamMembers } from '@/lib/dashboard-data';
 import { Icon } from 'astro-icon/components';
 
+export const prerender = true;
+
 // Generate static paths for all projects
 export async function getStaticPaths() {
   const projects = getProjects();

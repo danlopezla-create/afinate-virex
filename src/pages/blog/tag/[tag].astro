@@ -4,6 +4,8 @@ import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
+export const prerender = true;
+
 type BlogPost = CollectionEntry<'blog'>;
 
 export async function getStaticPaths() {
