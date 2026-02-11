@@ -4,44 +4,70 @@ import Hero from '@sections/marketing/Hero.astro';
 import HowItWorks from '@sections/marketing/HowItWorks.astro';
 import Newsletter from '@sections/marketing/Newsletter.astro';
 import { siteConfig } from '@/config';
+import ParticlesHero from '@/components/ParticlesHero.astro';
 ---
 
 <MarketingLayout
   title={`${siteConfig.name} - ${siteConfig.description}`}
   description={siteConfig.description}
 >
-  <Hero
-    title="Procesos Autónomos para tu Empresa"
-    subtitle="Trabaja con la confianza de tener empleados expertos al alcance de una suscripción."
-    primaryCTA={{ label: 'Comenzar gratis', href: '/register' }}
-    textColor="auto"
-  />
+  <section class="relative w-full overflow-hidden bg-background">
+    <ParticlesHero />
+    
+    <Hero
+      title="Procesos Autónomos para tu Empresa"
+      subtitle="Trabaja con la confianza de tener empleados expertos al alcance de una suscripción."
+      primaryCTA={{ label: 'Comienza gratis', href: '/register' }}
+      textColor="auto"
+    />
+  </section>
 
-  <HowItWorks
-    title="En 3 pasos sencillos"
-    subtitle="De la idea a la producción en pocos minutos."
-    steps={[
-      {
-        title: 'Regístrate e inicia sesión',
-        description:
-          'Diligencia tu nombre, correo electrónico y contraseña.',
-        icon: 'lucide:user-plus',
-      },
-      {
-        title: 'Envía tu información',
-        description:
-          'Comparte desde WhatsApp o la app; facturas, recibos y extractos bancarios.',
-        icon: 'simple-icons:whatsapp',
-      },
-      {
-        title: 'Revisa y ejecuta',
-        description: 'Verifica tu contabilidad y despliega la estrategia de la mano de un equipo experto.',
-        icon: 'lucide:rocket',
-      },
-    ]}
-    variant="horizontal"
-    background="muted"
-  />
+  <section
+    aria-label="En 3 pasos sencillos"
+    class="py-section pt-0 bg-background"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <h2 class="text-3xl sm:text-4xl font-bold text-text">En 3 pasos sencillos</h2>
+        <p class="mt-4 text-lg text-text-muted">
+          Desde que te registras hasta que ves tus indicadores financieros, todo está pensado para que
+          puedas utilizar el servicio rápido, sin fricciones y con control total de tu información.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <article class="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+          <h3 class="text-xl font-semibold text-text text-center py-4 bg-surface">1. Registra tu información</h3>
+          <img src="/registroafinate.jpeg" alt="Registro" loading="lazy" class="w-full h-auto object-contain bg-muted" />
+          <div class="flex-1 p-6 flex flex-col">
+            <p class="text-sm text-text-muted leading-relaxed">
+              Completa tu nombre, correo electrónico y elige una contraseña. Al registrarte se crea tu cuenta y se activa el acceso al <strong class="text-text">Tablero Inteligente</strong>.
+            </p>
+          </div>
+        </article>
+
+        <article class="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+          <h3 class="text-xl font-semibold text-text text-center py-4 bg-surface">2. Envía tus documentos</h3>
+          <img src="/whatsappafinate.jpeg" alt="WhatsApp" loading="lazy" class="w-full h-auto object-contain bg-muted" />
+          <div class="flex-1 p-6 flex flex-col">
+            <p class="text-sm text-text-muted leading-relaxed">
+            Envía tus facturas, recibos y extractos bancarios al número de <strong class="text-text"> Whatsaapp +57 321 390 2280</strong> o súbelos directamente en el tablero inteligente.
+            </p>
+          </div>
+        </article>
+
+        <article class="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+          <h3 class="text-xl font-semibold text-text text-center py-4 bg-surface">3. Revisa tu tablero</h3>
+          <img src="/dashboardafinate.jpeg" alt="Dashboard" loading="lazy" class="w-full h-auto object-contain bg-muted" />
+          <div class="flex-1 p-6 flex flex-col">
+            <p class="text-sm text-text-muted leading-relaxed">
+              Nuestros agentes de IA se encargan de <strong class="text-text">recibir, contabilizar, conciliar, consolidar y proyectar</strong> tu información, alimentando un tablero con indicadores clave para que siempre tomes las mejores decisiones.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section id="descarga-app" aria-label="Descarga app y novedades">
     <Newsletter />

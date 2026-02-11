@@ -12,18 +12,8 @@ const POSTS_PER_PAGE = 6;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
 
-// Solo mostrar la publicación del 7 de febrero de 2026 (resto ocultas)
-const FEATURE_DATE = '2026-02-07';
-const featuredDateStart = new Date(FEATURE_DATE);
-featuredDateStart.setHours(0, 0, 0, 0);
-const featuredDateEnd = new Date(FEATURE_DATE);
-featuredDateEnd.setHours(23, 59, 59, 999);
-const visiblePosts = posts.filter((p: BlogPost) => {
-  const d = p.data.publishedDate.getTime();
-  return d >= featuredDateStart.getTime() && d <= featuredDateEnd.getTime();
-});
-
-const sortedPosts = [...visiblePosts].sort(
+// Mostrar todos los posts publicados, ordenados por fecha (más recientes primero)
+const sortedPosts = [...posts].sort(
   (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
 
@@ -33,7 +23,7 @@ const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 const paginatedPosts: BlogPost[] = sortedPosts.slice(0, POSTS_PER_PAGE);
 
 // Get all unique tags from visible posts only
-const allTags = [...new Set(visiblePosts.flatMap((post: BlogPost) => post.data.tags))].sort();
+const allTags = [...new Set(sortedPosts.flatMap((post: BlogPost) => post.data.tags))].sort();
 
 // Helper to get typed tags
 const getTypedTags = (tags: string[]) => tags.slice(0, 3);

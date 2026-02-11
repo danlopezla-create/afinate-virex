@@ -34,11 +34,11 @@ function formatDate(date: Date): string {
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays === 0) return 'Hoy';
+  if (diffDays === 1) return 'Ayer';
+  if (diffDays < 7) return `Hace ${diffDays} días`;
 
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return date.toLocaleDateString('es-CO', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 // Get status badge color
@@ -54,19 +54,25 @@ function getStatusColor(status: string): string {
       return '';
   }
 }
+
+const statusLabels: Record<string, string> = {
+  active: 'Conciliado',
+  archived: 'Por conciliar',
+  draft: 'Por conciliar',
+};
 ---
 
 <DashboardLayout
-  title="Dashboard Overview"
-  description="View your analytics and metrics"
-  breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Overview' }]}
+  title="Tablero Inteligente"
+  description="Resumen de tus indicadores y actividad reciente."
+  breadcrumbs={[{ label: 'Tablero Inteligente', href: '/dashboard' }, { label: 'Resumen' }]}
 >
   <div class="dashboard-overview">
     <!-- Page Header -->
     <div class="page-header">
       <h1 class="page-title">Dashboard Overview</h1>
       <p class="page-description">
-        Welcome back! Here's what's happening with your projects today.
+        Bienvenido de nuevo. Aquí encuentras un resumen rápido de la actividad y los indicadores de tu negocio.
       </p>
     </div>
 
@@ -86,7 +92,7 @@ function getStatusColor(status: string): string {
     </div>
 
     <!-- Chart Section -->
-    <Card title="Project Activity" description="Projects created over the last 7 days">
+    <Card title="Actividad de documentos" description="Documentos procesados en los últimos 7 días">
       <Chart
         type="area"
         data={chartData}
@@ -96,7 +102,7 @@ function getStatusColor(status: string): string {
     </Card>
 
     <!-- Recent Activity Section -->
-    <Card title="Recent Activity" description="Latest project updates">
+    <Card title="Actividad reciente" description="Últimos movimientos registrados">
       <div class="activity-list">
         {
           recentActivity.map((project) => (
@@ -110,7 +116,7 @@ function getStatusColor(status: string): string {
                     {project.name}
                   </a>
                   <span class:list={['activity-status', getStatusColor(project.status)]}>
-                    {project.status}
+                    {statusLabels[project.status] ?? project.status}
                   </span>
                 </div>
                 <p class="activity-description">{project.description}</p>
@@ -121,7 +127,7 @@ function getStatusColor(status: string): string {
                   </span>
                   <span class="activity-date">
                     <Icon name="lucide:clock" />
-                    Updated {formatDate(project.updatedAt)}
+                    Actualizado {formatDate(project.updatedAt)}
                   </span>
                 </div>
               </div>

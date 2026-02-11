@@ -1,0 +1,119 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title="Sofía – Diseño técnico de la analista financiera de IA"
+  description="Detalle técnico de cómo Sofía transforma los registros contables en estados financieros, proyecciones y métricas listos para el tablero."
+>
+  <section class="py-section bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8">
+        <p class="text-sm font-medium text-primary mb-2">Modelo de análisis financiero</p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text mb-3">Arquitectura funcional de Sofía</h1>
+        <p class="text-text-muted text-lg leading-relaxed">
+          Sofía toma los asientos contables limpios que produce Lucía y los organiza en estructuras financieras
+          estándar. Su propósito es generar estados financieros consistentes, históricos y proyectados, que se
+          puedan consultar desde el tablero y cruzar con las preguntas del negocio.
+        </p>
+      </header>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:table" class="w-5 h-5 text-primary" />
+            Normalización y agregación de datos
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Sofía recibe los movimientos contables ya conciliados y los agrupa por cuenta, periodo, centro de
+            costo y tipo de operación. A partir de esa base genera vistas agregadas que alimentan cada uno de
+            los estados financieros.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Transformación de movimientos diarios en cortes mensuales, trimestrales o anuales.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Etiquetado de cuentas según su naturaleza (activo, pasivo, patrimonio, ingreso, gasto).</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:files" class="w-5 h-5 text-primary" />
+            Construcción de estados financieros
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Con los datos normalizados, Sofía arma automáticamente el estado de resultados, balance general y
+            flujo de caja. Cada estado se construye aplicando plantillas y fórmulas que respetan la estructura
+            financiera requerida por Pymes en Colombia.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Mapeo de cuentas a líneas de cada estado (ingresos, costos, gastos, activos, pasivos, etc.).</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Validaciones de consistencia entre estados (por ejemplo, conciliación de utilidades y patrimonio).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:trending-up" class="w-5 h-5 text-primary" />
+            Proyecciones y escenarios
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Además de los datos históricos, Sofía genera versiones proyectadas de los estados financieros
+            aplicando supuestos de crecimiento, estacionalidad y comportamiento de costos. Estos supuestos se
+            parametrizan por cliente y pueden ajustarse según la realidad del negocio.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Escenarios base, conservador y agresivo sobre ingresos y gastos.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Proyecciones de flujo de caja con base en comportamientos de cobro y pago.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:gauge" class="w-5 h-5 text-primary" />
+            Indicadores para el tablero
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Los resultados de Sofía se publican como métricas consumibles por el tablero inteligente:
+            rentabilidad por periodo, márgenes, endeudamiento, cobertura, entre otros. Cada indicador se
+            calcula a partir de fórmulas explícitas para que sea posible auditar cómo se llegó a un número.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Indicadores clave de desempeño (KPI) listos para visualización gráfica.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Historial de valores para comparaciones intermensuales e interanuales.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,120 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title="María – Diseño técnico de la gerente financiera de IA"
+  description="Detalle técnico de cómo María interpreta los estados financieros, controla desviaciones y entrega recomendaciones accionables."
+>
+  <section class="py-section bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8">
+        <p class="text-sm font-medium text-primary mb-2">Orquestación y toma de decisiones</p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text mb-3">Arquitectura funcional de María</h1>
+        <p class="text-text-muted text-lg leading-relaxed">
+          María se ubica en la capa de gestión financiera. Conecta los registros e indicadores que genera Sofía,
+          los contrasta con presupuestos y metas, y responde preguntas en lenguaje natural con el contexto
+          completo del negocio.
+        </p>
+      </header>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:target" class="w-5 h-5 text-primary" />
+            Presupuestos y objetivos de referencia
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Antes de empezar a operar, se cargan los presupuestos y metas financieras del cliente (ventas,
+            gastos, inversiones, endeudamiento, etc.). Estos datos sirven como “línea base” para que María
+            pueda medir la desviación real mes a mes.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Definición de presupuestos por centro de costo, unidad de negocio o proyecto.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Metas de rentabilidad, margen bruto, margen operacional y caja disponible.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:alarm-check" class="w-5 h-5 text-primary" />
+            Motor de alertas y monitoreo
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Con la información real y la línea base, María calcula desviaciones relevantes y genera alertas
+            cuando se exceden umbrales definidos. Estas alertas se pueden mostrar en el tablero o integrarse a
+            los canales de comunicación acordados.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Reglas configurables por indicador (por ejemplo, margen bruto por debajo de cierto nivel).</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Estados de alerta (informativo, preventivo, crítico) según impacto.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:message-circle" class="w-5 h-5 text-primary" />
+            Consultas en lenguaje natural
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            María utiliza un modelo de lenguaje que tiene acceso controlado a los estados financieros,
+            indicadores y presupuestos ya procesados. Cuando el usuario hace una pregunta (por ejemplo, “¿por
+            qué bajó mi margen en enero?”), María ejecuta consultas internas sobre los datos y devuelve una
+            explicación en lenguaje simple.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Capas de filtrado para limitar el acceso a la información según el rol del usuario.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Respuestas explicables: se indica qué datos o periodos se tuvieron en cuenta.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:route" class="w-5 h-5 text-primary" />
+            Recomendaciones y próxima acción
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Más allá de describir lo que pasó, María sugiere acciones posibles según patrones observados y
+            buenas prácticas financieras para Pymes. Estas recomendaciones no sustituyen la firma de un contador
+            público, pero sí sirven como guía para priorizar decisiones.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Sugerencias sobre control de gastos, uso de caja o necesidad de ajustar precios.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Identificación de indicadores que requieren seguimiento más frecuente.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

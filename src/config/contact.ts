@@ -34,7 +34,7 @@ export const contactMethods: ContactMethod[] = [
     icon: 'simple-icons:whatsapp',
     label: 'WhatsApp',
     value: 'Contactar por WhatsApp',
-    href: 'https://wa.me/',
+    href: 'https://wa.me/573213902280',
   },
   {
     icon: 'simple-icons:instagram',

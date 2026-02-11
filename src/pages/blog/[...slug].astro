@@ -7,8 +7,9 @@ import { calculateReadingTime } from '@/lib/utils';
 type BlogPost = CollectionEntry<'blog'>;
 
 // En modo server (output: 'server') getStaticPaths se ignora; hay que resolver el post por slug en cada request.
-const slug = Astro.params.slug;
-if (!slug || typeof slug !== 'string') {
+const slugParam = Astro.params.slug;
+const slug = typeof slugParam === 'string' ? slugParam : Array.isArray(slugParam) ? slugParam.join('/') : '';
+if (!slug) {
   return Astro.redirect('/404');
 }
 

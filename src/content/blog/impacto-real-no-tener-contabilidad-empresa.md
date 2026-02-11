@@ -3,7 +3,7 @@ title: "El impacto real de no tener contabilidad en tu empresa"
 description: "No llevar contabilidad adecuada es una de las principales causas de fracaso empresarial. Consecuencias legales, operativas y para el crecimiento de tu negocio."
 publishedDate: 2026-02-07
 author: "María Rodríguez - Gerente afinate"
-image: "/images/blog/security-practices.webp"
+image: "/images/blog/post1.webp"
 tags: ["insight", "contabilidad", "pyme", "gestión financiera"]
 draft: false
 ---

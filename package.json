@@ -36,6 +36,8 @@
     "@iconify-json/lucide": "^1.2.82",
     "@iconify-json/simple-icons": "^1.2.63",
     "@tailwindcss/typography": "^0.5.19",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/slim": "^3.9.1",
     "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
     "chart.js": "^4.4.0"

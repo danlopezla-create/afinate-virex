@@ -22,32 +22,37 @@ export const dashboardNavigation: DashboardNavSection[] = [
   {
     items: [
       {
-        label: 'Overview',
+        label: 'Resumen',
         href: '/dashboard',
         icon: 'layout-dashboard',
       },
     ],
   },
   {
-    title: 'Management',
+    title: 'Agentes',
     items: [
       {
-        label: 'Projects',
+        label: 'Lucía',
         href: '/dashboard/projects',
         icon: 'folder',
       },
       {
-        label: 'Team',
+        label: 'Sofía',
         href: '/dashboard/settings/team',
         icon: 'users',
+      },
+      {
+        label: 'María',
+        href: '/dashboard/maria',
+        icon: 'briefcase',
       },
     ],
   },
   {
-    title: 'Settings',
+    title: 'Ajustes',
     items: [
       {
-        label: 'Settings',
+        label: 'Ajustes',
         href: '/dashboard/settings',
         icon: 'settings',
         children: [

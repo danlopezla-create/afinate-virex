@@ -1,0 +1,91 @@
+---
+/* src/components/ParticlesHero.astro */
+---
+
+<div id="hero-particles" class="particles-overlay"></div>
+
+<script>
+  import { tsParticles } from "@tsparticles/engine";
+  import { loadSlim } from "@tsparticles/slim";
+
+  async function initParticles() {
+    await loadSlim(tsParticles);
+
+    const config = {
+      fullScreen: { enable: false },
+      particles: {
+        // INCREMENTO DE PARTÍCULAS: de 100 a 350
+        number: { 
+          value: 350, 
+          density: { enable: true, area: 800 } 
+        },
+        color: { value: "#FFD700" },
+        shape: { type: "circle" },
+        opacity: {
+          value: { min: 0.1, max: 0.8 },
+          animation: { 
+            enable: true, 
+            speed: 1, 
+            minimumValue: 0.1, 
+            sync: false 
+          }
+        },
+        size: { 
+          value: { min: 0.5, max: 2.5 } 
+        },
+        move: {
+          enable: true,
+          speed: 1.2, // Un poco más lento para que sea elegante
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" },
+        },
+      },
+      retina_detect: true,
+    };
+
+    const container = await tsParticles.load({ id: "hero-particles", options: config });
+    
+    const el = document.getElementById("hero-particles");
+    if (el) {
+      el.style.opacity = "1";
+
+      // DURACIÓN INCREMENTADA: de 7 a 20 segundos (20000ms)
+      setTimeout(() => {
+        el.style.opacity = "0";
+        setTimeout(() => {
+          container?.destroy();
+        }, 2000); // 2 segundos de transición suave al final
+      }, 20000); 
+    }
+  }
+
+  initParticles();
+  document.addEventListener("astro:after-swap", initParticles);
+</script>
+
+<style>
+  .particles-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; 
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2s ease-in-out; /* Transición más suave */
+    background: transparent !important;
+  }
+
+  /* Modo Claro: Ajuste para que se vean más como "brillos" que como puntos */
+  :global(html:not(.dark)) .particles-overlay {
+    filter: brightness(0.8) contrast(1.2) blur(0.5px);
+    opacity: 0.6 !important;
+  }
+
+  /* Modo Oscuro: Efecto de resplandor */
+  :global(html.dark) .particles-overlay {
+    filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.4));
+  }
+</style>

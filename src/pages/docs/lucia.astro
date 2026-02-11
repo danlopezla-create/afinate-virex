@@ -1,0 +1,123 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title="Lucía – Diseño técnico del asistente contable de IA"
+  description="Detalle técnico de cómo Lucía recibe documentos, extrae datos y los transforma en movimientos contables estructurados para el tablero financiero."
+>
+  <section class="py-section bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8">
+        <p class="text-sm font-medium text-primary mb-2">Automatización contable</p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text mb-3">Arquitectura funcional de Lucía</h1>
+        <p class="text-text-muted text-lg leading-relaxed">
+          Lucía es la capa que estandariza la entrada de información. Su objetivo es tomar documentos
+          desordenados (facturas, recibos, extractos) y convertirlos en registros contables consistentes que
+          se puedan consultar, conciliar y auditar desde el tablero inteligente.
+        </p>
+      </header>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:inbox" class="w-5 h-5 text-primary" />
+            Canal de entrada y preprocesamiento
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Los documentos llegan a través de canales autorizados (por ejemplo, WhatsApp corporativo o carga
+            directa en la plataforma). Cada archivo se identifica con el cliente, periodo y tipo de documento,
+            y se almacena en una cola de procesamiento con su respectivo historial de trazabilidad.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-1 text-primary">•</span>
+              <span>Validación básica del archivo (formato, tamaño y legibilidad mínima).</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-1 text-primary">•</span>
+              <span>Enrutamiento a la cola de lectura según tipo: venta, compra, banco u otros.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:sparkles" class="w-5 h-5 text-primary" />
+            Lectura inteligente y extracción de datos
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Una vez en cola, el documento se envía a una capa de IA especializada en lectura de texto y tablas.
+            Allí se identifican campos clave como fecha, tercero, concepto, valores, impuestos y referencia
+            bancaria. La IA devuelve un JSON estructurado que servirá de base para el registro contable.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-1 text-primary">•</span>
+              <span>Normalización de monedas y formatos de fecha.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-1 text-primary">•</span>
+              <span>Detección de totales e impuestos para evitar descuadres.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:book-open-check" class="w-5 h-5 text-primary" />
+            Motor de reglas contables
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Con la información extraída, Lucía aplica un conjunto de reglas contables configurables por tipo
+            de cliente. Estas reglas definen cómo se mapean los datos a cuentas contables, centros de costo y
+            contrapartidas, respetando el plan de cuentas acordado con el usuario.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Catálogo de cuentas personalizado por cliente y por tipo de operación.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Reglas de imputación (ej. ventas nacionales, gastos operativos, honorarios, etc.).</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Validaciones para garantizar que cada asiento quede cuadrado en débito y crédito.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-semibold text-text flex items-center gap-2">
+            <Icon name="lucide:database" class="w-5 h-5 text-primary" />
+            Conciliación bancaria
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Los movimientos generados se almacenan en una base de datos estructurada por cliente y periodo.
+            Cuando se trata de extractos bancarios, Lucía compara los movimientos del banco con las facturas y
+            recibos ya registrados para marcar transacciones conciliadas o pendientes por aclarar.
+          </p>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Historial de cambios y trazabilidad por documento procesado.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0 text-primary">•</span>
+              <span>Estados de conciliación para alimentar los indicadores del tablero.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -40,8 +40,8 @@ import { siteConfig } from '@/config';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl sm:text-3xl font-bold text-text mb-2">Automatizaciones</h2>
       <p class="text-text-muted mb-10 max-w-2xl">
-        Tres agentes de IA trabajan en conjunto para ofrecer contabilidad, análisis y gestión financiera
-        de forma autónoma. A continuación se amplía la información de cada uno, vinculada desde la página de producto.
+        Tres agentes de IA programados para trabajar de forma autónoma, ofreciendo un robusto departamente financiero
+        al alcance de todos. A continuación se amplía su información técnica.
       </p>
 
       <div class="space-y-16">
@@ -50,27 +50,27 @@ import { siteConfig } from '@/config';
           <div class="flex flex-col md:flex-row gap-8 items-start">
             <div class="w-full md:w-72 shrink-0">
               <img
-                src="/Lucia-Asistente%20Contable%20de%20IA.png"
+                src="/Lucia.webp"
                 alt="Lucía - Asistente Contable de IA"
                 class="rounded-xl border border-border shadow-md w-full object-contain"
                 loading="lazy"
               />
             </div>
             <div class="flex-1">
-              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">La Base</span>
               <h3 class="text-xl sm:text-2xl font-bold text-text">Lucía – Asistente Contable de IA</h3>
               <p class="mt-4 text-text-muted leading-relaxed">
-                Lucía es la base del flujo financiero: procesa facturas, recibos y extractos bancarios de forma
-                autónoma, organizando tu libro mayor y garantizando que tu contabilidad esté al día. Recibe
-                documentos vía WhatsApp o desde la app, extrae los datos clave, automatiza el registro contable
-                y concilia bancos. Es el primer eslabón del equipo; sin Lucía, Sofía y María no tendrían
-                información estructurada para analizar.
-              </p>
-              <ul class="mt-4 space-y-2 text-text-muted">
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Recepción de documentos por WhatsApp o app</li>
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Extracción automática de datos de facturas y extractos</li>
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Automatización del libro mayor y conciliación bancaria</li>
+                Lucía recibe documentos digitales desde los canales habilitados,
+                los pasa por una capa de lectura y extracción de datos, clasifica cada movimiento según reglas
+                contables predefinidas y genera asientos estructurados listos para base de datos.
+              <ul class="mt-0 space-y-2 text-text-muted">
               </ul>
+              <a
+                href="/docs/lucia"
+                class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-md border border-border bg-background text-sm font-medium text-text hover:bg-surface transition-colors"
+              >
+                Ver configuración técnica de Lucía
+                <Icon name="lucide:arrow-right" class="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -80,25 +80,28 @@ import { siteConfig } from '@/config';
           <div class="flex flex-col md:flex-row gap-8 items-start">
             <div class="w-full md:w-72 shrink-0">
               <img
-                src="/Sofia-Analista%20Financiera%20de%20IA.png"
+                src="/Sofia.webp"
                 alt="Sofía - Analista Financiera de IA"
                 class="rounded-xl border border-border shadow-md w-full object-contain"
                 loading="lazy"
               />
             </div>
             <div class="flex-1">
-              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">El Rendimiento</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-text">Sofía – Analista Financiera de IA</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text">Sofía – Analista Financiero de IA</h3>
               <p class="mt-4 text-text-muted leading-relaxed">
-                Sofía toma la información ya organizada por Lucía y construye los estados financieros básicos:
-                estado de resultados, balance general y flujo de caja. Genera tanto reportes históricos como
-                proyecciones futuras, dando visibilidad sobre el desempeño y la tendencia de la empresa.
-                Actúa como la capa de análisis que transforma datos contables en información para la toma de decisiones.
+                Sofía recibe la información de Lucía la clasifica y agrupa en cuentas por centro de costos, periodos y categorías, arma el
+                estado de resultados, balance general y flujo de caja, y aplica modelos de proyección para simular
+                escenarios.
               </p>
-              <ul class="mt-4 space-y-2 text-text-muted">
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Construcción de estados financieros históricos</li>
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Proyección de estados financieros futuros</li>
+              <ul class="mt-0 space-y-2 text-text-muted">
               </ul>
+              <a
+                href="/docs/sofia"
+                class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-md border border-border bg-background text-sm font-medium text-text hover:bg-surface transition-colors"
+              >
+                Ver configuración técnica de Sofía
+                <Icon name="lucide:arrow-right" class="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -108,26 +111,28 @@ import { siteConfig } from '@/config';
           <div class="flex flex-col md:flex-row gap-8 items-start">
             <div class="w-full md:w-72 shrink-0">
               <img
-                src="/Maria-Gerente%20Financiera%20de%20IA.png"
+                src="/Maria.webp"
                 alt="María - Gerente Financiera de IA"
                 class="rounded-xl border border-border shadow-md w-full object-contain"
                 loading="lazy"
               />
             </div>
             <div class="flex-1">
-              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">El Experto</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-text">María – Gerente Financiera de IA</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text">María – Gerente Financiero de IA</h3>
               <p class="mt-4 text-text-muted leading-relaxed">
-                María utiliza la información generada por Sofía para revisar el desempeño financiero de tu empresa,
-                proponer ajustes y responder consultas de alto nivel. Controla la desviación presupuestal, ayuda
-                a redefinir metas y objetivos, y responde preguntas con el contexto completo de tu negocio.
-                Es la capa de gestión y asesoría del equipo de IA.
+                María conecta la información de Sofía y la cruza con reglas de negocio, presupuestos y objetivos 
+                definidos por el usuario. Sobre esa base ejecuta consultas en lenguaje natural, detecta 
+                desviaciones, genera alertas y sugiere ajustes estratégicos.
               </p>
-              <ul class="mt-4 space-y-2 text-text-muted">
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Control de desviación presupuestal</li>
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Redefinición de metas y objetivos</li>
-                <li class="flex items-start gap-2"><Icon name="lucide:check-circle" class="w-5 h-5 text-primary shrink-0 mt-0.5" /> Respuesta a consultas con contexto de tu empresa</li>
+              <ul class="mt-0 space-y-2 text-text-muted">
               </ul>
+              <a
+                href="/docs/maria"
+                class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-md border border-border bg-background text-sm font-medium text-text hover:bg-surface transition-colors"
+              >
+                Ver configuración técnica de María
+                <Icon name="lucide:arrow-right" class="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -191,7 +196,7 @@ import { siteConfig } from '@/config';
           financieros, información de contacto y datos de facturación) serán tratados con fines de prestación
           del servicio, mejora del producto, cumplimiento legal y, cuando aplique, comunicación comercial
           autorizada. Usted tiene derecho a conocer, actualizar, rectificar y solicitar la supresión de sus
-          datos, así como a revocar el consentimiento, mediante solicitud enviada a {siteConfig.legal?.legalEmail ?? 'afinateia@gmail.com'}.
+          datos, así como a revocar el consentimiento, mediante solicitud enviada al correo afinateia@gmail.com.
           Los datos se almacenan y procesan con medidas técnicas y organizativas adecuadas para garantizar
           su seguridad y confidencialidad.
         </p>
@@ -204,7 +209,7 @@ import { siteConfig } from '@/config';
           Aviso importante (disclaimer contable)
         </h3>
         <p class="mt-4 text-text-muted leading-relaxed">
-          <strong class="text-text">No somos contadores públicos.</strong> {siteConfig.name} es una plataforma
+          <strong class="text-text">No somos contadores públicos,</strong> {siteConfig.name} es una plataforma
           tecnológica que utiliza inteligencia artificial para apoyar la organización y el procesamiento de
           información contable y financiera. Los reportes, estados y datos generados por la plataforma tienen
           fines de apoyo a la gestión y no sustituyen la revisión, firma o responsabilidad de un contador

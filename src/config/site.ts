@@ -22,19 +22,19 @@ export const ogImage = 'hgtttps://afinate.com/images/og-image.png';
 
 /** Social media links - Actualizado con tu WhatsApp */
 export const social: SocialLinks = {
-  whatsapp: 'https://wa.me/573113392679',
+  whatsapp: 'https://wa.me/573213902280',
   instagram: 'https://instagram.com/afinate.ia',
   facebook: 'https://facebook.com/afinate',
   x: 'https://x.com/afinate',
 };
 
 /** WhatsApp customer service */
-export const whatsappCustomerService = '573113392679';
+export const whatsappCustomerService = '573213902280';
 
 /** Legal configuration */
 export const legal: LegalConfig = {
-  privacyEmail: 'danlopezla@gmail.com',
-  legalEmail: 'danlopezla@gmail.com',
+  privacyEmail: 'afinateia@gmail.com',
+  legalEmail: 'afinateia@gmail.com',
   lastUpdated: '9 de febrero de 2026',
 };
 
